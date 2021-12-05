@@ -17,6 +17,10 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+plugins {
+    id 'maven-publish'
+}
+
 task androidSourcesJar(type: Jar) {
     classifier 'sources'
     from android.sourceSets.main.java.srcDirs 
