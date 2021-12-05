@@ -17,11 +17,17 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+task androidSourcesJar(type: Jar) {
+    classifier 'sources'
+    from android.sourceSets.main.java.srcDirs 
+}
+
 project.afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 from components.release
+                artifact androidSourcesJar
             }
         }
     }
