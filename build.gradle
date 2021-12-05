@@ -16,3 +16,14 @@ buildscript {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                artifact androidSourcesJar // optional sources
+            }
+        }
+    }
+}
