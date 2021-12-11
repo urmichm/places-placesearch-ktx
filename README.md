@@ -2,7 +2,23 @@
 
 # Diana Library
 
-_**Use this file as a log to keep track of changes.**_
+_**Usage.**_
+
+In order to use the library please include the following dependency
+```gradle
+dependencies {
+  implementation 'com.github.urmichm:diana-android:0.1.2'
+ }
+```
+
+If you have not included the jitpack repository in your project plese add the following in your root build.gradle at the end of repositories
+```gradle
+allprojects {
+  repositories {
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
 
 This package is responsible for calling [Google Place Search API](https://developers.google.com/maps/documentation/places/web-service/search#PlaceSearchRequests)
 
