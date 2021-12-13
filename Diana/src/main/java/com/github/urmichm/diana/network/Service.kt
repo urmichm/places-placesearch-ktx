@@ -1,6 +1,6 @@
 package com.github.urmichm.diana.network
 
-import com.github.urmichm.diana.containers.NearbySearchContainer
+import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -39,7 +39,7 @@ interface DianaService{
         @Query("location") location : String,
         @Query("type") type : String,
         @Query("rankby") rankby : String
-    ) : Deferred<NearbySearchContainer>
+    ) : Deferred<PlacesNearbySearchContainer>
 
 }
 

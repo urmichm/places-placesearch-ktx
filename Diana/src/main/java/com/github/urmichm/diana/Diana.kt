@@ -1,7 +1,7 @@
 package com.github.urmichm.diana
 
 import android.util.Log
-import com.github.urmichm.diana.containers.NearbySearchContainer
+import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
 import com.github.urmichm.diana.network.Network
 import kotlinx.coroutines.Deferred
 import java.lang.Exception
@@ -31,8 +31,8 @@ class Diana private constructor(
      * @brief makes a call to Nearby Search
      * TODO add parameter validation
      * */
-    suspend fun nearbySearch(type :String, latLng :String, rankby :String) : NearbySearchContainer? {
-        val nearby: Deferred<NearbySearchContainer> =
+    suspend fun nearbySearch(type :String, latLng :String, rankby :String) : PlacesNearbySearchContainer? {
+        val nearby: Deferred<PlacesNearbySearchContainer> =
             Network.diana.nearbySearch(key,latLng, type, rankby)
 
         return try {
