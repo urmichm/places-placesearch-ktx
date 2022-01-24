@@ -1,9 +1,5 @@
 package com.github.urmichm.diana.containers
 
-
-import androidx.lifecycle.Transformations
-import com.google.android.libraries.places.api.model.AddressComponent
-import com.google.android.libraries.places.api.model.AddressComponents
 import com.google.android.libraries.places.api.model.Place
 import com.squareup.moshi.Json
 
@@ -13,14 +9,13 @@ import com.squareup.moshi.Json
  * */
 data class PlaceDetailsContainer(
     @Json(name="place_id") val placeId: String,
-    val name :String,
-    val rating :Double?,
+    @Json(name="name") val name :String,
+    @Json(name="price_level") val priceLevel : Int?,
+    @Json(name="rating") val rating :Double?,
     @Json(name="user_ratings_total") val userRatingsTotal :Int?,
-    val vicinity :String,
-    // TODO: map to PLace.Type
-    val types :List<String>?,
-    // TODO: geometry
-    val geometry : GeometryContainer,
+    @Json(name="vicinity") val vicinity :String,
+    @Json(name="types") val types :List<String>?,
+    @Json(name="geometry") val geometry : GeometryContainer,
     @Json(name="icon") val iconUrl :String?
 ) {
     override fun toString(): String {
@@ -30,15 +25,15 @@ data class PlaceDetailsContainer(
     // TODO: WTF is setAttributions()
     fun asPlace() : Place{
         return Place.builder()
-//            .setAddressComponents(this.addressComponents)
             .setId(this.placeId)
             .setName(this.name)
+            .setPriceLevel(this.priceLevel)
             .setRating(this.rating)
             .setUserRatingsTotal(this.userRatingsTotal)
             .setAddress(this.vicinity)
-//            .setTypes(this.types)
-//            .setViewport(this.geometry.viewport)
-//            .setLatLng(this.geometry.location)
+            .setTypes(this.types?.map{ Place.Type.valueOf(it.uppercase()) })
+            .setViewport(this.geometry.viewport.toLatLngBounds())
+            .setLatLng(this.geometry.location.toLatLng())
             .setIconUrl(this.iconUrl)
 
             .build()
