@@ -1,23 +1,27 @@
 package com.github.urmichm.diana.containers
 
+import com.squareup.moshi.Json
+
 
 /**
  * @brief Container fro nearBySearch request.
  * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby#PlacesNearbySearchResponse
  * */
 data class PlacesNearbySearchContainer(
-    val html_attributions : List<String>,
+    @Json(name="html_attributions") val htmlAttributions : List<String>,
+
     val results :List<PlaceDetailsContainer>,
     val status : String,
-    val error_message : String?,
-    val info_messages : List<String>?,
-    val next_page_token : String?
+
+    @Json(name="error_message") val errorMessage : String?,
+    @Json(name="info_messages") val infoMessages : List<String>?,
+    @Json(name="next_page_token") val nextPageToken : String?
 ) {
 
     override fun toString(): String {
         var str = "status: $status"
-        if(error_message != null) {
-            str += " $error_message"
+        if(errorMessage != null) {
+            str += " $errorMessage"
         }
         return str
     }
