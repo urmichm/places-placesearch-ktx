@@ -1,5 +1,6 @@
 package com.github.urmichm.diana.containers
 
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 
 /**
@@ -7,6 +8,6 @@ import com.google.android.gms.maps.model.LatLngBounds
  * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby#Geometry
  * */
 data class GeometryContainer(
-    val location : LatLngBounds,
+    val location : LatLngContainer,
     val viewport : BoundsContainer
 )
