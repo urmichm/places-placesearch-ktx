@@ -10,5 +10,7 @@ data class BoundsContainer(
     val northeast : LatLngContainer,
     val southwest : LatLngContainer
 ){
-
+    fun toLatLngBounds() : LatLngBounds {
+        return LatLngBounds(southwest.toLatLng(), northeast.toLatLng())
+    }
 }
