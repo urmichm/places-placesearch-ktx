@@ -2,6 +2,7 @@ package com.github.urmichm.diana.containers
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.github.urmichm.diana.Diana
 import com.google.android.libraries.places.api.model.Place
 import com.squareup.moshi.Json
 
@@ -40,33 +41,32 @@ data class PlaceDetailsContainer(
     }
 
     /**
-     * @brief Returns boolean if place is open at the moment of API call.
-     * TODO: test!
+     * @brief Returns boolean if the place is open at the moment of the API call.
+     * @return true if the place is open at the moment of the call, false otherwise
      * */
     fun isOpen():Boolean?{
         return this.openingHours?.openNow;
     }
 
-    // TODO: WTF is setAttributions()
-    // TODO: vicinity ?! add on builder method for users to select if they want to use vicinity as address
-    // TODO: RequiresApi N
+    /**
+     * @brief Converts [PlaceDetailsContainer] into [Place] object
+     * @warning Requires API [Build.VERSION_CODES.N]
+     * */
     @RequiresApi(Build.VERSION_CODES.N)
     fun asPlace() : Place{
-        return Place.builder()
-                // TODO: test businessStatus
+        val placeBuilder =  Place.builder()
             .setBusinessStatus(this.businessStatus?.uppercase()?.let { Place.BusinessStatus.valueOf(it) })
             .setId(this.placeId)
             .setName(this.name)
             .setPriceLevel(this.priceLevel)
             .setRating(this.rating)
             .setUserRatingsTotal(this.userRatingsTotal)
-            .setAddress(this.vicinity)
             .setTypes(this.types?.map{ Place.Type.valueOf(it.uppercase()) })
             .setViewport(this.geometry.viewport.toLatLngBounds())
             .setLatLng(this.geometry.location.toLatLng())
             .setIconBackgroundColor(this.iconBackgroundColor?.substring(1)?.toInt(16))
             .setIconUrl(this.iconUrl)
-                // TODO: test!
+                // TODO: WTF is wrong with photos ?!
 //            .setPhotoMetadatas(this.photos?.stream()?.map { it.toPhotoMetadata() }?.toList())
             .setPlusCode(this.plusCode?.toPlusCode())
 
@@ -77,10 +77,13 @@ data class PlaceDetailsContainer(
 //            .setOpeningHours(@Nullable OpeningHours var1);
 //            .setPhoneNumber(@Nullable String var1);
 //            .setUtcOffsetMinutes(@Nullable Integer var1);
-//            .setViewport(@Nullable LatLngBounds var1);
 //            .setWebsiteUri(@Nullable Uri var1);
 
-            .build()
+        if(null == placeBuilder.address && Diana.vicinity2Address) {
+            placeBuilder.address = this.vicinity
+        }
+
+        return placeBuilder.build()
     }
 
 }

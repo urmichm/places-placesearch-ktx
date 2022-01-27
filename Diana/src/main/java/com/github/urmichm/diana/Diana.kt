@@ -7,17 +7,18 @@ import kotlinx.coroutines.Deferred
 import java.lang.Exception
 
 class Diana private constructor(
-    private val key : String
+    builder : Builder,
+    private val key: String
 ){
+
+
+    init{
+        vicinity2Address = builder.getVicinity2Address()
+    }
 
     companion object {
         private const val TAG = "Diana"
-
-
-        fun Builder(key : String) : Diana{
-
-            return Diana(key)
-        }
+        var vicinity2Address = true
 
         fun hello(){
             Log.i(TAG, "Hello Diana!")
@@ -27,9 +28,22 @@ class Diana private constructor(
             Log.i(TAG, "Bye Diana!")
         }
     }
+
+    class Builder(private val key : String){
+
+        private var vicinity2Address = true
+
+        fun getVicinity2Address() = this.vicinity2Address
+        fun setVicinity2Address(vicinity2Address : Boolean) = apply{this.vicinity2Address = vicinity2Address}
+
+        fun build() : Diana{
+            return Diana(this, key)
+        }
+    }
+
     /**
      * @brief makes a call to Nearby Search
-     * TODO add parameter validation
+     * TODO: add parameter validation
      * */
     suspend fun nearbySearch(type :String, latLng :String, rankby :String) : PlacesNearbySearchContainer? {
         val nearby: Deferred<PlacesNearbySearchContainer> =

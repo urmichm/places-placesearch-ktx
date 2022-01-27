@@ -8,13 +8,13 @@ import com.squareup.moshi.Json
 /**
  * @brief Container fro nearBySearch request.
  * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby#PlacesNearbySearchResponse
+ * https://developers.google.com/maps/documentation/places/web-service/search-nearby#PlacesSearchStatus
  * */
 data class PlacesNearbySearchContainer(
     @Json(name="html_attributions") val htmlAttributions : List<String>,
 
     val results :List<PlaceDetailsContainer>,
 
-    // TODO: https://developers.google.com/maps/documentation/places/web-service/search-nearby#PlacesSearchStatus
     val status : String,
 
     @Json(name="error_message") val errorMessage : String?,
