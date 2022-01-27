@@ -21,11 +21,18 @@ data class PlaceDetailsContainer(
     @Json(name="vicinity") val vicinity :String,
     @Json(name="types") val types :List<String>?,
     @Json(name="geometry") val geometry : GeometryContainer,
+    @Json(name="photos") val photos : List<PhotoMetadataContainer>?,
+    @Json(name="opening_hours") val openingHours : OpeningHoursContainer?,
+    @Json(name="plus_code") val plusCode : PlusCodeContainer?,
+
     @Json(name="icon") val iconUrl :String?,
     @Json(name="icon_background_color") val iconBackgroundColor :String?,
-    @Json(name="photos") val photos : List<PhotoMetadataContainer>?,
-    @Json(name = "opening_hours") val openingHours : OpeningHoursContainer?,
-    @Json(name="plus_code") val plusCode : PlusCodeContainer?
+    @Json(name="icon_mask_base_uri") val iconMaskBaseUri :String?,
+
+    @Deprecated(message="Deprecated. The reference response field has been replaced by the place_id response, and should not be used.", replaceWith = ReplaceWith("place_id"))
+    @Json(name="reference") val reference : String?,
+    @Deprecated(message="Deprecated. The scope fields have no equivalent, as they were only used for the Place Add service which was turned off in July 2018.")
+    @Json(name="scope") val scope : String?
 ) {
 
     override fun toString(): String {
