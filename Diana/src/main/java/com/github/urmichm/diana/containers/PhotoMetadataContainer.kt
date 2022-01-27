@@ -10,6 +10,10 @@ data class PhotoMetadataContainer (
     @Json(name="width") val width : Int
     ) {
 
+    /**
+     * @brief Convert into [PhotoMetadata]
+     * TODO: set attributions
+     * */
     fun toPhotoMetadata() :PhotoMetadata{
         return PhotoMetadata.builder(this.photoReference)
             .setHeight(this.height)

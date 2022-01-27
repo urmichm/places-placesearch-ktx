@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import com.github.urmichm.diana.Diana
 import com.google.android.libraries.places.api.model.Place
 import com.squareup.moshi.Json
+import kotlin.streams.toList
 
 /**
  * @brief Container for Place object.
@@ -66,8 +67,7 @@ data class PlaceDetailsContainer(
             .setLatLng(this.geometry.location.toLatLng())
             .setIconBackgroundColor(this.iconBackgroundColor?.substring(1)?.toInt(16))
             .setIconUrl(this.iconUrl)
-                // TODO: WTF is wrong with photos ?!
-//            .setPhotoMetadatas(this.photos?.stream()?.map { it.toPhotoMetadata() }?.toList())
+//          .setPhotoMetadatas(this.photos?.stream()?.map { it.toPhotoMetadata() }?.toList())
             .setPlusCode(this.plusCode?.toPlusCode())
 
 /*  The Following fields are not returned by Place Search, Nearby Search, and Text Search */
