@@ -24,7 +24,7 @@ data class PlaceDetailsContainer(
     @Json(name="types") val types :List<String>?,
     @Json(name="geometry") val geometry : GeometryContainer,
     @Json(name="photos") val photos : List<PhotoMetadataContainer>?,
-    @Json(name="opening_hours") val openingHours : OpeningHoursContainer?,
+    @Json(name="opening_hours") var openingHours : OpeningHoursContainer?,
     @Json(name="plus_code") val plusCode : PlusCodeContainer?,
 
     @Json(name="icon") val iconUrl :String?,
@@ -38,7 +38,7 @@ data class PlaceDetailsContainer(
 ) {
 
     override fun toString(): String {
-        return "${this.name} of type ${this.types} ${this.rating}"
+        return "${this.name}[${this.rating}]"
     }
 
     /**
