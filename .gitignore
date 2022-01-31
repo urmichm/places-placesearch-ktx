@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+Diana/src/main/java/com/github/urmichm/diana/Main.kt
+Diana/src/test/java/com/github/urmichm/diana/LocalSecrets.kt

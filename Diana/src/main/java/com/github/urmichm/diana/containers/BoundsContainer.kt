@@ -7,8 +7,10 @@ import com.google.android.gms.maps.model.LatLngBounds
  * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby#Bounds
  * */
 data class BoundsContainer(
-    val northeast : LatLngBounds,
-    val southwest : LatLngBounds
+    val northeast : LatLngContainer,
+    val southwest : LatLngContainer
 ){
-
+    fun toLatLngBounds() : LatLngBounds {
+        return LatLngBounds(southwest.toLatLng(), northeast.toLatLng())
+    }
 }
