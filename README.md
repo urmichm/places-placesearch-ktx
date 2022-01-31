@@ -20,12 +20,12 @@ allprojects {
 }
 ```
 
-This package is responsible for calling [Google Place Search API](https://developers.google.com/maps/documentation/places/web-service/search#PlaceSearchRequests)
+The main goal of the library is to call [Google Place Search API](https://developers.google.com/maps/documentation/places/web-service/search#PlaceSearchRequests)
 
-The result of a call shall be converted into a set of [Place](https://developers.google.com/maps/documentation/places/android-sdk/reference/com/google/android/libraries/places/api/model/Place)
+The result of the call may be converted into a set of [Place](https://developers.google.com/maps/documentation/places/android-sdk/reference/com/google/android/libraries/places/api/model/Place)
 objects.
 
-Such conversion shall accelerate the calling ot Place Search and integrate the package into Place Details SDK
+Such conversion accelerates the usage of Place Search and integrate the package into Place Details SDK
 
 ## External Libraries required
 * Retrofit
