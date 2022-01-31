@@ -7,7 +7,7 @@ _**Usage.**_
 In order to use the library please include the following dependency
 ```gradle
 dependencies {
-  implementation 'com.github.urmichm:diana-android:0.1.2'
+  implementation 'com.github.urmichm:diana-android:RELEASE_TAG'
  }
 ```
 
