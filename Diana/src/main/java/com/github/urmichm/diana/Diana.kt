@@ -1,16 +1,11 @@
 package com.github.urmichm.diana
 
 import android.util.Log
-import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
-import com.github.urmichm.diana.network.Network
-import kotlinx.coroutines.Deferred
-import java.lang.Exception
 
 class Diana private constructor(
     builder : Builder,
-    private val key: String
+    internal val key: String
 ){
-
 
     init{
         vicinity2Address = builder.getVicinity2Address()
@@ -41,21 +36,5 @@ class Diana private constructor(
         }
     }
 
-    /**
-     * @brief makes a call to Nearby Search
-     * TODO: add parameter validation
-     * */
-    suspend fun nearbySearch(type :String, latLng :String, rankby :String) : PlacesNearbySearchContainer? {
-        val nearby: Deferred<PlacesNearbySearchContainer> =
-            Network.diana.nearbySearch(key,latLng, type, rankby)
-
-        return try {
-            val response = nearby.await()
-            response
-        } catch (e: Exception) {
-            println("Exceptioin e: $e");
-            null
-        }
-    }
 
 }

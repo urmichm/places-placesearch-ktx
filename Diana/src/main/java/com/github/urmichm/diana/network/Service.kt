@@ -23,7 +23,7 @@ private val NEARBY_SEARCH_URL = "https://maps.googleapis.com/maps/api/place/"
 /**
  * @details https://developers.google.com/maps/documentation/places/web-service/search#PlaceSearchRequests
  * */
-interface DianaService{
+internal interface DianaService{
 
     /**
      * Required parameters
@@ -37,8 +37,15 @@ interface DianaService{
     fun nearbySearch(
         @Query("key") key : String,
         @Query("location") location : String,
-        @Query("type") type : String,
-        @Query("rankby") rankby : String
+        @Query("keyword") keyword :String?,
+        @Query("language") language :String?,
+        @Query("maxPrice") maxPrice :Int?,
+        @Query("minPrice") minPrice :Int?,
+        @Query("openNow") openNow :Boolean?,
+        @Query("pageToken") pageToken :String?,
+        @Query("radius") radius :Int?,
+        @Query("rankby") rankBy : String?,
+        @Query("type") type : String?
     ) : Deferred<PlacesNearbySearchContainer>
 
 }
@@ -57,7 +64,7 @@ private val moshi = Moshi.Builder()
  * Main entry point for network access.
  * [Network.diana].nearbySearch(..)
  */
-object Network {
+internal object Network {
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
         .baseUrl(NEARBY_SEARCH_URL)
