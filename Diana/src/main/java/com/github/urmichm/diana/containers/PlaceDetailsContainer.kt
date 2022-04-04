@@ -21,7 +21,7 @@ data class PlaceDetailsContainer(
     @Json(name="rating") val rating :Double?,
     @Json(name="user_ratings_total") val userRatingsTotal :Int?,
     @Json(name="vicinity") val vicinity :String,
-    @Json(name="types") val types :List<String>?,
+    @Json(name="types") val types :List<Place.Type>?,
     @Json(name="geometry") val geometry : GeometryContainer,
     @Json(name="photos") val photos : List<PhotoMetadataContainer>?,
     @Json(name="opening_hours") var openingHours : OpeningHoursContainer?,
@@ -62,7 +62,7 @@ data class PlaceDetailsContainer(
             .setPriceLevel(this.priceLevel)
             .setRating(this.rating)
             .setUserRatingsTotal(this.userRatingsTotal)
-            .setTypes(this.types?.map{ Place.Type.valueOf(it.uppercase()) })
+            .setTypes(this.types)
             .setViewport(this.geometry.viewport.toLatLngBounds())
             .setLatLng(this.geometry.location.toLatLng())
             .setIconBackgroundColor(this.iconBackgroundColor?.substring(1)?.toInt(16))

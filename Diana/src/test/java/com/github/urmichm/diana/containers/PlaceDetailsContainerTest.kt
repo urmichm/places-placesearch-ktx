@@ -22,7 +22,7 @@ class PlaceDetailsContainerTest {
             rating = 4.5,
             userRatingsTotal = 4234,
             vicinity = "vicinity",
-            types = listOf("bar", "park"),
+            types = listOf(Place.Type.BAR, Place.Type.PARK),
             geometry = makeGeometry(),
             photos = makePhotos(),
             openingHours = OpeningHoursContainer(openNow = true),

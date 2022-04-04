@@ -3,6 +3,7 @@ package com.github.urmichm.diana.placesearch
 import com.github.urmichm.diana.Diana
 import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
 import com.github.urmichm.diana.network.Network
+import com.google.android.libraries.places.api.model.Place
 import kotlinx.coroutines.Deferred
 import java.lang.Exception
 
@@ -28,7 +29,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
     private val pageToken :String? = builder.pageToken
     private val radius :Int? = builder.radius
     private val rankBy :String? = builder.rankBy
-    private val type : String? = builder.type
+    private val type : Place.Type? = builder.type
 
     class NearbySearchBuilder(val diana : Diana){
 
@@ -42,7 +43,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
         var pageToken :String? = null
         var radius :Int? = null
         var rankBy :String? = null
-        var type : String? = null
+        var type : Place.Type? = null
 
         fun build() : NearbySearch {
             return NearbySearch(this)
