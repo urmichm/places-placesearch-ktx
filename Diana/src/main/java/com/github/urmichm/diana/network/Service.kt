@@ -30,10 +30,10 @@ internal interface DianaService{
     /**
      * Required parameters
      * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby
-     * @param key — Your application's API key. This key identifies your application. See Get a key for more information.
-     * @param location — The latitude/longitude around which to retrieve place information. This must be specified as latitude,longitude.
-     * @param radius — Defines the distance (in meters) within which to return place results. Note that radius must not be included if [rankby]=distance (described under Optional parameters below) is specified.
-     * @param rankby - Specifies the order in which results are listed
+     * @param key Your application's API key. This key identifies your application. See Get a key for more information.
+     * @param location The latitude/longitude around which to retrieve place information. This must be specified as latitude,longitude.
+     * @param radius Defines the distance (in meters) within which to return place results. Note that radius must not be included if [rankby]=distance (described under Optional parameters below) is specified.
+     * @param rankby Specifies the order in which results are listed
      * */
     @GET("nearbysearch/json")
     fun nearbySearch(
