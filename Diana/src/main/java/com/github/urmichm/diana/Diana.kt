@@ -2,6 +2,9 @@ package com.github.urmichm.diana
 
 import android.util.Log
 
+/**
+ * Main class where all intialization takes place
+ * */
 class Diana private constructor(
     builder : Builder,
     internal val key: String
