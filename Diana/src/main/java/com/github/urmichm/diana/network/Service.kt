@@ -1,6 +1,7 @@
 package com.github.urmichm.diana.network
 
 import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
+import com.google.android.libraries.places.api.model.Place
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -45,7 +46,7 @@ internal interface DianaService{
         @Query("pageToken") pageToken :String?,
         @Query("radius") radius :Int?,
         @Query("rankby") rankBy : String?,
-        @Query("type") type : String?
+        @Query("type") type : Place.Type?
     ) : Deferred<PlacesNearbySearchContainer>
 
 }
