@@ -1,13 +1,13 @@
 package com.github.urmichm.diana.placesearch
 
-import com.github.urmichm.diana.Diana
+import com.github.urmichm.diana.*
 import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
 import com.github.urmichm.diana.network.Network
 import com.github.urmichm.diana.toRequestString
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import kotlinx.coroutines.Deferred
-import java.lang.Exception
+import kotlin.Exception
 
 
 /**
@@ -44,7 +44,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
         var openNow :Boolean? = null
         var pageToken :String? = null
         var radius :Int? = null
-        var rankBy :Diana.Rankby? = null
+        var rankBy :Diana.Rankby = Diana.Rankby.PROMINENCE
         var type : Place.Type? = null
 
         fun build() : NearbySearch {
@@ -54,9 +54,11 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
 
     /**
      * @brief makes a call to Nearby Search
-     * TODO: add parameter validation
      * */
     suspend fun call() : PlacesNearbySearchContainer? {
+
+        val message = validate()
+        if(!message.isValid)  throw Exception(message.message)
 
         val nearby: Deferred<PlacesNearbySearchContainer> =
             Network.diana.nearbySearch(
@@ -77,9 +79,44 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
             val response = nearby.await()
             response
         } catch (e: Exception) {
-            println("Exceptioin e: $e");
+            println("Exception: $e");
             null
         }
     }
+
+    /**
+     * Validate parameters before calling the server
+     * */
+    fun validate() :Message{
+        minPrice?.apply {
+            if( priceNotInRange(this) )
+                return Message("minPrice is out of possible range.", false)
+        }
+        maxPrice?.apply {
+            if( priceNotInRange(this) )
+                return Message("maxPrice is out of possible range.", false)
+        }
+
+        when(rankBy){
+            Diana.Rankby.PROMINENCE -> {
+                if(radius == null)
+                    return Message(
+                        "When prominence is specified, the radius parameter is required.",
+                        false)
+
+            }
+            Diana.Rankby.DISTANCE -> {
+                if(radius != null)
+                    return Message(
+                        "When using rankby=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.",
+                        false)
+            }
+        }
+
+        return Message("OK", true)
+    }
+
+
+
 
 }
