@@ -3,6 +3,8 @@ package com.github.urmichm.diana.placesearch
 import com.github.urmichm.diana.Diana
 import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
 import com.github.urmichm.diana.network.Network
+import com.github.urmichm.diana.toRequestString
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import kotlinx.coroutines.Deferred
 import java.lang.Exception
@@ -17,7 +19,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
     private val diana : Diana = builder.diana
 
     /** Required parameters **/
-    private val location :String = builder.location
+    private val location :LatLng = builder.location
 
     /** Optional parameters **/
     private val keyword :String? = builder.keyword
@@ -33,7 +35,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
 
     class NearbySearchBuilder(val diana : Diana){
 
-        lateinit var location :String
+        lateinit var location : LatLng
 
         var keyword :String? = null
         var language :String? = null
@@ -59,7 +61,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
         val nearby: Deferred<PlacesNearbySearchContainer> =
             Network.diana.nearbySearch(
                 key = diana.key,
-                location = location,
+                location = location.toRequestString(),
                 keyword = keyword,
                 language = language,
                 maxPrice = maxPrice,
