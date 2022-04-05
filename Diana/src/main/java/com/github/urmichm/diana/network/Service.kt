@@ -1,5 +1,6 @@
 package com.github.urmichm.diana.network
 
+import com.github.urmichm.diana.Diana
 import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
 import com.google.android.libraries.places.api.model.Place
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory

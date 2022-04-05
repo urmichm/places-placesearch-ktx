@@ -28,7 +28,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
     private val openNow :Boolean? = builder.openNow
     private val pageToken :String? = builder.pageToken
     private val radius :Int? = builder.radius
-    private val rankBy :String? = builder.rankBy
+    private val rankBy :Diana.Rankby? = builder.rankBy
     private val type : Place.Type? = builder.type
 
     class NearbySearchBuilder(val diana : Diana){
@@ -42,7 +42,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
         var openNow :Boolean? = null
         var pageToken :String? = null
         var radius :Int? = null
-        var rankBy :String? = null
+        var rankBy :Diana.Rankby? = null
         var type : Place.Type? = null
 
         fun build() : NearbySearch {
@@ -67,7 +67,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
                 openNow = openNow,
                 pageToken = pageToken,
                 radius = radius,
-                rankBy = rankBy,
+                rankBy = rankBy?.name?.lowercase(),
                 type = type
             )
 

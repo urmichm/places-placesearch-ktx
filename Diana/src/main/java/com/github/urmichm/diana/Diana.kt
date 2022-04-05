@@ -36,5 +36,10 @@ class Diana private constructor(
         }
     }
 
+    enum class Rankby(s: String) {
+        PROMINENCE ("prominence"),
+        DISTANCE("distance")
+    }
+
 
 }
