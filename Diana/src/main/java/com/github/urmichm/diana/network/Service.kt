@@ -1,6 +1,5 @@
 package com.github.urmichm.diana.network
 
-import com.github.urmichm.diana.Diana
 import com.github.urmichm.diana.Diana.Companion.OUTPUT_FORMAT
 import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
 import com.google.android.libraries.places.api.model.Place
