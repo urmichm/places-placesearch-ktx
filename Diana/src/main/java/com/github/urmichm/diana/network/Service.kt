@@ -1,6 +1,7 @@
 package com.github.urmichm.diana.network
 
 import com.github.urmichm.diana.Diana
+import com.github.urmichm.diana.Diana.Companion.OUTPUT_FORMAT
 import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
 import com.google.android.libraries.places.api.model.Place
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -28,14 +29,30 @@ private val NEARBY_SEARCH_URL = "https://maps.googleapis.com/maps/api/place/"
 internal interface DianaService{
 
     /**
-     * Required parameters
+     * A Nearby Search lets you search for places within a specified area. You can refine your search request by supplying keywords or specifying the type of place you are searching for.
      * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby
      * @param key Your application's API key. This key identifies your application. See Get a key for more information.
      * @param location The latitude/longitude around which to retrieve place information. This must be specified as latitude,longitude.
-     * @param radius Defines the distance (in meters) within which to return place results. Note that radius must not be included if [rankby]=distance (described under Optional parameters below) is specified.
+     * @param keyword The text string on which to search, for example: "restaurant" or "123 Main Street".
+     *                This must be a place name, address, or category of establishments.
+     *                If this parameter is omitted, places with a business_status of CLOSED_TEMPORARILY or CLOSED_PERMANENTLY will not be returned.
+     * @param language The language in which to return results.
+     * @param maxPrice Restricts results to only those places within the specified range.
+     *                 Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
+     * @param minPrice Restricts results to only those places within the specified range.
+     *                 Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
+     * @param openNow Returns only those places that are open for business at the time the query is sent.
+     *                Places that do not specify opening hours in the Google Places database will not be returned if you include this parameter in your query.
+     * @param pageToken Returns up to 20 results from a previously run search.
+     *                  Setting a pagetoken parameter will execute a search with the same parameters used previously — all parameters other than pagetoken will be ignored.
+     * @param radius Defines the distance (in meters) within which to return place results.
+     *               Note that radius must not be included if [rankby]=distance (described under Optional parameters below) is specified.
      * @param rankby Specifies the order in which results are listed
+     * @param type Restricts the results to places matching the specified type. Only one type may be specified.
+     *             If more than one type is provided, all types following the first entry are ignored.
+     * @return [PlacesNearbySearchContainer] object is returned wrapped into [Deferred] class
      * */
-    @GET("nearbysearch/json")
+    @GET("nearbysearch/${OUTPUT_FORMAT}")
     fun nearbySearch(
         @Query("key") key : String,
         @Query("location") location : String,
