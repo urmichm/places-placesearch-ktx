@@ -16,6 +16,7 @@ class Diana private constructor(
 
     companion object {
         private const val TAG = "Diana"
+        const val OUTPUT_FORMAT = "json"
         var vicinity2Address = true
 
         fun hello(){
