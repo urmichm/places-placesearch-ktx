@@ -30,7 +30,7 @@ internal interface DianaService{
     /**
      * A Nearby Search lets you search for places within a specified area. You can refine your search request by supplying keywords or specifying the type of place you are searching for.
      * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby
-     * @param key Your application's API key. This key identifies your application. See Get a key for more information.
+     * @param key Your application's API key. This key identifies your application.
      * @param location The latitude/longitude around which to retrieve place information. This must be specified as latitude,longitude.
      * @param keyword The text string on which to search, for example: "restaurant" or "123 Main Street".
      *                This must be a place name, address, or category of establishments.

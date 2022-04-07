@@ -11,49 +11,153 @@ import kotlin.Exception
 
 
 /**
- * @brief Nearby Search Google API
+ * Nearby Search Google API
  * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby
+ * @param builder The [Builder] object
  * */
-class NearbySearch private constructor(private val builder : NearbySearchBuilder){
+class NearbySearch private constructor(private val builder : Builder){
 
+    /**
+     * [Diana] object with general settings
+     * */
     private val diana : Diana = builder.diana
 
-    /** Required parameters **/
+    /**
+     *  The required parameter.
+     *  The [LatLng] object describing latitude/longitude around which to retrieve place information.
+     * */
     private val location :LatLng = builder.location
 
-    /** Optional parameters **/
+    /**
+     * The text string on which to search, for example: "restaurant" or "123 Main Street".
+     * This must be a place name, address, or category of establishments.
+     * If this parameter is omitted, places with a business_status of CLOSED_TEMPORARILY or CLOSED_PERMANENTLY will not be returned.
+     * */
     private val keyword :String? = builder.keyword
-    // https://developers.google.com/maps/faq#languagesupport
+
+    /**
+     * The language in which to return results.
+     * */
     private val language :String? = builder.language
+
+    /**
+     * Restricts results to only those places within the specified range.
+     * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
+     * */
     private val maxPrice :Int? = builder.maxPrice
+
+    /**
+     * Restricts results to only those places within the specified range.
+     * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
+     * */
     private val minPrice :Int? = builder.minPrice
+
+    /**
+     * Returns only those places that are open for business at the time the query is sent.
+     * Places that do not specify opening hours in the Google Places database will not be returned if you include this parameter in your query.
+     * */
     private val openNow :Boolean? = builder.openNow
+
+    /**
+     * Returns up to 20 results from a previously run search.
+     * Setting a pagetoken parameter will execute a search with the same parameters used previously — all parameters other than pagetoken will be ignored.
+     * */
     private val pageToken :String? = builder.pageToken
+
+    /**
+     * Defines the distance (in meters) within which to return place results.
+     * Note that radius must not be included if [rankby]=distance (described under Optional parameters below) is specified.
+     * */
     private val radius :Int? = builder.radius
-    private val rankBy :Diana.Rankby? = builder.rankBy
+
+    /**
+     * Specifies the order in which results are listed
+     * */
+    private val rankBy :Diana.Rankby = builder.rankBy
+
+    /**
+     * Restricts the results to places matching the specified type. Only one type may be specified.
+     * If more than one type is provided, all types following the first entry are ignored.
+     * */
     private val type : Place.Type? = builder.type
 
-    class NearbySearchBuilder(val diana : Diana){
+    /**
+     * The builder class for [NearbySearch] class
+     * @param diana [Diana] object with general settings
+     * */
+    class Builder(val diana : Diana){
 
+        /**
+         *  The required parameter.
+         *  The [LatLng] object describing latitude/longitude around which to retrieve place information.
+         * */
         lateinit var location : LatLng
 
+        /**
+         * The text string on which to search, for example: "restaurant" or "123 Main Street".
+         * This must be a place name, address, or category of establishments.
+         * If this parameter is omitted, places with a business_status of CLOSED_TEMPORARILY or CLOSED_PERMANENTLY will not be returned.
+         * */
         var keyword :String? = null
+
+        /**
+         * The language in which to return results.
+         * */
         var language :String? = null
+
+        /**
+         * Restricts results to only those places within the specified range.
+         * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
+         * */
         var maxPrice :Int? = null
+
+        /**
+         * Restricts results to only those places within the specified range.
+         * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
+         * */
         var minPrice :Int? = null
+
+        /**
+         * Returns only those places that are open for business at the time the query is sent.
+         * Places that do not specify opening hours in the Google Places database will not be returned if you include this parameter in your query.
+         * */
         var openNow :Boolean? = null
+
+        /**
+         * Returns up to 20 results from a previously run search.
+         * Setting a pagetoken parameter will execute a search with the same parameters used previously — all parameters other than pagetoken will be ignored.
+         * */
         var pageToken :String? = null
+
+        /**
+         * Defines the distance (in meters) within which to return place results.
+         * Note that radius must not be included if [rankby]=distance (described under Optional parameters below) is specified.
+         * */
         var radius :Int? = null
+
+        /**
+         * Specifies the order in which results are listed
+         * */
         var rankBy :Diana.Rankby = Diana.Rankby.PROMINENCE
+
+        /**
+         * Restricts the results to places matching the specified type. Only one type may be specified.
+         * If more than one type is provided, all types following the first entry are ignored.
+         * */
         var type : Place.Type? = null
 
+        /**
+         * The build method to create a [NearbySearch] object
+         * @return [NearbySearch] object created according to the builder settings.
+         * */
         fun build() : NearbySearch {
             return NearbySearch(this)
         }
     }
 
     /**
-     * @brief makes a call to Nearby Search
+     * Make a call to Nearby Search.
+     * @return [PlacesNearbySearchContainer] container object
      * */
     suspend fun call() : PlacesNearbySearchContainer? {
 
@@ -71,7 +175,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
                 openNow = openNow,
                 pageToken = pageToken,
                 radius = radius,
-                rankBy = rankBy?.name?.lowercase(),
+                rankBy = rankBy.name.lowercase(),
                 type = type
             )
 
@@ -86,6 +190,7 @@ class NearbySearch private constructor(private val builder : NearbySearchBuilder
 
     /**
      * Validate parameters before calling the server
+     * @return The [Message] object based onn the validation.
      * */
     fun validate() :Message{
         minPrice?.apply {
