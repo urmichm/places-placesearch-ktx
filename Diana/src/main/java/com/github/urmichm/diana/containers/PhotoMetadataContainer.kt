@@ -3,6 +3,9 @@ package com.github.urmichm.diana.containers
 import com.google.android.libraries.places.api.model.PhotoMetadata
 import com.squareup.moshi.Json
 
+/**
+ * Container for photo metadata field.
+ * */
 data class PhotoMetadataContainer (
     @Json(name="height") val height : Int,
     @Json(name="html_attributions") val attributions : List<String>,
@@ -11,8 +14,8 @@ data class PhotoMetadataContainer (
     ) {
 
     /**
-     * @brief Convert into [PhotoMetadata]
-     * TODO: set attributions
+     * Convert into [PhotoMetadata]
+     * @warning method to be tested
      * */
     fun toPhotoMetadata() :PhotoMetadata{
         return PhotoMetadata.builder(this.photoReference)

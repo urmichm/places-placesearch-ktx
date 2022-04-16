@@ -7,7 +7,7 @@ import com.google.android.libraries.places.api.model.Place
 import com.squareup.moshi.Json
 
 /**
- * @brief Container for Place object.
+ * Container for a Place object.
  * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby#Place
  *
  * @warning https://developers.google.com/maps/documentation/places/web-service/place-data-fields#places-api-fields-support
@@ -41,7 +41,7 @@ data class PlaceDetailsContainer(
     }
 
     /**
-     * @brief Returns boolean if the place is open at the moment of the API call.
+     * Returns boolean if the place is open at the moment of the API call.
      * @return true if the place is open at the moment of the call, false otherwise
      * */
     fun isOpen():Boolean?{
@@ -49,7 +49,7 @@ data class PlaceDetailsContainer(
     }
 
     /**
-     * @brief Converts [PlaceDetailsContainer] into [Place] object
+     * Converts [PlaceDetailsContainer] into [Place] object
      * @warning Requires API [Build.VERSION_CODES.N]
      * */
     @RequiresApi(Build.VERSION_CODES.N)
