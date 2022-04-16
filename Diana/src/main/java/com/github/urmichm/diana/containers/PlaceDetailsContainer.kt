@@ -5,7 +5,6 @@ import androidx.annotation.RequiresApi
 import com.github.urmichm.diana.Diana
 import com.google.android.libraries.places.api.model.Place
 import com.squareup.moshi.Json
-import kotlin.streams.toList
 
 /**
  * @brief Container for Place object.
@@ -79,7 +78,7 @@ data class PlaceDetailsContainer(
 //            .setUtcOffsetMinutes(@Nullable Integer var1);
 //            .setWebsiteUri(@Nullable Uri var1);
 
-        if(null == placeBuilder.address && Diana.vicinity2Address) {
+        if(null == placeBuilder.address && Diana.vicinityAsAddress) {
             placeBuilder.address = this.vicinity
         }
 

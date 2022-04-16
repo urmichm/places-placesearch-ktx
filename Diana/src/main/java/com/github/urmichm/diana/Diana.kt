@@ -11,7 +11,7 @@ class Diana private constructor(
 ){
 
     init{
-        vicinity2Address = builder.getVicinityAsAddress()
+        vicinityAsAddress = builder.getVicinityAsAddress()
     }
 
     companion object {
@@ -25,7 +25,7 @@ class Diana private constructor(
         /**
          * Convert vicinity data into Address data when converting Container objects into Google's Place object
          * */
-        var vicinity2Address = true
+        var vicinityAsAddress = true
 
         fun hello(){
             Log.i(TAG, "Hello Diana!")
