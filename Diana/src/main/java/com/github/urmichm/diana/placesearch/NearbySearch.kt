@@ -66,7 +66,7 @@ class NearbySearch private constructor(private val builder : Builder){
 
     /**
      * Defines the distance (in meters) within which to return place results.
-     * Note that radius must not be included if [rankby]=distance (described under Optional parameters below) is specified.
+     * Note that radius must not be included if [rankBy]=distance (described under Optional parameters below) is specified.
      * */
     private val radius :Int? = builder.radius
 
@@ -131,7 +131,7 @@ class NearbySearch private constructor(private val builder : Builder){
 
         /**
          * Defines the distance (in meters) within which to return place results.
-         * Note that radius must not be included if [rankby]=distance (described under Optional parameters below) is specified.
+         * Note that radius must not be included if [rankBy]=distance (described under Optional parameters below) is specified.
          * */
         var radius :Int? = null
 
@@ -157,7 +157,7 @@ class NearbySearch private constructor(private val builder : Builder){
 
     /**
      * Make a call to Nearby Search.
-     * @return [PlacesNearbySearchContainer] container object
+     * @return [PlacesNearbySearchContainer] container object on success, null otherwise
      * */
     suspend fun call() : PlacesNearbySearchContainer? {
 
@@ -213,7 +213,7 @@ class NearbySearch private constructor(private val builder : Builder){
             Diana.Rankby.DISTANCE -> {
                 if(radius != null)
                     return Message(
-                        "When using rankby=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.",
+                        "When using rankBy=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.",
                         false)
             }
         }
