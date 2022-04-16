@@ -1,7 +1,6 @@
 package com.github.urmichm.diana.containers
 
 import com.github.urmichm.diana.Diana
-import com.google.android.libraries.places.api.model.OpeningHours
 import com.google.android.libraries.places.api.model.Place
 import org.junit.Assert.*
 import org.junit.Before
@@ -22,7 +21,7 @@ class PlaceDetailsContainerTest {
             rating = 4.5,
             userRatingsTotal = 4234,
             vicinity = "vicinity",
-            types = listOf("bar", "park"),
+            types = listOf("BAR", "park"),
             geometry = makeGeometry(),
             photos = makePhotos(),
             openingHours = OpeningHoursContainer(openNow = true),
@@ -63,7 +62,7 @@ class PlaceDetailsContainerTest {
 
         assertEquals(container.businessStatus, place.businessStatus.name)
         assertEquals(container.rating, place.rating)
-        assertEquals( Diana.vicinity2Address, container.vicinity == place.address)
+        assertEquals( Diana.vicinityAsAddress, container.vicinity == place.address)
         assertEquals(container.placeId, place.id)
         assertEquals(container.userRatingsTotal, place.userRatingsTotal)
 

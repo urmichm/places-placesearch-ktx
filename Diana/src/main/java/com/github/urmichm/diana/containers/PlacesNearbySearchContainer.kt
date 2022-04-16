@@ -1,12 +1,10 @@
 package com.github.urmichm.diana.containers
 
-import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
 import com.squareup.moshi.Json
 
 
 /**
- * @brief Container fro nearBySearch request.
+ * Container fro nearBySearch request.
  * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby#PlacesNearbySearchResponse
  * https://developers.google.com/maps/documentation/places/web-service/search-nearby#PlacesSearchStatus
  * */

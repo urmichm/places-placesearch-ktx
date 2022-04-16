@@ -1,24 +1,31 @@
 package com.github.urmichm.diana
 
 import android.util.Log
-import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
-import com.github.urmichm.diana.network.Network
-import kotlinx.coroutines.Deferred
-import java.lang.Exception
 
+/**
+ * Main class where all intialization takes place
+ * */
 class Diana private constructor(
     builder : Builder,
-    private val key: String
+    internal val key: String
 ){
 
-
     init{
-        vicinity2Address = builder.getVicinity2Address()
+        vicinityAsAddress = builder.getVicinityAsAddress()
     }
 
     companion object {
         private const val TAG = "Diana"
-        var vicinity2Address = true
+
+        /**
+         * Output format; indicates output in JavaScript Object Notation (JSON)
+         * */
+        const val OUTPUT_FORMAT = "json"
+
+        /**
+         * Convert vicinity data into Address data when converting Container objects into Google's Place object
+         * */
+        var vicinityAsAddress = true
 
         fun hello(){
             Log.i(TAG, "Hello Diana!")
@@ -29,33 +36,37 @@ class Diana private constructor(
         }
     }
 
+    /**
+     * The builder class for [Diana] class
+     * @param key Your application's API key. This key identifies your application.
+     * */
     class Builder(private val key : String){
 
-        private var vicinity2Address = true
+        /**
+         * Convert vicinity data into Address data when converting Container objects into Google's Place object
+         * */
+        private var vicinityAsAddress = true
+        /** Getter for [vicinityAsAddress] */
+        fun getVicinityAsAddress() = this.vicinityAsAddress
+        /** Setter for [vicinityAsAddress] */
+        fun setVicinityAsAddress(vicinity2Address : Boolean) = apply{this.vicinityAsAddress = vicinity2Address}
 
-        fun getVicinity2Address() = this.vicinity2Address
-        fun setVicinity2Address(vicinity2Address : Boolean) = apply{this.vicinity2Address = vicinity2Address}
-
+        /**
+         * The build method to create a [Diana] object
+         * @return [Diana] object created according to the builder settings.
+         * */
         fun build() : Diana{
             return Diana(this, key)
         }
     }
 
     /**
-     * @brief makes a call to Nearby Search
-     * TODO: add parameter validation
+     * Rankby enumeration for rankby parameter
      * */
-    suspend fun nearbySearch(type :String, latLng :String, rankby :String) : PlacesNearbySearchContainer? {
-        val nearby: Deferred<PlacesNearbySearchContainer> =
-            Network.diana.nearbySearch(key,latLng, type, rankby)
-
-        return try {
-            val response = nearby.await()
-            response
-        } catch (e: Exception) {
-            println("Exceptioin e: $e");
-            null
-        }
+    enum class Rankby(s: String) {
+        PROMINENCE ("prominence"),
+        DISTANCE("distance")
     }
+
 
 }
