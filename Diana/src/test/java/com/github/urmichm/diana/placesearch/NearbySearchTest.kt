@@ -65,7 +65,7 @@ class NearbySearchTest{
         val m = nearbySearch.validate()
 
         assertFalse(m.isValid)
-        assertEquals("When using rankby=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.", m.message)
+        assertEquals("When using rankBy=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.", m.message)
     }
 
     @Test
