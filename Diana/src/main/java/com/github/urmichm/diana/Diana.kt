@@ -46,7 +46,9 @@ class Diana private constructor(
          * Convert vicinity data into Address data when converting Container objects into Google's Place object
          * */
         private var vicinityAsAddress = true
+        /** Getter for [vicinityAsAddress] */
         fun getVicinityAsAddress() = this.vicinityAsAddress
+        /** Setter for [vicinityAsAddress] */
         fun setVicinityAsAddress(vicinity2Address : Boolean) = apply{this.vicinityAsAddress = vicinity2Address}
 
         /**
