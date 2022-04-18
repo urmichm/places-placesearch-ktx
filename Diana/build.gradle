@@ -37,7 +37,7 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:1.13.0"
 
     // Google Places
-    implementation 'com.google.android.libraries.places:places:2.5.0'
+    implementation 'com.google.android.libraries.places:places:2.6.0'
 
     // Retrofit for networking
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
