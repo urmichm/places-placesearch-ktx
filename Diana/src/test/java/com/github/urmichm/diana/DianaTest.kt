@@ -10,6 +10,26 @@ import org.junit.Test
 
 class DianaTest {
 
+    @Test
+    fun testDianaKey(){
+        val key = "my-key"
+        val d = Diana.Builder(key).build()
+        assertEquals(key,d.key)
+    }
+
+    @Test
+    fun testVicinityAsAddress(){
+        // given default value
+        assertTrue(Diana.vicinityAsAddress)
+
+        // override default value
+        Diana.vicinityAsAddress = false
+        assertFalse(Diana.vicinityAsAddress)
+
+        // restore the default value
+        Diana.vicinityAsAddress = true
+        assertTrue(Diana.vicinityAsAddress)
+    }
 
 //    @Test
 //    fun nearbySearch() {
