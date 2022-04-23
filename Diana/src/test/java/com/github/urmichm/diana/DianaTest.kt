@@ -31,6 +31,13 @@ class DianaTest {
         assertTrue(Diana.vicinityAsAddress)
     }
 
+    @Test
+    fun defaultOutputFormat(){
+        // fail on purpose
+        val expected = "not-json"
+        assertEquals(expected,Diana.OUTPUT_FORMAT)
+    }
+
 //    @Test
 //    fun nearbySearch() {
 //        val PLACES_API_KEY : String = YOUR_KEY
