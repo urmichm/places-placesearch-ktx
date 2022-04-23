@@ -10,6 +10,8 @@ import org.junit.Test
 
 class DianaTest {
 
+    private val JsonFormat = "json"
+
     @Test
     fun testDianaKey(){
         val key = "my-key"
@@ -33,9 +35,7 @@ class DianaTest {
 
     @Test
     fun defaultOutputFormat(){
-        // fail on purpose
-        val expected = "not-json"
-        assertEquals(expected,Diana.OUTPUT_FORMAT)
+        assertEquals(JsonFormat, Diana.OUTPUT_FORMAT)
     }
 
 //    @Test
