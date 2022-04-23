@@ -3,7 +3,6 @@ name: Android CI
 on:
   push:
     branches: 
-      - main
       - issue-*
   pull_request:
     branches: [ main ]
