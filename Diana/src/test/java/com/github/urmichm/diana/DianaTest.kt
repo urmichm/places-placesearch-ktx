@@ -28,8 +28,7 @@ class DianaTest {
 
         // restore the default value
         Diana.vicinityAsAddress = true
-        // test fails on purpose now !
-        assertFalse(Diana.vicinityAsAddress)
+        assertTrue(Diana.vicinityAsAddress)
     }
 
 //    @Test
