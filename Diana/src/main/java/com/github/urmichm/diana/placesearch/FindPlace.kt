@@ -41,19 +41,19 @@ class FindPlace private constructor(private val builder :Builder) {
      * Use a forward slash when specifying compound values. For example: opening_hours/open_now.
      * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#fields
      * */
-    var fields :String? = builder.fields
+    private var fields :String? = builder.fields
 
     /**
      * The language in which to return results.
      * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#language
      * */
-    var language :String? = builder.language
+    private var language :String? = builder.language
 
     /**
      * Prefer results in a specified area, by specifying either a radius plus lat/lng, or two lat/lng pairs representing the points of a rectangle. If this parameter is not specified, the API uses IP address biasing by default.
      * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#locationbias
      * */
-    var locationbias :String? = builder.locationbias
+    private var locationbias :String? = builder.locationbias
 
 
     /**
