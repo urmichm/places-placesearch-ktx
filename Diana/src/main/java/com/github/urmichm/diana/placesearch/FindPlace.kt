@@ -1,6 +1,9 @@
 package com.github.urmichm.diana.placesearch
 
 import com.github.urmichm.diana.Diana
+import com.github.urmichm.diana.containers.PlacesFindPlaceContainer
+import com.github.urmichm.diana.network.Network
+import kotlinx.coroutines.Deferred
 
 /**
  * Find Place Google API
@@ -110,4 +113,30 @@ class FindPlace private constructor(private val builder :Builder) {
             return FindPlace(this)
         }
     }
+
+
+    /**
+     * Make a call to Find Place
+     * @return [PlacesFindPlaceContainer] container object on success, null otherwise
+     * */
+    suspend fun call(): PlacesFindPlaceContainer?{
+
+        val find : Deferred<PlacesFindPlaceContainer> =
+            Network.diana.findPlace(
+                key = diana.key,
+                input = input,
+                inputtype = inputtype,
+                fields = fields,
+                language = language,
+                locationbias = locationbias
+            )
+
+        return try {
+            find.await()
+        } catch (e: Exception) {
+            println("Exception: $e");
+            null
+        }
+    }
+
 }
