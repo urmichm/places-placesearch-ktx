@@ -16,6 +16,7 @@ class PlaceDetailsContainerTest {
         container = PlaceDetailsContainer(
             placeId = "some-id",
             name = "some-name",
+            formattedAddress = null,
             businessStatus = "OPERATIONAL",
             priceLevel = 4,
             rating = 4.5,
