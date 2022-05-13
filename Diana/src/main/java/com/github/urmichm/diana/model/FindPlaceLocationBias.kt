@@ -5,7 +5,8 @@ import com.google.android.libraries.places.api.model.RectangularBounds
 
 
 /**
- * TODO: Add proper comments to constructors!
+ * TODO: Make as inner class of FindPlace (??)
+ * TODO: Make multiple set methods (??)
  * Prefer results in a specified area, by specifying either a radius plus lat/lng,
  * or two lat/lng pairs representing the points of a rectangle.
  * If this parameter is not specified, the API uses IP address biasing by default.
