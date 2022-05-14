@@ -12,7 +12,11 @@ internal fun LatLng.toRequestString():String{
     return "${latitude},${longitude}"
 }
 
-
+/**
+ * Convert [Place.Field] object to String for API requests
+ * @return String object of LatLng fot API requests
+ * TODO: Complete the method
+ * */
 internal fun Place.Field.toRequestString():String{
     return when(this){
 
