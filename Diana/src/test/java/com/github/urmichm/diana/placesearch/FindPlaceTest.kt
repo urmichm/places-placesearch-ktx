@@ -12,15 +12,14 @@ class FindPlaceTest {
 
     @Before
     fun initDiana(){
-        d = Diana.Builder("google-key").build()
+        d = Diana.Builder("YOUR_API_KEY").build()
     }
 
     @Test
     fun findPlaceBuiltSuccessfully() {
-        val findPlace = FindPlace.Builder(d).apply {
-            input = "some-input"
-            inputtype = "textquery"
-        }
+        val findPlace = FindPlace.Builder(d)
+            .setInput("input")
+            .setInputType(FindPlace.InputType.TEXTQUERY)
             .build()
 
         assertNotNull(findPlace)
@@ -29,9 +28,8 @@ class FindPlaceTest {
     @Test
     fun findPlaceBuildFailedInputNotProvided() {
         assertThrows(UninitializedPropertyAccessException::class.java) {
-            FindPlace.Builder(d).apply {
-                inputtype = "textquery"
-            }
+            FindPlace.Builder(d)
+                .setInputType(FindPlace.InputType.TEXTQUERY)
                 .build()
         }
     }
@@ -39,9 +37,8 @@ class FindPlaceTest {
     @Test
     fun findPlaceBuildFailedInputTypeNotProvided() {
         assertThrows(UninitializedPropertyAccessException::class.java) {
-            FindPlace.Builder(d).apply {
-                input = "input"
-            }
+            FindPlace.Builder(d)
+                .setInput("input")
                 .build()
         }
     }
