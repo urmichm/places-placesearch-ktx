@@ -231,7 +231,10 @@ class FindPlace private constructor(private val builder :Builder) {
     }
 
     /**
-     * TODO:
+     * The type of input. This can be one of either [TEXTQUERY] or [PHONENUMBER].
+     * Phone numbers must be in international format (prefixed by a plus sign ("+"),
+     * followed by the country code, then the phone number itself).
+     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#inputtype
      * */
     enum class InputType {
         TEXTQUERY, PHONENUMBER;
