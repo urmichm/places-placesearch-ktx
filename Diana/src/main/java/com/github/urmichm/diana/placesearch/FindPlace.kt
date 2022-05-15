@@ -65,6 +65,7 @@ class FindPlace private constructor(private val builder :Builder) {
 
     /**
      * The builder class for [FindPlace] class
+     * @param builder The [Builder] object
      * */
     class Builder(val diana : Diana){
 
@@ -85,9 +86,12 @@ class FindPlace private constructor(private val builder :Builder) {
          * */
         fun getInput() = input
 
-        fun setInput(input :String) :Builder{
+        /**
+         * Getter for [input]
+         * @param input The text string on which to search, for example: "restaurant" or "123 Main Street".
+         * */
+        fun setInput(input :String) :Builder = apply {
             this.input = input
-            return this
         }
 
         /**
@@ -106,15 +110,18 @@ class FindPlace private constructor(private val builder :Builder) {
          * */
         fun getInputType() = inputtype
 
-        fun setInputType(inputType: InputType) :Builder{
+        /**
+         * Setter for [inputtype]
+         * @param inputType The type of input. This can be one of either [InputType.TEXTQUERY] or [InputType.PHONENUMBER].
+         * */
+        fun setInputType(inputType: InputType) :Builder = apply {
             this.inputtype = inputType
-            return this
         }
 
         /**
-         * Use the fields parameter to specify a comma-separated list of place data types to return.
+         * Uses the fields parameter to specify a comma-separated list of place data types to return.
          * For example: fields=formatted_address,name,geometry.
-         * Use a forward slash when specifying compound values. For example: opening_hours/open_now.
+         * Uses a forward slash when specifying compound values. For example: opening_hours/open_now.
          * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#fields
          * */
         private var fields :String? = null
@@ -125,17 +132,23 @@ class FindPlace private constructor(private val builder :Builder) {
          * */
         fun getFields() = fields
 
-        fun setFields(fields : List<FindPlace.Field>): Builder {
+        /**
+         * Setter for [fields]
+         * @param fields List of [FindPlace.Field] enums to specify a list of place data types to return.
+         * */
+        fun setFields(fields : List<FindPlace.Field>): Builder = apply {
             this.fields = fields.joinToString(separator = ",")
-            return this
         }
 
+        /**
+         * Setter for [fields]
+         * @param fields List of [Place.Field] enums to specify a list of place data types to return.
+         * */
         @JvmName("googleSetFields")
-        fun setFields(fields : List<Place.Field>) : Builder{
+        fun setFields(fields : List<Place.Field>) : Builder = apply {
             this.fields = fields.joinToString(separator = ",", transform = {
                 it.toRequestString()
             })
-            return this
         }
 
 
@@ -151,13 +164,12 @@ class FindPlace private constructor(private val builder :Builder) {
          * */
         fun getLanguage() = language
 
-
         /**
          * Setter for [language]
+         * @param language value ti be set
          * */
-        fun setLanguage(language :String) :Builder{
+        fun setLanguage(language :String) :Builder = apply {
             this.language = language
-            return this
         }
 
         /**
@@ -178,10 +190,9 @@ class FindPlace private constructor(private val builder :Builder) {
          * @param radius A string specifying radius in meters
          * @param center The center of the circle, lat/lng in decimal degrees.
          */
-        fun setLocationBias(radius : Double, center : LatLng) :Builder{
+        fun setLocationBias(radius : Double, center : LatLng) :Builder = apply {
             locationbias =
                 "circle:${radius}@${center.latitude},${center.longitude}"
-            return this
         }
 
         /**
@@ -189,10 +200,9 @@ class FindPlace private constructor(private val builder :Builder) {
          * Uses the following format: point:lat,lng.
          * @param point - A single lat/lng coordinate.
          */
-        fun setLocationBias(point : LatLng) :Builder{
+        fun setLocationBias(point : LatLng) :Builder = apply {
             locationbias =
                 "point:${point.latitude},${point.longitude}"
-            return this
         }
 
         /**
@@ -201,10 +211,9 @@ class FindPlace private constructor(private val builder :Builder) {
          * Uses the following format:rectangle:south,west|north,east.
          * Note that east/west values are wrapped to the range -180, 180, and north/south values are clamped to the range -90, 90.
          */
-        fun setLocationBias(southwest : LatLng, northeast : LatLng) :Builder{
+        fun setLocationBias(southwest : LatLng, northeast : LatLng) :Builder = apply{
             locationbias =
                 "rectangle:${southwest.latitude},${southwest.longitude}|${northeast.latitude},${northeast.longitude}"
-            return this
         }
 
         /**
@@ -213,11 +222,10 @@ class FindPlace private constructor(private val builder :Builder) {
          * Uses the following format:rectangle:south,west|north,east.
          * Note that east/west values are wrapped to the range -180, 180, and north/south values are clamped to the range -90, 90.
          */
-        fun setLocationBias(bounds : RectangularBounds) :Builder{
+        fun setLocationBias(bounds : RectangularBounds) :Builder = apply{
             locationbias =
                 "rectangle:${bounds.southwest.latitude},${bounds.southwest.longitude}" +
                         "|${bounds.northeast.latitude},${bounds.northeast.longitude}"
-            return this
         }
 
 
@@ -225,9 +233,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * The build method to create a [FindPlace] object
          * @return [FindPlace] object created according to the builder settings.
          * */
-        fun build() : FindPlace{
-            return FindPlace(this)
-        }
+        fun build() : FindPlace = FindPlace(this)
     }
 
     /**
