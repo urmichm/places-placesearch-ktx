@@ -126,11 +126,6 @@ class FindPlace private constructor(private val builder :Builder) {
             return this
         }
 
-        fun setFields(fields : String): Builder {
-            this.fields = fields
-            return this
-        }
-
 
         /**
          * The language in which to return results.
