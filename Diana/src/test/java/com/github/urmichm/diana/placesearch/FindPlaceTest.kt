@@ -129,7 +129,6 @@ class FindPlaceTest {
     @Test
     fun setterGettersFieldsUsingFindPlaceField(){
         val fieldsAsFindPlaceField = listOf(
-            FindPlace.Field.ADDRESS_COMPONENT,
             FindPlace.Field.FORMATTED_ADDRESS,
             FindPlace.Field.VIEWPORT,
             FindPlace.Field.LOCATION,
@@ -148,8 +147,7 @@ class FindPlaceTest {
             .setFields(fieldsAsFindPlaceField)
 
 
-        val expectedFields = "address_component," +
-                "formatted_address," +
+        val expectedFields = "formatted_address," +
                 "geometry/viewport," +
                 "geometry/location," +
                 "icon_mask_base_uri," +

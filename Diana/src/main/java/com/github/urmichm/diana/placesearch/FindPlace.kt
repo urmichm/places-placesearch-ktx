@@ -256,6 +256,9 @@ class FindPlace private constructor(private val builder :Builder) {
      */
     enum class Field{
 
+        // TODO: https://developers.google.com/maps/documentation/places/web-service/place-data-fields#places-api-fields-support
+        // TODO: no ADDRESS_COMPONENT, ADR_ADDRESS, INTERNATIONAL_PHONE_NUMBER, WEBSITE, URL, UTC_OFFSET, VICINITY,FORMATTED_PHONE_NUMBER, REVIEWS
+
         // Basic Data
         ADDRESS_COMPONENT,      ADR_ADDRESS,    BUSINESS_STATUS,
         FORMATTED_ADDRESS,      GEOMETRY,       VIEWPORT,
