@@ -13,15 +13,16 @@ import com.squareup.moshi.Json
  * @warning https://developers.google.com/maps/documentation/places/web-service/place-data-fields#places-api-fields-support
  * */
 data class PlaceDetailsContainer(
-    @Json(name="place_id") val placeId: String,
-    @Json(name="name") val name :String,
+    @Json(name="place_id") val placeId: String?,
+    @Json(name="name") val name :String?,
+    @Json(name = "formatted_address") val formattedAddress : String?,
     @Json(name="business_status") val businessStatus : String?,
     @Json(name="price_level") val priceLevel : Int?,
     @Json(name="rating") val rating :Double?,
     @Json(name="user_ratings_total") val userRatingsTotal :Int?,
-    @Json(name="vicinity") val vicinity :String,
+    @Json(name="vicinity") val vicinity :String?,
     @Json(name="types") val types :List<String>?,
-    @Json(name="geometry") val geometry : GeometryContainer,
+    @Json(name="geometry") val geometry : GeometryContainer?,
     @Json(name="photos") val photos : List<PhotoMetadataContainer>?,
     @Json(name="opening_hours") var openingHours : OpeningHoursContainer?,
     @Json(name="plus_code") val plusCode : PlusCodeContainer?,
@@ -52,7 +53,6 @@ data class PlaceDetailsContainer(
      * Converts [PlaceDetailsContainer] into [Place] object
      * @warning Requires API [Build.VERSION_CODES.N]
      * */
-    @RequiresApi(Build.VERSION_CODES.N)
     fun asPlace() : Place{
         val placeBuilder =  Place.builder()
             .setBusinessStatus(this.businessStatus?.uppercase()?.let { Place.BusinessStatus.valueOf(it) })
@@ -62,12 +62,15 @@ data class PlaceDetailsContainer(
             .setRating(this.rating)
             .setUserRatingsTotal(this.userRatingsTotal)
             .setTypes(this.types?.map{ Place.Type.valueOf(it.uppercase()) })
-            .setViewport(this.geometry.viewport.toLatLngBounds())
-            .setLatLng(this.geometry.location.toLatLng())
+            .setViewport(this.geometry?.viewport?.toLatLngBounds())
+            .setLatLng(this.geometry?.location?.toLatLng())
             .setIconBackgroundColor(this.iconBackgroundColor?.substring(1)?.toInt(16))
             .setIconUrl(this.iconUrl)
 //          .setPhotoMetadatas(this.photos?.stream()?.map { it.toPhotoMetadata() }?.toList())
             .setPlusCode(this.plusCode?.toPlusCode())
+
+            // TODO: deal with formattedAddress vs vicinity
+            .setAddress(this.formattedAddress)
 
 /*  The Following fields are not returned by Place Search, Nearby Search, and Text Search */
 //            .setAddress("")

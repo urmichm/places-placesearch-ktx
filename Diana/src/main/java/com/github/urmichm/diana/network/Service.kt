@@ -1,6 +1,7 @@
 package com.github.urmichm.diana.network
 
 import com.github.urmichm.diana.Diana.Companion.OUTPUT_FORMAT
+import com.github.urmichm.diana.containers.PlacesFindPlaceContainer
 import com.github.urmichm.diana.containers.PlacesNearbySearchContainer
 import com.google.android.libraries.places.api.model.Place
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -66,6 +67,40 @@ internal interface DianaService{
         @Query("type") type : Place.Type?
     ) : Deferred<PlacesNearbySearchContainer>
 
+    /**
+     * A Find Place request takes a text input and returns a place. The input can be any kind of Places text data, such as a name, address, or phone number.
+     * The request must be a string. A Find Place request using non-string data such as a lat/lng coordinate or plus code generates an error.
+     *
+     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place
+     *
+     * @param key Your application's API key. This key identifies your application.
+     *
+     * @param input The text string on which to search, for example: "restaurant" or "123 Main Street".
+     * This must be a place name, address, or category of establishments.
+     * Any other types of input can generate errors and are not guaranteed to return valid results.
+     * @param inputtype The type of input. This can be one of either [textquery] or [phonenumber].
+     * Phone numbers must be in international format (prefixed by a plus sign ("+"), followed by the country code, then the phone number itself).
+     *
+     * @param fields Use the fields parameter to specify a list of place data types to return.
+     * Fields are divided into three billing categories: Basic, Contact, and Atmosphere.
+     * @param language The language in which to return results.
+     * @param locationbias Prefer results in a specified area, by specifying either a radius plus lat/lng, or two lat/lng pairs representing the points of a rectangle.
+     * If this parameter is not specified, the API uses IP address biasing by default.
+     *
+     * @return Candidate matches based on this string and order the results based on their perceived relevance
+     * [PlacesFindPlaceContainer] object is returned wrapped into [Deferred] class
+     * */
+    @GET("findplacefromtext/${OUTPUT_FORMAT}")
+    fun findPlace(
+        @Query("key") key : String,
+
+        @Query("input") input : String,
+        @Query("inputtype") inputtype :String,
+
+        @Query("fields") fields :String?,
+        @Query("language") language :String?,
+        @Query("locationbias") locationbias :String?
+    ) : Deferred<PlacesFindPlaceContainer>
 }
 
 /**
