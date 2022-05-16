@@ -40,4 +40,12 @@ class PlacesFindPlaceContainer (
      */
     @Json(name="info_messages")
     val infoMessages : List<String>?
-)
+){
+
+    // TODO: beautify
+    override fun toString(): String {
+        var str = "status: $status "
+        str += errorMessage ?: infoMessages
+        return str
+    }
+}
