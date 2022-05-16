@@ -256,26 +256,34 @@ class FindPlace private constructor(private val builder :Builder) {
      */
     enum class Field{
 
-        // TODO: https://developers.google.com/maps/documentation/places/web-service/place-data-fields#places-api-fields-support
-        // TODO: no ADDRESS_COMPONENT, ADR_ADDRESS, INTERNATIONAL_PHONE_NUMBER, WEBSITE, URL, UTC_OFFSET, VICINITY,FORMATTED_PHONE_NUMBER, REVIEWS
+        // Place Search, Nearby Search, and Text Search requests all return a subset of the fields that are returned by Place Details requests.
+        // These methods do NOT return the following fields:
+        // ADDRESS_COMPONENT
+        // ADR_ADDRESS
+        // FORMATTED_PHONE_NUMBER
+        // INTERNATIONAL_PHONE_NUMBER
+        // REVIEWS
+        // URL
+        // UTC_OFFSET
+        // VICINITY
+        // WEBSITE
+        // See more: https://developers.google.com/maps/documentation/places/web-service/place-data-fields#places-api-fields-support
 
         // Basic Data
-        ADDRESS_COMPONENT,      ADR_ADDRESS,    BUSINESS_STATUS,
+        BUSINESS_STATUS,
         FORMATTED_ADDRESS,      GEOMETRY,       VIEWPORT,
         LOCATION,               ICON,           ICON_MASK_BASE_URI,
         ICON_BACKGROUND_COLOR,  NAME,           PERMANENTLY_CLOSED,
         PHOTOS,                 PLACE_ID,       PLUS_CODE,
-        TYPE,                   URL,            UTC_OFFSET,
-        VICINITY,
+        TYPE,
 
         // Contact Data Fields
-        FORMATTED_PHONE_NUMBER,      INTERNATIONAL_PHONE_NUMBER,
-        OPENING_HOURS,               OPEN_NOW,
-        WEBSITE,
+        INTERNATIONAL_PHONE_NUMBER,     OPENING_HOURS,
+        OPEN_NOW,                       WEBSITE,
 
         // Atmosphere Data Fields
         PRICE_LEVEL,        RATING,
-        REVIEWS,            USER_RATINGS_TOTAL;
+        USER_RATINGS_TOTAL;
 
         override fun toString(): String {
             return when(this){
