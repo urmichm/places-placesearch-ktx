@@ -44,8 +44,13 @@ class PlacesFindPlaceContainer (
 
     // TODO: beautify
     override fun toString(): String {
-        var str = "status: $status "
-        str += errorMessage ?: infoMessages
-        return str
+        var string = "status: $status "
+        errorMessage?.apply {
+            string += "error_message: $this"
+        }
+        infoMessages?.apply {
+            string += "info_messages: $this"
+        }
+        return string
     }
 }
