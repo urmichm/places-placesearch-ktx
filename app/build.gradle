@@ -8,10 +8,11 @@ android {
 
     defaultConfig {
         applicationId "com.github.urmichm.dianaexample"
-        minSdk 21
+        minSdk 16
         targetSdk 31
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
