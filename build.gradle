@@ -26,7 +26,7 @@ ext.projectArtifactId = { project ->
  */
 allprojects {
     group = 'com.github.urmichm.diana'
-    version = '0.0.0'
+    version = '0.3.2'
     project.ext.artifactId = rootProject.ext.projectArtifactId(project)
 }
 
