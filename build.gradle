@@ -13,6 +13,24 @@ buildscript {
     }
 }
 
+ext.projectArtifactId = { project ->
+    if (project.name == 'Diana') {
+        return project.name
+    } else {
+        return null
+    }
+}
+
+/**
+ * Shared configs across subprojects
+ */
+allprojects {
+    group = 'com.github.urmichm.diana'
+    version = '0.0.0'
+    project.ext.artifactId = rootProject.ext.projectArtifactId(project)
+}
+
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
