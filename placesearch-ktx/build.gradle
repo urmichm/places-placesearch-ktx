@@ -70,7 +70,7 @@ afterEvaluate {
             release(MavenPublication){
                 from components.release
                 groupId = 'com.github.urmichm'
-                artifactId = 'diana'
+                artifactId = 'placesearch-ktx'
                 version = '0.1'
             }
         }

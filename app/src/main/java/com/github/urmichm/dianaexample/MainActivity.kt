@@ -2,7 +2,7 @@ package com.github.urmichm.dianaexample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.github.urmichm.diana.Diana
+import com.github.urmichm.placesearchktx.Diana
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
