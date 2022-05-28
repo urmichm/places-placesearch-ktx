@@ -15,7 +15,7 @@ class Diana private constructor(
     }
 
     companion object {
-        private const val TAG = "Diana"
+        private const val TAG = "PlaceSearch-KTX"
 
         /**
          * Output format; indicates output in JavaScript Object Notation (JSON)
