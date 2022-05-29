@@ -1,4 +1,4 @@
-package com.github.urmichm.dianaexample
+package com.github.urmichm.demo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
