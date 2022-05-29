@@ -151,13 +151,41 @@ class NearbySearch private constructor(private val builder : Builder){
          * Restricts results to only those places within the specified range.
          * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
          * */
-        var maxPrice :Int? = null
+        private var maxPrice :Int? = null
+
+        /**
+         * Getter for [maxPrice]
+         * @return The value of [maxPrice]
+         * */
+        fun getMaxPrice() = maxPrice
+
+        /**
+         * Setter for [maxPrice]
+         * @param The new value for [maxPrice]
+         * */
+        fun setMaxPrice(maxPrice :Int) :Builder = apply{
+            this.maxPrice = maxPrice
+        }
 
         /**
          * Restricts results to only those places within the specified range.
          * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
          * */
-        var minPrice :Int? = null
+        private var minPrice :Int? = null
+
+        /**
+         * Getter for [minPrice]
+         * @return The value of [minPrice]
+         * */
+        fun getMinPrice() = minPrice
+
+        /**
+         * Setter for [minPrice]
+         * @param The new value for [minPrice]
+         * */
+        fun setMinPrice(minPrice :Int) :Builder = apply{
+            this.minPrice = minPrice
+        }
 
         /**
          * Returns only those places that are open for business at the time the query is sent.

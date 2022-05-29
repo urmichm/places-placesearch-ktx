@@ -10,9 +10,7 @@ class NearbySearchTest{
     @Test
     fun minPriceIsOutOfRange(){
         val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
-            .apply {
-                minPrice = 6
-            }
+            .setMinPrice(6)
             .setLocation(LatLng(0.0,0.0))
             .build()
         val m = nearbySearch.validate()
@@ -24,10 +22,8 @@ class NearbySearchTest{
     @Test
     fun maxPriceIsOutOfRange(){
         val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
-            .apply {
-                minPrice = 2
-                maxPrice = 5
-            }
+            .setMinPrice(2)
+            .setMaxPrice(5)
             .setLocation(LatLng(0.0,0.0))
             .build()
         val m = nearbySearch.validate()
@@ -39,10 +35,8 @@ class NearbySearchTest{
     @Test
     fun radiusParameterIsOmittedWhenRankedByProminence(){
         val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
-            .apply {
-                minPrice = 2
-                maxPrice = 4
-            }
+            .setMinPrice(2)
+            .setMaxPrice(4)
             .setLocation(LatLng(0.0,0.0))
             .build()
         val m = nearbySearch.validate()
@@ -57,9 +51,9 @@ class NearbySearchTest{
             .apply {
                 rankBy = Diana.Rankby.DISTANCE
                 radius = 5000
-                minPrice = 2
-                maxPrice = 4
             }
+            .setMinPrice(2)
+            .setMaxPrice(4)
             .setLocation(LatLng(0.0,0.0))
             .build()
         val m = nearbySearch.validate()
@@ -73,9 +67,9 @@ class NearbySearchTest{
         val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
             .apply {
                 rankBy = Diana.Rankby.DISTANCE
-                minPrice = 2
-                maxPrice = 4
             }
+            .setMinPrice(2)
+            .setMaxPrice(4)
             .setLocation(LatLng(0.0,0.0))
             .build()
         val m = nearbySearch.validate()
@@ -88,10 +82,10 @@ class NearbySearchTest{
     fun validWhenRankedByProminenceAndRadiusGiven(){
         val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
             .apply {
-                minPrice = 2
-                maxPrice = 4
                 radius = 1000
             }
+            .setMinPrice(2)
+            .setMaxPrice(4)
             .setLocation(LatLng(0.0,0.0))
             .build()
         val m = nearbySearch.validate()
