@@ -14,7 +14,7 @@ buildscript {
 }
 
 ext.projectArtifactId = { project ->
-    if (project.name == 'Diana') {
+    if (project.name == 'placesearch-ktx') {
         return project.name
     } else {
         return null
