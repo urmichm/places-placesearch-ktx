@@ -26,19 +26,19 @@ class NearbySearch private constructor(private val builder : Builder){
      *  The required parameter.
      *  The [LatLng] object describing latitude/longitude around which to retrieve place information.
      * */
-    private val location :LatLng = builder.location
+    private val location :String = builder.getLocation()
 
     /**
      * The text string on which to search, for example: "restaurant" or "123 Main Street".
      * This must be a place name, address, or category of establishments.
      * If this parameter is omitted, places with a business_status of CLOSED_TEMPORARILY or CLOSED_PERMANENTLY will not be returned.
      * */
-    private val keyword :String? = builder.keyword
+    private val keyword :String? = builder.getKeyword()
 
     /**
      * The language in which to return results.
      * */
-    private val language :String? = builder.language
+    private val language :String? = builder.getLanguage()
 
     /**
      * Restricts results to only those places within the specified range.
@@ -91,19 +91,61 @@ class NearbySearch private constructor(private val builder : Builder){
          *  The required parameter.
          *  The [LatLng] object describing latitude/longitude around which to retrieve place information.
          * */
-        lateinit var location : LatLng
+        private lateinit var location : String
+
+        /**
+         * Getter for [location]
+         * @return The value of [location]
+         * */
+        fun getLocation() = location
+
+        /**
+         * Setter for [location]
+         * @param location Location provided in form of [LatLng] object
+         * */
+        fun setLocation(location : LatLng):Builder = apply{
+            this.location = location.toRequestString()
+        }
 
         /**
          * The text string on which to search, for example: "restaurant" or "123 Main Street".
          * This must be a place name, address, or category of establishments.
          * If this parameter is omitted, places with a business_status of CLOSED_TEMPORARILY or CLOSED_PERMANENTLY will not be returned.
          * */
-        var keyword :String? = null
+        private var keyword :String? = null
+
+        /**
+         * Getter for [keyword]
+         * @return The value of [keyword]
+         * */
+        fun getKeyword() = keyword
+
+        /**
+         * Setter for [keyword]
+         * @param keyword New value for [keyword]
+         * */
+        fun setKeyword(keyword : String) : Builder = apply{
+            this.keyword = keyword
+        }
 
         /**
          * The language in which to return results.
          * */
-        var language :String? = null
+        private var language :String? = null
+
+        /**
+         * Getter for [language]
+         * @return The value of [language]
+         * */
+        fun getLanguage() = language
+
+        /**
+         * Setter for [language]
+         * @param language New value for [language]
+         * */
+        fun setLanguage(language :String) :Builder = apply {
+            this.language = language
+        }
 
         /**
          * Restricts results to only those places within the specified range.
@@ -167,7 +209,7 @@ class NearbySearch private constructor(private val builder : Builder){
         val nearby: Deferred<PlacesNearbySearchContainer> =
             Network.diana.nearbySearch(
                 key = diana.key,
-                location = location.toRequestString(),
+                location = location,
                 keyword = keyword,
                 language = language,
                 maxPrice = maxPrice,
