@@ -209,15 +209,31 @@ class NearbySearch private constructor(private val builder : Builder){
 
         /**
          * Returns up to 20 results from a previously run search.
-         * Setting a pagetoken parameter will execute a search with the same parameters used previously — all parameters other than pagetoken will be ignored.
+         * Setting a page token parameter will execute a search with the same parameters used previously — all parameters other than pagetoken will be ignored.
          * */
-        var pageToken :String? = null
+        private var pageToken :String? = null
+
+        /**
+         * Getter for [pageToken]
+         * @return The value of [pageToken]
+         * */
+        fun getPageToken() = pageToken
+
+        /**
+         * Setter for [pageToken]
+         * @param pageToken The new value for [pageToken]
+         * */
+        fun setPageToken(pageToken :String) :Builder = apply{
+            this.pageToken = pageToken
+        }
+
 
         /**
          * Defines the distance (in meters) within which to return place results.
          * Note that radius must not be included if [rankBy]=distance (described under Optional parameters below) is specified.
          * */
         var radius :Int? = null
+
 
         /**
          * Specifies the order in which results are listed
