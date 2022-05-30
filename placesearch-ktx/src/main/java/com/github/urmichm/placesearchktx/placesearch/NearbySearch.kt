@@ -232,8 +232,21 @@ class NearbySearch private constructor(private val builder : Builder){
          * Defines the distance (in meters) within which to return place results.
          * Note that radius must not be included if [rankBy]=distance (described under Optional parameters below) is specified.
          * */
-        var radius :Int? = null
+        private var radius :Int? = null
 
+        /**
+         * Getter for [radius]
+         * @return The value of [radius]
+         * */
+        fun getRadius() = radius
+
+        /**
+         * Setter for [radius]
+         * @param radius The new value for [radius]
+         * */
+        fun setRadius(radius :Int) :Builder = apply{
+            this.radius = radius
+        }
 
         /**
          * Specifies the order in which results are listed
