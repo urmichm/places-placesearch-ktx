@@ -44,19 +44,19 @@ class NearbySearch private constructor(private val builder : Builder){
      * Restricts results to only those places within the specified range.
      * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
      * */
-    private val maxPrice :Int? = builder.maxPrice
+    private val maxPrice :Int? = builder.getMaxPrice()
 
     /**
      * Restricts results to only those places within the specified range.
      * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
      * */
-    private val minPrice :Int? = builder.minPrice
+    private val minPrice :Int? = builder.getMinPrice()
 
     /**
      * Returns only those places that are open for business at the time the query is sent.
      * Places that do not specify opening hours in the Google Places database will not be returned if you include this parameter in your query.
      * */
-    private val openNow :Boolean? = builder.openNow
+    private val openNow :Boolean? = builder.getOpenNow()
 
     /**
      * Returns up to 20 results from a previously run search.
@@ -161,7 +161,7 @@ class NearbySearch private constructor(private val builder : Builder){
 
         /**
          * Setter for [maxPrice]
-         * @param The new value for [maxPrice]
+         * @param maxPrice The new value for [maxPrice]
          * */
         fun setMaxPrice(maxPrice :Int) :Builder = apply{
             this.maxPrice = maxPrice
@@ -181,7 +181,7 @@ class NearbySearch private constructor(private val builder : Builder){
 
         /**
          * Setter for [minPrice]
-         * @param The new value for [minPrice]
+         * @param minPrice The new value for [minPrice]
          * */
         fun setMinPrice(minPrice :Int) :Builder = apply{
             this.minPrice = minPrice
@@ -191,7 +191,21 @@ class NearbySearch private constructor(private val builder : Builder){
          * Returns only those places that are open for business at the time the query is sent.
          * Places that do not specify opening hours in the Google Places database will not be returned if you include this parameter in your query.
          * */
-        var openNow :Boolean? = null
+        private var openNow :Boolean? = null
+
+        /**
+         * Getter for [openNow]
+         * @return The value of [openNow]
+         * */
+        fun getOpenNow() = openNow
+
+        /**
+         * Setter for [openNow]
+         * @param openNow The new value for [openNow]
+         * */
+        fun setOpenNow(openNow :Boolean) :Builder = apply{
+            this.openNow = openNow
+        }
 
         /**
          * Returns up to 20 results from a previously run search.
