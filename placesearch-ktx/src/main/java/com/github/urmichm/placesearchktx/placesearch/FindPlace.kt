@@ -166,7 +166,7 @@ class FindPlace private constructor(private val builder :Builder) {
 
         /**
          * Setter for [language]
-         * @param language value ti be set
+         * @param language value to be set
          * */
         fun setLanguage(language :String) :Builder = apply {
             this.language = language
