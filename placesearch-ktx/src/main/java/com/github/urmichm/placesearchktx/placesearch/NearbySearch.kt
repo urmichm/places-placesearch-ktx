@@ -73,7 +73,7 @@ class NearbySearch private constructor(private val builder : Builder){
     /**
      * Specifies the order in which results are listed
      * */
-    private val rankBy :Diana.Rankby = builder.getRankBy()
+    private val rankBy : Rankby = builder.getRankBy()
 
     /**
      * Restricts the results to places matching the specified type. Only one type may be specified.
@@ -251,7 +251,7 @@ class NearbySearch private constructor(private val builder : Builder){
         /**
          * Specifies the order in which results are listed
          * */
-        private var rankBy :Diana.Rankby = Diana.Rankby.PROMINENCE
+        private var rankBy : Rankby = Rankby.PROMINENCE
 
         /**
          * Getter for [rankBy]
@@ -263,7 +263,7 @@ class NearbySearch private constructor(private val builder : Builder){
          * Setter for [rankBy]
          * @param rankBy The new value for [rankBy]
          * */
-        fun setRankBy(rankBy :Diana.Rankby) :Builder = apply{
+        fun setRankBy(rankBy : Rankby) :Builder = apply{
             this.rankBy = rankBy
         }
 
@@ -344,14 +344,14 @@ class NearbySearch private constructor(private val builder : Builder){
         }
 
         when(rankBy){
-            Diana.Rankby.PROMINENCE -> {
+            Rankby.PROMINENCE -> {
                 if(radius == null)
                     return Message(
                         "When prominence is specified, the radius parameter is required.",
                         false)
 
             }
-            Diana.Rankby.DISTANCE -> {
+            Rankby.DISTANCE -> {
                 if(radius != null)
                     return Message(
                         "When using rankBy=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.",
@@ -362,7 +362,13 @@ class NearbySearch private constructor(private val builder : Builder){
         return Message("OK", true)
     }
 
-
+    /**
+     * Rankby enumeration for [rankBy] parameter
+     * */
+    enum class Rankby(s: String) {
+        PROMINENCE ("prominence"),
+        DISTANCE("distance")
+    }
 
 
 }

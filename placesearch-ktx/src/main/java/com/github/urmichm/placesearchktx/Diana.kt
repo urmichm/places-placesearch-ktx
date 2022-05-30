@@ -60,13 +60,5 @@ class Diana private constructor(
         }
     }
 
-    /**
-     * Rankby enumeration for rankby parameter
-     * */
-    enum class Rankby(s: String) {
-        PROMINENCE ("prominence"),
-        DISTANCE("distance")
-    }
-
 
 }
