@@ -73,7 +73,7 @@ class NearbySearch private constructor(private val builder : Builder){
     /**
      * Specifies the order in which results are listed
      * */
-    private val rankBy : String? = builder.getRankBy()
+    private val rankBy : Rankby? = builder.getRankBy()
 
     /**
      * Restricts the results to places matching the specified type. Only one type may be specified.
@@ -251,7 +251,7 @@ class NearbySearch private constructor(private val builder : Builder){
         /**
          * Specifies the order in which results are listed
          * */
-        private var rankBy : String? = null
+        private var rankBy : Rankby? = Rankby.PROMINENCE
 
         /**
          * Getter for [rankBy]
@@ -264,7 +264,7 @@ class NearbySearch private constructor(private val builder : Builder){
          * @param rankBy The new value for [rankBy]
          * */
         fun setRankBy(rankBy : Rankby) :Builder = apply{
-            this.rankBy = rankBy.toString()
+            this.rankBy = rankBy
         }
 
         /**
@@ -316,7 +316,7 @@ class NearbySearch private constructor(private val builder : Builder){
                 openNow = openNow,
                 pageToken = pageToken,
                 radius = radius,
-                rankBy = rankBy,
+                rankBy = rankBy.toString(),
                 type = type
             )
 
@@ -344,14 +344,14 @@ class NearbySearch private constructor(private val builder : Builder){
         }
 
         when(rankBy){
-            Rankby.PROMINENCE.toString() -> {
+            Rankby.PROMINENCE -> {
                 if(radius == null)
                     return Message(
                         "When prominence is specified, the radius parameter is required.",
                         false)
 
             }
-            Rankby.DISTANCE.toString() -> {
+            Rankby.DISTANCE -> {
                 if(radius != null)
                     return Message(
                         "When using rankBy=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.",
@@ -365,9 +365,9 @@ class NearbySearch private constructor(private val builder : Builder){
     /**
      * Rankby enumeration for [rankBy] parameter
      * */
-    enum class Rankby(s: String) {
-        PROMINENCE ("prominence"),
-        DISTANCE("distance");
+    enum class Rankby {
+        PROMINENCE,
+        DISTANCE;
 
         override fun toString(): String {
             return this.name.lowercase()
