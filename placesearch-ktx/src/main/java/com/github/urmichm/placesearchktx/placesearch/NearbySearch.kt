@@ -62,24 +62,24 @@ class NearbySearch private constructor(private val builder : Builder){
      * Returns up to 20 results from a previously run search.
      * Setting a pagetoken parameter will execute a search with the same parameters used previously — all parameters other than pagetoken will be ignored.
      * */
-    private val pageToken :String? = builder.pageToken
+    private val pageToken :String? = builder.getPageToken()
 
     /**
      * Defines the distance (in meters) within which to return place results.
      * Note that radius must not be included if [rankBy]=distance (described under Optional parameters below) is specified.
      * */
-    private val radius :Int? = builder.radius
+    private val radius :Int? = builder.getRadius()
 
     /**
      * Specifies the order in which results are listed
      * */
-    private val rankBy :Diana.Rankby = builder.rankBy
+    private val rankBy :Diana.Rankby = builder.getRankBy()
 
     /**
      * Restricts the results to places matching the specified type. Only one type may be specified.
      * If more than one type is provided, all types following the first entry are ignored.
      * */
-    private val type : Place.Type? = builder.type
+    private val type : Place.Type? = builder.getType()
 
     /**
      * The builder class for [NearbySearch] class
@@ -251,13 +251,41 @@ class NearbySearch private constructor(private val builder : Builder){
         /**
          * Specifies the order in which results are listed
          * */
-        var rankBy :Diana.Rankby = Diana.Rankby.PROMINENCE
+        private var rankBy :Diana.Rankby = Diana.Rankby.PROMINENCE
+
+        /**
+         * Getter for [rankBy]
+         * @return The value of [rankBy]
+         * */
+        fun getRankBy() = rankBy
+
+        /**
+         * Setter for [rankBy]
+         * @param rankBy The new value for [rankBy]
+         * */
+        fun setRankBy(rankBy :Diana.Rankby) :Builder = apply{
+            this.rankBy = rankBy
+        }
 
         /**
          * Restricts the results to places matching the specified type. Only one type may be specified.
          * If more than one type is provided, all types following the first entry are ignored.
          * */
-        var type : Place.Type? = null
+        private var type : Place.Type? = null
+
+        /**
+         * Getter for [type]
+         * @return The value of [type]
+         * */
+        fun getType() = type
+
+        /**
+         * Setter for [type]
+         * @param type The new value for [type]
+         * */
+        fun setRankBy(type :Place.Type) :Builder = apply{
+            this.type = type
+        }
 
         /**
          * The build method to create a [NearbySearch] object
