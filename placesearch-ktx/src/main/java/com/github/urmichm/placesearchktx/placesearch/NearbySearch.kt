@@ -283,7 +283,7 @@ class NearbySearch private constructor(private val builder : Builder){
          * Setter for [type]
          * @param type The new value for [type]
          * */
-        fun setRankBy(type :Place.Type) :Builder = apply{
+        fun setType(type :Place.Type) :Builder = apply{
             this.type = type
         }
 
