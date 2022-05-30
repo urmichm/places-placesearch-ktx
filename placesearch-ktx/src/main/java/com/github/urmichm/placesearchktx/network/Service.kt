@@ -20,7 +20,7 @@ import retrofit2.http.Query
  * There is no way to constrain Nearby Search or Text Search to only return specific fields.
  * To keep from requesting (and paying for) data that you don't need, use a Find Place request instead.
  * */
-private val NEARBY_SEARCH_URL = "https://maps.googleapis.com/maps/api/place/"
+private val URL = "https://maps.googleapis.com/maps/api/place/"
 
 
 /**
@@ -120,7 +120,7 @@ private val moshi = Moshi.Builder()
 internal object Network {
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
-        .baseUrl(NEARBY_SEARCH_URL)
+        .baseUrl(URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
