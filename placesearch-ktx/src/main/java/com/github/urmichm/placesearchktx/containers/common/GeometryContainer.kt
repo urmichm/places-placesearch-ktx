@@ -1,4 +1,4 @@
-package com.github.urmichm.placesearchktx.containers
+package com.github.urmichm.placesearchktx.containers.common
 
 /**
  * Container for a geometry object. Class describes the location of a Place.

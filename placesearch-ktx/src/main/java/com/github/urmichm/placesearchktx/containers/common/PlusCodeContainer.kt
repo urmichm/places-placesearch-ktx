@@ -1,4 +1,4 @@
-package com.github.urmichm.placesearchktx.containers
+package com.github.urmichm.placesearchktx.containers.common
 
 import com.google.android.libraries.places.api.model.PlusCode
 import com.squareup.moshi.Json

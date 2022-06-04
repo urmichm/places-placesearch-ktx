@@ -1,8 +1,8 @@
 package com.github.urmichm.placesearchktx.network
 
 import com.github.urmichm.placesearchktx.Diana.Companion.OUTPUT_FORMAT
-import com.github.urmichm.placesearchktx.containers.PlacesFindPlaceContainer
-import com.github.urmichm.placesearchktx.containers.PlacesNearbySearchContainer
+import com.github.urmichm.placesearchktx.containers.FindPlaceContainer
+import com.github.urmichm.placesearchktx.containers.NearbySearchContainer
 import com.google.android.libraries.places.api.model.Place
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -50,7 +50,7 @@ internal interface DianaService{
      * @param rankby Specifies the order in which results are listed
      * @param type Restricts the results to places matching the specified type. Only one type may be specified.
      *             If more than one type is provided, all types following the first entry are ignored.
-     * @return [PlacesNearbySearchContainer] object is returned wrapped into [Deferred] class
+     * @return [NearbySearchContainer] object is returned wrapped into [Deferred] class
      * */
     @GET("nearbysearch/${OUTPUT_FORMAT}")
     fun nearbySearch(
@@ -65,7 +65,7 @@ internal interface DianaService{
         @Query("radius") radius :Int?,
         @Query("rankby") rankBy : String?,
         @Query("type") type : Place.Type?
-    ) : Deferred<PlacesNearbySearchContainer>
+    ) : Deferred<NearbySearchContainer>
 
     /**
      * A Find Place request takes a text input and returns a place. The input can be any kind of Places text data, such as a name, address, or phone number.
@@ -88,7 +88,7 @@ internal interface DianaService{
      * If this parameter is not specified, the API uses IP address biasing by default.
      *
      * @return Candidate matches based on this string and order the results based on their perceived relevance
-     * [PlacesFindPlaceContainer] object is returned wrapped into [Deferred] class
+     * [FindPlaceContainer] object is returned wrapped into [Deferred] class
      * */
     @GET("findplacefromtext/${OUTPUT_FORMAT}")
     fun findPlace(
@@ -100,7 +100,7 @@ internal interface DianaService{
         @Query("fields") fields :String?,
         @Query("language") language :String?,
         @Query("locationbias") locationbias :String?
-    ) : Deferred<PlacesFindPlaceContainer>
+    ) : Deferred<FindPlaceContainer>
 }
 
 /**

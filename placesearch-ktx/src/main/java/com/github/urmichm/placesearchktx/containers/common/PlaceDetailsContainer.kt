@@ -1,4 +1,4 @@
-package com.github.urmichm.placesearchktx.containers
+package com.github.urmichm.placesearchktx.containers.common
 
 import android.os.Build
 import com.github.urmichm.placesearchktx.Diana

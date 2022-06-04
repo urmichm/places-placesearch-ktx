@@ -1,7 +1,7 @@
 package com.github.urmichm.placesearchktx.placesearch
 
 import com.github.urmichm.placesearchktx.Diana
-import com.github.urmichm.placesearchktx.containers.PlacesFindPlaceContainer
+import com.github.urmichm.placesearchktx.containers.FindPlaceContainer
 import com.github.urmichm.placesearchktx.network.Network
 import com.github.urmichm.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
@@ -297,11 +297,11 @@ class FindPlace private constructor(private val builder :Builder) {
 
     /**
      * Make a call to Find Place
-     * @return [PlacesFindPlaceContainer] container object on success, null otherwise
+     * @return [FindPlaceContainer] container object on success, null otherwise
      * */
-    suspend fun call(): PlacesFindPlaceContainer?{
+    suspend fun call(): FindPlaceContainer?{
 
-        val find : Deferred<PlacesFindPlaceContainer> =
+        val find : Deferred<FindPlaceContainer> =
             Network.diana.findPlace(
                 key = diana.key,
                 input = input,
