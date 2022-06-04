@@ -302,6 +302,7 @@ class NearbySearch private constructor(private val builder : Builder){
      * */
     suspend fun call() : NearbySearchContainer? {
 
+        // TODO: validate on build, not on call!
         val message = validate()
         if(!message.isValid)  throw Exception(message.message)
 
