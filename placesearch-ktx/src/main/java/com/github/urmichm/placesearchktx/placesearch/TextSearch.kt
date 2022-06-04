@@ -2,9 +2,12 @@ package com.github.urmichm.placesearchktx.placesearch
 
 import com.github.urmichm.placesearchktx.Diana
 import com.github.urmichm.placesearchktx.containers.TextSearchContainer
+import com.github.urmichm.placesearchktx.network.Network
 import com.github.urmichm.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
+import kotlinx.coroutines.Deferred
+import kotlin.Exception
 
 /**
  * Text Search Google API
@@ -262,6 +265,26 @@ class TextSearch private constructor(private val builder: Builder){
      * @return [TextSearchContainer] container object on success, null otherwise
      * */
     suspend fun call() : TextSearchContainer?{
-        TODO("Not yet implemented")
+        val textSearch : Deferred<TextSearchContainer> =
+            Network.diana.textSearch(
+                key = diana.key,
+                query = query,
+                language = language,
+                location = location,
+                maxPrice = maxPrice,
+                minPrice = minPrice,
+                openNow = openNow,
+                pageToken = pageToken,
+                radius = radius,
+                region = region,
+                type = type
+            )
+
+        return try{
+            textSearch.await()
+        } catch (e :Exception){
+            println("Exception: $e");
+            null
+        }
     }
 }

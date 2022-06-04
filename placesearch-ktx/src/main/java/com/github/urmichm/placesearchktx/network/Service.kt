@@ -3,6 +3,7 @@ package com.github.urmichm.placesearchktx.network
 import com.github.urmichm.placesearchktx.Diana.Companion.OUTPUT_FORMAT
 import com.github.urmichm.placesearchktx.containers.FindPlaceContainer
 import com.github.urmichm.placesearchktx.containers.NearbySearchContainer
+import com.github.urmichm.placesearchktx.containers.TextSearchContainer
 import com.google.android.libraries.places.api.model.Place
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -27,6 +28,46 @@ private val URL = "https://maps.googleapis.com/maps/api/place/"
  * @details https://developers.google.com/maps/documentation/places/web-service/search#PlaceSearchRequests
  * */
 internal interface DianaService{
+
+
+    /**
+     * A Text Search returns information about a set of places based on a string — for example "pizza in New York" or "shoe stores near Ottawa" or "123 Main Street".
+     * @details https://developers.google.com/maps/documentation/places/web-service/search-text
+     * @param key Your application's API key. This key identifies your application.
+     * @param query The text string on which to search, for example: "restaurant" or "123 Main Street". This must a place name, address, or category of establishments.
+     * @param language The language in which to return results.
+     * @param location The latitude/longitude around which to retrieve place information.
+     * @param maxPrice Restricts results to only those places within the specified range.
+     *                 Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
+     * @param minPrice Restricts results to only those places within the specified range.
+     *                 Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
+     * @param openNow Returns only those places that are open for business at the time the query is sent.
+     *                Places that do not specify opening hours in the Google Places database will not be returned if you include this parameter in your query.
+     * @param pageToken Returns up to 20 results from a previously run search.
+     *                  Setting a pagetoken parameter will execute a search with the same parameters used previously — all parameters other than pagetoken will be ignored.
+     * @param radius Defines the distance (in meters) within which to return place results.
+     *               Note that radius must not be included if [rankby]=distance (described under Optional parameters below) is specified.
+     * @param region The region code, specified as a ccTLD ("top-level domain") two-character value.
+     * @param type Restricts the results to places matching the specified type. Only one type may be specified.
+     *             If more than one type is provided, all types following the first entry are ignored.
+     * @return [TextSearchContainer] object is returned wrapped into [Deferred] class
+     *
+     * */
+    @GET("textsearch/${OUTPUT_FORMAT}")
+    fun textSearch(
+        @Query("key") key : String,
+        @Query("query") query : String,
+
+        @Query("language") language :String?,
+        @Query("location") location : String?,
+        @Query("maxPrice") maxPrice :Int?,
+        @Query("minPrice") minPrice :Int?,
+        @Query("openNow") openNow :Boolean?,
+        @Query("pageToken") pageToken :String?,
+        @Query("radius") radius :Int?,
+        @Query("region") region :String?,
+        @Query("type") type : Place.Type?
+    ): Deferred<TextSearchContainer>
 
     /**
      * A Nearby Search lets you search for places within a specified area. You can refine your search request by supplying keywords or specifying the type of place you are searching for.
@@ -102,6 +143,7 @@ internal interface DianaService{
         @Query("locationbias") locationbias :String?
     ) : Deferred<FindPlaceContainer>
 }
+
 
 /**
  * Build the Moshi object that Retrofit will be using,
