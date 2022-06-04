@@ -1,7 +1,7 @@
 package com.github.urmichm.placesearchktx.placesearch
 
 import com.github.urmichm.placesearchktx.*
-import com.github.urmichm.placesearchktx.containers.PlacesNearbySearchContainer
+import com.github.urmichm.placesearchktx.containers.NearbySearchContainer
 import com.github.urmichm.placesearchktx.network.Network
 import com.github.urmichm.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
@@ -298,14 +298,15 @@ class NearbySearch private constructor(private val builder : Builder){
 
     /**
      * Make a call to Nearby Search.
-     * @return [PlacesNearbySearchContainer] container object on success, null otherwise
+     * @return [NearbySearchContainer] container object on success, null otherwise
      * */
-    suspend fun call() : PlacesNearbySearchContainer? {
+    suspend fun call() : NearbySearchContainer? {
 
+        // TODO: validate on build, not on call!
         val message = validate()
         if(!message.isValid)  throw Exception(message.message)
 
-        val nearby: Deferred<PlacesNearbySearchContainer> =
+        val nearby: Deferred<NearbySearchContainer> =
             Network.diana.nearbySearch(
                 key = diana.key,
                 location = location,

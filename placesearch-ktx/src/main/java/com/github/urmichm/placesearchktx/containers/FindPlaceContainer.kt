@@ -1,5 +1,6 @@
 package com.github.urmichm.placesearchktx.containers
 
+import com.github.urmichm.placesearchktx.containers.common.PlaceDetailsContainer
 import com.squareup.moshi.Json
 
 /**
@@ -9,7 +10,7 @@ import com.squareup.moshi.Json
  * then use that Place ID to make a Place Details request.
  * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place
  * */
-class PlacesFindPlaceContainer (
+class FindPlaceContainer (
 
     /**
      * Contains an array of Place candidates.
@@ -18,7 +19,6 @@ class PlacesFindPlaceContainer (
     val candidates :List<PlaceDetailsContainer>,
 
     /**
-     * TODO: use PlacesSearchStatus
      * Contains the status of the request, and may contain debugging information to help you track down why the request failed.
      */
     @Json(name="status")
