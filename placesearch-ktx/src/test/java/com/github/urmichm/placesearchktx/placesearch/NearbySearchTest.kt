@@ -3,14 +3,22 @@ package com.github.urmichm.placesearchktx.placesearch
 import com.github.urmichm.placesearchktx.Diana
 import com.google.android.gms.maps.model.LatLng
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Test
 import kotlin.IllegalArgumentException
 
 class NearbySearchTest{
 
+    private lateinit var d :Diana
+    @Before
+    fun initDiana(){
+        d = Diana("YOUR_API_KEY")
+    }
+
+
     @Test
     fun minPriceIsOutOfRange(){
-        val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
+        val nearbySearch = NearbySearch.Builder(d)
             .setMinPrice(6)
             .setLocation(LatLng(0.0,0.0))
 
@@ -21,7 +29,7 @@ class NearbySearchTest{
 
     @Test
     fun maxPriceIsOutOfRange(){
-        val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
+        val nearbySearch = NearbySearch.Builder(d)
             .setMinPrice(2)
             .setMaxPrice(5)
             .setLocation(LatLng(0.0,0.0))
@@ -33,7 +41,7 @@ class NearbySearchTest{
 
     @Test
     fun radiusParameterIsOmittedWhenRankedByProminence(){
-        val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
+        val nearbySearch = NearbySearch.Builder(d)
             .setMinPrice(2)
             .setMaxPrice(4)
             .setLocation(LatLng(0.0,0.0))
@@ -45,7 +53,7 @@ class NearbySearchTest{
 
     @Test
     fun radiusParameterIsGivenWhenRankedByDistance(){
-        val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
+        val nearbySearch = NearbySearch.Builder(d)
             .setRankBy(NearbySearch.Rankby.DISTANCE)
             .setRadius(5000)
             .setMinPrice(2)
@@ -59,7 +67,7 @@ class NearbySearchTest{
 
     @Test
     fun validWhenRankedByDistanceAndRadiusOmitted(){
-        val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
+        val nearbySearch = NearbySearch.Builder(d)
             .setRankBy(NearbySearch.Rankby.DISTANCE)
             .setMinPrice(2)
             .setMaxPrice(4)
@@ -71,7 +79,7 @@ class NearbySearchTest{
 
     @Test
     fun validWhenRankedByProminenceAndRadiusGiven(){
-        val nearbySearch = NearbySearch.Builder(Diana.Builder("").build())
+        val nearbySearch = NearbySearch.Builder(d)
             .setRadius(1000)
             .setMinPrice(2)
             .setMaxPrice(4)
@@ -84,7 +92,7 @@ class NearbySearchTest{
     @Test
     fun locationNotProvided() {
 
-        val diana = Diana.Builder("").build()
+        val diana = d
 
         val builder = NearbySearch.Builder(diana)
 

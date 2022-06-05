@@ -9,7 +9,7 @@ class DianaTest {
     @Test
     fun testDianaKey(){
         val key = "my-key"
-        val d = Diana.Builder(key).build()
+        val d = Diana(key)
         assertEquals(key,d.key)
     }
 

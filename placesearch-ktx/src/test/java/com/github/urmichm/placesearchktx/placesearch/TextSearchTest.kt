@@ -11,7 +11,7 @@ class TextSearchTest {
 
     @Before
     fun initDiana(){
-        d = Diana.Builder("YOUR_API_KEY").build()
+        d = Diana("YOUR_API_KEY")
     }
 
     @Test

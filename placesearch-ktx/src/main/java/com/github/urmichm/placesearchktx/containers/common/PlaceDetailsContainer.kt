@@ -79,7 +79,7 @@ data class PlaceDetailsContainer(
 //            .setWebsiteUri(@Nullable Uri var1);
 
         if(null == placeBuilder.address && null != this.vicinity) {
-            Log.w("PlaceDetailsContainer", "Vicinity is used as address")
+            println("WARN: Vicinity is used as address")
             placeBuilder.setAddress(this.vicinity)
         }
 
