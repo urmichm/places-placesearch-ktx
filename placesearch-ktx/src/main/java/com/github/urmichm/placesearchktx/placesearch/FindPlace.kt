@@ -296,4 +296,10 @@ class FindPlace private constructor(private val builder :Builder) {
         }
     }
 
+
+    companion object{
+        public const val TAG = "FindPlace"
+    }
+
+
 }

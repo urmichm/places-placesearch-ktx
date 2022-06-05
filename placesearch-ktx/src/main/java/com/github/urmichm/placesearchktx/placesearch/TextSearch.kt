@@ -306,4 +306,9 @@ class TextSearch private constructor(private val builder: Builder){
             null
         }
     }
+
+    companion object{
+        public const val TAG = "TextSearch"
+    }
+
 }

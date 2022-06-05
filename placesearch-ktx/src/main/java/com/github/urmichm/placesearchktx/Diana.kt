@@ -12,18 +12,4 @@ import android.util.Log
  * */
 class Diana (
     internal val key: String
-){
-
-    companion object {
-        private const val TAG = "PlaceSearch-KTX"
-
-        fun hello(){
-            Log.i(TAG, "Hello Diana!")
-        }
-
-        fun bye(){
-            Log.i(TAG, "Bye Diana!")
-        }
-    }
-
-}
+)
