@@ -39,10 +39,7 @@ class NearbySearch private constructor(private val builder : Builder){
 
     private val type : Place.Type? = builder.getType()
 
-    /**
-     * The builder class for [NearbySearch] class
-     * @param diana [Diana] object with general settings
-     * */
+
     class Builder(val diana : Diana){
 
         /**

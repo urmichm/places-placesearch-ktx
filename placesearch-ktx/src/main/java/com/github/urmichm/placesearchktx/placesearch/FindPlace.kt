@@ -29,10 +29,6 @@ class FindPlace private constructor(private val builder :Builder) {
     private var locationbias :String? = builder.getLocationBias()
 
 
-    /**
-     * The builder class for [FindPlace] class
-     * @param builder The [Builder] object
-     * */
     class Builder(val diana: Diana) {
 
         /**

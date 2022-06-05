@@ -39,6 +39,7 @@ class TextSearch private constructor(private val builder: Builder){
 
     private var type : Place.Type? = builder.getType()
 
+
     class Builder(val diana : Diana) {
 
         /**
