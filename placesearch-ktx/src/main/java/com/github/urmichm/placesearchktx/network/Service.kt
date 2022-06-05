@@ -160,7 +160,7 @@ private val moshi = Moshi.Builder()
 
 /**
  * Main entry point for network access.
- * [Network.diana].nearbySearch(..)
+ * [Network.service].nearbySearch(..)
  */
 internal object Network {
     // Configure retrofit to parse JSON and use coroutines
@@ -170,6 +170,6 @@ internal object Network {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-    val diana = retrofit.create(DianaService::class.java) as DianaService
+    val service = retrofit.create(DianaService::class.java) as DianaService
 }
 

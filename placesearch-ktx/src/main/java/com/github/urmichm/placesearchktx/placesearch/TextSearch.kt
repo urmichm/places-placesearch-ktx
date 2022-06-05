@@ -285,7 +285,7 @@ class TextSearch private constructor(private val builder: Builder){
      * */
     suspend fun call() : TextSearchContainer?{
         val textSearch : Deferred<TextSearchContainer> =
-            Network.diana.textSearch(
+            Network.service.textSearch(
                 key = diana.key,
                 query = query,
                 language = language,

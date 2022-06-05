@@ -292,7 +292,7 @@ class NearbySearch private constructor(private val builder : Builder){
     suspend fun call() : NearbySearchContainer? {
 
         val nearby: Deferred<NearbySearchContainer> =
-            Network.diana.nearbySearch(
+            Network.service.nearbySearch(
                 key = diana.key,
                 location = location,
                 keyword = keyword,

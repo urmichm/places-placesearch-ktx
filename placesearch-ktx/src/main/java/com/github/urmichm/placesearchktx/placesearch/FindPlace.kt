@@ -279,7 +279,7 @@ class FindPlace private constructor(private val builder :Builder) {
     suspend fun call(): FindPlaceContainer?{
 
         val find : Deferred<FindPlaceContainer> =
-            Network.diana.findPlace(
+            Network.service.findPlace(
                 key = diana.key,
                 input = input,
                 inputtype = inputtype,
