@@ -16,50 +16,16 @@ import kotlinx.coroutines.Deferred
  * */
 class FindPlace private constructor(private val builder :Builder) {
 
-    /**
-     * [Diana] object with general settings
-     * */
     private val diana : Diana = builder.diana;
 
-    /**
-     * The required parameter.
-     * The text string on which to search, for example: "restaurant" or "123 Main Street".
-     * This must be a place name, address, or category of establishments.
-     * Any other types of input can generate errors and are not guaranteed to return valid results.
-     * The Places API will return candidate matches based on this string and order the results based
-     * on their perceived relevance.
-     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#input
-     * */
     private val input :String = builder.getInput()
 
-    /**
-     * The required parameter.
-     * The type of input. This can be one of either [textquery] or [phonenumber].
-     * Phone numbers must be in international format (prefixed by a plus sign ("+"),
-     * followed by the country code, then the phone number itself).
-     * See E.164 ITU recommendation for more information.
-     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#inputtype
-     * */
     private val inputtype :String = builder.getInputType().toString()
 
-    /**
-     * Use the fields parameter to specify a comma-separated list of place data types to return.
-     * For example: fields=formatted_address,name,geometry.
-     * Use a forward slash when specifying compound values. For example: opening_hours/open_now.
-     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#fields
-     * */
     private var fields :String? = builder.getFields()
 
-    /**
-     * The language in which to return results.
-     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#language
-     * */
     private var language :String? = builder.getLanguage()
 
-    /**
-     * Prefer results in a specified area, by specifying either a radius plus lat/lng, or two lat/lng pairs representing the points of a rectangle. If this parameter is not specified, the API uses IP address biasing by default.
-     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#locationbias
-     * */
     private var locationbias :String? = builder.getLocationBias()
 
 
