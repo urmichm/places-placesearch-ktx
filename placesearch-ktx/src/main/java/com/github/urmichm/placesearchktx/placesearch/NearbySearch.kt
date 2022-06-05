@@ -250,7 +250,38 @@ class NearbySearch private constructor(private val builder : Builder){
          * @return [NearbySearch] object created according to the builder settings.
          * */
         fun build() : NearbySearch {
+            validate()
             return NearbySearch(this)
+        }
+
+        /**
+         * Validate parameters before calling the server
+         * @throws IllegalArgumentException if NearbySearch object is not valid
+         * */
+        private fun validate(){
+            minPrice?.apply {
+                if( priceNotInRange(this) )
+                    throw IllegalArgumentException("minPrice is out of possible range.")
+            }
+            maxPrice?.apply {
+                if( priceNotInRange(this) )
+                    throw IllegalArgumentException("maxPrice is out of possible range.")
+            }
+
+            when(rankBy){
+                Rankby.PROMINENCE -> {
+                    if(radius == null)
+                        throw IllegalArgumentException(
+                            "When prominence is specified, the radius parameter is required.")
+
+                }
+                Rankby.DISTANCE -> {
+                    if(radius != null)
+                        throw IllegalArgumentException(
+                            "When using rankBy=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.")
+                }
+            }
+
         }
     }
 
@@ -259,10 +290,6 @@ class NearbySearch private constructor(private val builder : Builder){
      * @return [NearbySearchContainer] container object on success, null otherwise
      * */
     suspend fun call() : NearbySearchContainer? {
-
-        // TODO: validate on build, not on call!
-        val message = validate()
-        if(!message.isValid)  throw Exception(message.message)
 
         val nearby: Deferred<NearbySearchContainer> =
             Network.diana.nearbySearch(
@@ -286,39 +313,6 @@ class NearbySearch private constructor(private val builder : Builder){
             println("Exception: $e");
             null
         }
-    }
-
-    /**
-     * Validate parameters before calling the server
-     * @return The [Message] object based onn the validation.
-     * */
-    fun validate() :Message{
-        minPrice?.apply {
-            if( priceNotInRange(this) )
-                return Message("minPrice is out of possible range.", false)
-        }
-        maxPrice?.apply {
-            if( priceNotInRange(this) )
-                return Message("maxPrice is out of possible range.", false)
-        }
-
-        when(rankBy){
-            Rankby.PROMINENCE -> {
-                if(radius == null)
-                    return Message(
-                        "When prominence is specified, the radius parameter is required.",
-                        false)
-
-            }
-            Rankby.DISTANCE -> {
-                if(radius != null)
-                    return Message(
-                        "When using rankBy=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.",
-                        false)
-            }
-        }
-
-        return Message("OK", true)
     }
 
     /**
