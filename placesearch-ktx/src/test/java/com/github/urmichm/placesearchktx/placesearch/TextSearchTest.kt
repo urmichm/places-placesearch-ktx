@@ -30,4 +30,37 @@ class TextSearchTest {
         assertNotNull(textSearch)
     }
 
+    @Test
+    fun maxPriceOutOfRange(){
+        val textSearch = TextSearch.Builder(d)
+            .setQuery("query")
+            .setMaxPrice(6)
+
+        assertThrows("maxPrice is out of possible range.", IllegalArgumentException::class.java) {
+            textSearch.build()
+        }
+    }
+
+    @Test
+    fun minPriceOutOfRange(){
+        val textSearch = TextSearch.Builder(d)
+            .setQuery("query")
+            .setMinPrice(-1)
+
+        assertThrows("minPrice is out of possible range.", IllegalArgumentException::class.java) {
+            textSearch.build()
+        }
+    }
+
+    @Test
+    fun regionIsIncorrect(){
+        val textSearch = TextSearch.Builder(d)
+            .setQuery("query")
+            .setRegion("pll")
+
+        assertThrows("The region code, must be specified as a ccTLD (\"top-level domain\") TWO-character value.", IllegalArgumentException::class.java) {
+            textSearch.build()
+        }
+    }
+
 }
