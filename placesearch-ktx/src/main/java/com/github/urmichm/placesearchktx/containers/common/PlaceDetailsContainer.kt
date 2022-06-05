@@ -1,6 +1,7 @@
 package com.github.urmichm.placesearchktx.containers.common
 
 import android.os.Build
+import android.util.Log
 import com.github.urmichm.placesearchktx.Diana
 import com.google.android.libraries.places.api.model.Place
 import com.squareup.moshi.Json
@@ -50,7 +51,6 @@ data class PlaceDetailsContainer(
 
     /**
      * Converts [PlaceDetailsContainer] into [Place] object
-     * @warning Requires API [Build.VERSION_CODES.N]
      * */
     fun asPlace() : Place{
         val placeBuilder =  Place.builder()
@@ -67,8 +67,6 @@ data class PlaceDetailsContainer(
             .setIconUrl(this.iconUrl)
 //          .setPhotoMetadatas(this.photos?.stream()?.map { it.toPhotoMetadata() }?.toList())
             .setPlusCode(this.plusCode?.toPlusCode())
-
-            // TODO: deal with formattedAddress vs vicinity
             .setAddress(this.formattedAddress)
 
 /*  The Following fields are not returned by Place Search, Nearby Search, and Text Search */
@@ -80,8 +78,9 @@ data class PlaceDetailsContainer(
 //            .setUtcOffsetMinutes(@Nullable Integer var1);
 //            .setWebsiteUri(@Nullable Uri var1);
 
-        if(null == placeBuilder.address && Diana.vicinityAsAddress) {
-            placeBuilder.address = this.vicinity
+        if(null == placeBuilder.address && null != this.vicinity) {
+            Log.w("PlaceDetailsContainer", "Vicinity is used as address")
+            placeBuilder.setAddress(this.vicinity)
         }
 
         return placeBuilder.build()

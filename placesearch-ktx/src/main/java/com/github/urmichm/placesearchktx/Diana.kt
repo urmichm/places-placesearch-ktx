@@ -15,22 +15,9 @@ class Diana private constructor(
     internal val key: String
 ){
 
-    init{
-        vicinityAsAddress = builder.getVicinityAsAddress()
-    }
 
     companion object {
         private const val TAG = "PlaceSearch-KTX"
-
-        /**
-         * Output format; indicates output in JavaScript Object Notation (JSON)
-         * */
-        const val OUTPUT_FORMAT = "json"
-
-        /**
-         * Convert vicinity data into Address data when converting Container objects into Google's Place object
-         * */
-        var vicinityAsAddress = true
 
         fun hello(){
             Log.i(TAG, "Hello Diana!")
@@ -46,15 +33,6 @@ class Diana private constructor(
      * @param key Your application's API key. This key identifies your application.
      * */
     class Builder(private val key : String){
-
-        /**
-         * Convert vicinity data into Address data when converting Container objects into Google's Place object
-         * */
-        private var vicinityAsAddress = true
-        /** Getter for [vicinityAsAddress] */
-        fun getVicinityAsAddress() = this.vicinityAsAddress
-        /** Setter for [vicinityAsAddress] */
-        fun setVicinityAsAddress(vicinity2Address : Boolean) = apply{this.vicinityAsAddress = vicinity2Address}
 
         /**
          * The build method to create a [Diana] object

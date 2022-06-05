@@ -1,6 +1,5 @@
 package com.github.urmichm.placesearchktx.network
 
-import com.github.urmichm.placesearchktx.Diana.Companion.OUTPUT_FORMAT
 import com.github.urmichm.placesearchktx.containers.FindPlaceContainer
 import com.github.urmichm.placesearchktx.containers.NearbySearchContainer
 import com.github.urmichm.placesearchktx.containers.TextSearchContainer
@@ -23,6 +22,10 @@ import retrofit2.http.Query
  * */
 private val URL = "https://maps.googleapis.com/maps/api/place/"
 
+/**
+ * Output format; indicates output in JavaScript Object Notation (JSON)
+ * */
+private const val OUTPUT_FORMAT = "json"
 
 /**
  * @details https://developers.google.com/maps/documentation/places/web-service/search#PlaceSearchRequests

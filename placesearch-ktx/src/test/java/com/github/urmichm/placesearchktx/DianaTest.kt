@@ -6,8 +6,6 @@ import org.junit.Test
 
 class DianaTest {
 
-    private val JsonFormat = "json"
-
     @Test
     fun testDianaKey(){
         val key = "my-key"
@@ -15,24 +13,6 @@ class DianaTest {
         assertEquals(key,d.key)
     }
 
-    @Test
-    fun testVicinityAsAddress(){
-        // given default value
-        assertTrue(Diana.vicinityAsAddress)
-
-        // override default value
-        Diana.vicinityAsAddress = false
-        assertFalse(Diana.vicinityAsAddress)
-
-        // restore the default value
-        Diana.vicinityAsAddress = true
-        assertTrue(Diana.vicinityAsAddress)
-    }
-
-    @Test
-    fun defaultOutputFormat(){
-        assertEquals(JsonFormat, Diana.OUTPUT_FORMAT)
-    }
 
 //    @Test
 //    fun nearbySearch() {

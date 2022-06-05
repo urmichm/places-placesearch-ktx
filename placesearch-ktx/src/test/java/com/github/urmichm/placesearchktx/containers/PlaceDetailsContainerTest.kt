@@ -64,7 +64,7 @@ class PlaceDetailsContainerTest {
 
         assertEquals(container.businessStatus, place.businessStatus.name)
         assertEquals(container.rating, place.rating)
-        assertEquals( Diana.vicinityAsAddress, container.vicinity == place.address)
+        assertEquals( container.vicinity, place.address)
         assertEquals(container.placeId, place.id)
         assertEquals(container.userRatingsTotal, place.userRatingsTotal)
 
