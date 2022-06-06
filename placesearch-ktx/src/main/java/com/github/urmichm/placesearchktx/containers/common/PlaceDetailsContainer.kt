@@ -1,7 +1,5 @@
 package com.github.urmichm.placesearchktx.containers.common
 
-import android.os.Build
-import android.util.Log
 import com.google.android.libraries.places.api.model.Place
 import com.squareup.moshi.Json
 
