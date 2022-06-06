@@ -1,26 +1,17 @@
 package com.github.urmichm.placesearchktx.placesearch
 
-import com.github.urmichm.placesearchktx.Diana
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.model.RectangularBounds
 import org.junit.Assert.*
-import org.junit.Before
 
 import org.junit.Test
 
 class FindPlaceTest {
 
-    private lateinit var d : Diana
-
-    @Before
-    fun initDiana(){
-        d = Diana("YOUR_API_KEY")
-    }
-
     @Test
     fun findPlaceBuiltSuccessfully() {
-        val findPlace = FindPlace.Builder(d)
+        val findPlace = FindPlace.Builder()
             .setInput("input")
             .setInputType(FindPlace.InputType.TEXTQUERY)
             .build()
@@ -31,7 +22,7 @@ class FindPlaceTest {
     @Test
     fun findPlaceBuildFailedInputNotProvided() {
         assertThrows(UninitializedPropertyAccessException::class.java) {
-            FindPlace.Builder(d)
+            FindPlace.Builder()
                 .setInputType(FindPlace.InputType.TEXTQUERY)
                 .build()
         }
@@ -40,7 +31,7 @@ class FindPlaceTest {
     @Test
     fun findPlaceBuildFailedInputTypeNotProvided() {
         assertThrows(UninitializedPropertyAccessException::class.java) {
-            FindPlace.Builder(d)
+            FindPlace.Builder()
                 .setInput("input")
                 .build()
         }
@@ -49,14 +40,14 @@ class FindPlaceTest {
     @Test
     fun findPlaceBuildFailed() {
         assertThrows(UninitializedPropertyAccessException::class.java) {
-            FindPlace.Builder(d)
+            FindPlace.Builder()
                 .build()
         }
     }
 
     @Test
     fun settersAndGettersRequiredFields() {
-        val findPlaceBuilder = FindPlace.Builder(d)
+        val findPlaceBuilder = FindPlace.Builder()
             .setInput("input")
             .setInputType(FindPlace.InputType.TEXTQUERY)
 
@@ -72,7 +63,7 @@ class FindPlaceTest {
 
     @Test
     fun settersGettersLanguage(){
-        val findPlaceBuilder = FindPlace.Builder(d)
+        val findPlaceBuilder = FindPlace.Builder()
             .setInput("input")
             .setInputType(FindPlace.InputType.TEXTQUERY)
             .setLanguage("en")
@@ -100,7 +91,7 @@ class FindPlaceTest {
             Place.Field.WEBSITE_URI,
             Place.Field.RATING
             )
-        val findPlaceBuilder = FindPlace.Builder(d)
+        val findPlaceBuilder = FindPlace.Builder()
             .setInput("input")
             .setInputType(FindPlace.InputType.TEXTQUERY)
             .setFields(fieldsAsPlaceField)
@@ -141,7 +132,7 @@ class FindPlaceTest {
             FindPlace.Field.OPEN_NOW,
             FindPlace.Field.RATING
         )
-        val findPlaceBuilder = FindPlace.Builder(d)
+        val findPlaceBuilder = FindPlace.Builder()
             .setInput("input")
             .setInputType(FindPlace.InputType.TEXTQUERY)
             .setFields(fieldsAsFindPlaceField)
@@ -179,7 +170,7 @@ class FindPlaceTest {
         val lng :Double = 45.12
         val radius :Double = 350.0
 
-        val findPlaceBuilder = FindPlace.Builder(d)
+        val findPlaceBuilder = FindPlace.Builder()
             .setInput("input")
             .setInputType(FindPlace.InputType.TEXTQUERY)
 

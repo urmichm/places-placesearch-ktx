@@ -1,6 +1,5 @@
 package com.github.urmichm.placesearchktx.placesearch
 
-import com.github.urmichm.placesearchktx.Diana
 import com.github.urmichm.placesearchktx.containers.FindPlaceContainer
 import com.github.urmichm.placesearchktx.network.Network
 import com.github.urmichm.placesearchktx.toRequestString
@@ -16,8 +15,6 @@ import kotlinx.coroutines.Deferred
  * */
 class FindPlace private constructor(private val builder :Builder) {
 
-    private val diana : Diana = builder.diana;
-
     private val input :String = builder.getInput()
 
     private val inputtype :String = builder.getInputType().toString()
@@ -29,7 +26,7 @@ class FindPlace private constructor(private val builder :Builder) {
     private var locationbias :String? = builder.getLocationBias()
 
 
-    class Builder(val diana: Diana) {
+    class Builder() {
 
         /**
          * The required parameter.
@@ -276,7 +273,6 @@ class FindPlace private constructor(private val builder :Builder) {
 
         val find : Deferred<FindPlaceContainer> =
             Network.service.findPlace(
-                key = diana.key,
                 input = input,
                 inputtype = inputtype,
                 fields = fields,
