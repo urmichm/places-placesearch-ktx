@@ -1,6 +1,5 @@
 package com.github.urmichm.placesearchktx.placesearch
 
-import com.github.urmichm.placesearchktx.Diana
 import com.github.urmichm.placesearchktx.containers.TextSearchContainer
 import com.github.urmichm.placesearchktx.network.Network
 import com.github.urmichm.placesearchktx.priceNotInRange
@@ -16,8 +15,6 @@ import kotlin.Exception
  * @param builder The [Builder] object
  * */
 class TextSearch private constructor(private val builder: Builder){
-
-    private val diana : Diana = builder.diana
 
     private val query :String = builder.getQuery()
 
@@ -40,7 +37,7 @@ class TextSearch private constructor(private val builder: Builder){
     private var type : Place.Type? = builder.getType()
 
 
-    class Builder(val diana : Diana) {
+    class Builder() {
 
         /**
          * The text string on which to search, for example: "restaurant" or "123 Main Street".
@@ -287,7 +284,6 @@ class TextSearch private constructor(private val builder: Builder){
     suspend fun call() : TextSearchContainer?{
         val textSearch : Deferred<TextSearchContainer> =
             Network.service.textSearch(
-                key = diana.key,
                 query = query,
                 language = language,
                 location = location,

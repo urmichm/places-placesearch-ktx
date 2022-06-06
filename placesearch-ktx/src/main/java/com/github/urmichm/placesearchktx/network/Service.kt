@@ -1,5 +1,6 @@
 package com.github.urmichm.placesearchktx.network
 
+import com.github.urmichm.placesearchktx.BuildConfig
 import com.github.urmichm.placesearchktx.containers.FindPlaceContainer
 import com.github.urmichm.placesearchktx.containers.NearbySearchContainer
 import com.github.urmichm.placesearchktx.containers.TextSearchContainer
@@ -13,6 +14,10 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * API key
+ * */
+private val PLACES_API_KEY : String = BuildConfig.PLACES_API_KEY
 
 /**
  * Nearby search requests
@@ -58,7 +63,7 @@ internal interface DianaService{
      * */
     @GET("textsearch/${OUTPUT_FORMAT}")
     fun textSearch(
-        @Query("key") key : String,
+        @Query("key") key : String = PLACES_API_KEY,
         @Query("query") query : String,
 
         @Query("language") language :String?,
@@ -98,7 +103,7 @@ internal interface DianaService{
      * */
     @GET("nearbysearch/${OUTPUT_FORMAT}")
     fun nearbySearch(
-        @Query("key") key : String,
+        @Query("key") key : String = PLACES_API_KEY,
         @Query("location") location : String,
         @Query("keyword") keyword :String?,
         @Query("language") language :String?,
@@ -136,7 +141,7 @@ internal interface DianaService{
      * */
     @GET("findplacefromtext/${OUTPUT_FORMAT}")
     fun findPlace(
-        @Query("key") key : String,
+        @Query("key") key : String = PLACES_API_KEY,
 
         @Query("input") input : String,
         @Query("inputtype") inputtype :String,
