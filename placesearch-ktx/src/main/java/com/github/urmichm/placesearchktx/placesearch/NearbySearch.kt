@@ -17,8 +17,6 @@ import kotlin.Exception
  * */
 class NearbySearch private constructor(private val builder : Builder){
 
-    private val diana : Diana = builder.diana
-
     private val location :String = builder.getLocation()
 
     private val keyword :String? = builder.getKeyword()
@@ -40,7 +38,7 @@ class NearbySearch private constructor(private val builder : Builder){
     private val type : Place.Type? = builder.getType()
 
 
-    class Builder(val diana : Diana){
+    class Builder(){
 
         /**
          *  The required parameter.
@@ -290,7 +288,6 @@ class NearbySearch private constructor(private val builder : Builder){
 
         val nearby: Deferred<NearbySearchContainer> =
             Network.service.nearbySearch(
-                key = diana.key,
                 location = location,
                 keyword = keyword,
                 language = language,
