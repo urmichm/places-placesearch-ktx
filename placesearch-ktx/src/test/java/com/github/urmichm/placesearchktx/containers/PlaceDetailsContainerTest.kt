@@ -1,6 +1,5 @@
 package com.github.urmichm.placesearchktx.containers
 
-import com.github.urmichm.placesearchktx.Diana
 import com.github.urmichm.placesearchktx.containers.common.*
 import com.google.android.libraries.places.api.model.Place
 import org.junit.Assert.*
@@ -64,7 +63,7 @@ class PlaceDetailsContainerTest {
 
         assertEquals(container.businessStatus, place.businessStatus.name)
         assertEquals(container.rating, place.rating)
-        assertEquals( Diana.vicinityAsAddress, container.vicinity == place.address)
+        assertEquals( container.vicinity, place.address)
         assertEquals(container.placeId, place.id)
         assertEquals(container.userRatingsTotal, place.userRatingsTotal)
 

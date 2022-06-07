@@ -1,6 +1,5 @@
 package com.github.urmichm.placesearchktx.placesearch
 
-import com.github.urmichm.placesearchktx.Diana
 import com.github.urmichm.placesearchktx.containers.FindPlaceContainer
 import com.github.urmichm.placesearchktx.network.Network
 import com.github.urmichm.placesearchktx.toRequestString
@@ -16,58 +15,14 @@ import kotlinx.coroutines.Deferred
  * */
 class FindPlace private constructor(private val builder :Builder) {
 
-    /**
-     * [Diana] object with general settings
-     * */
-    private val diana : Diana = builder.diana;
-
-    /**
-     * The required parameter.
-     * The text string on which to search, for example: "restaurant" or "123 Main Street".
-     * This must be a place name, address, or category of establishments.
-     * Any other types of input can generate errors and are not guaranteed to return valid results.
-     * The Places API will return candidate matches based on this string and order the results based
-     * on their perceived relevance.
-     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#input
-     * */
     private val input :String = builder.getInput()
-
-    /**
-     * The required parameter.
-     * The type of input. This can be one of either [textquery] or [phonenumber].
-     * Phone numbers must be in international format (prefixed by a plus sign ("+"),
-     * followed by the country code, then the phone number itself).
-     * See E.164 ITU recommendation for more information.
-     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#inputtype
-     * */
     private val inputtype :String = builder.getInputType().toString()
-
-    /**
-     * Use the fields parameter to specify a comma-separated list of place data types to return.
-     * For example: fields=formatted_address,name,geometry.
-     * Use a forward slash when specifying compound values. For example: opening_hours/open_now.
-     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#fields
-     * */
     private var fields :String? = builder.getFields()
-
-    /**
-     * The language in which to return results.
-     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#language
-     * */
     private var language :String? = builder.getLanguage()
-
-    /**
-     * Prefer results in a specified area, by specifying either a radius plus lat/lng, or two lat/lng pairs representing the points of a rectangle. If this parameter is not specified, the API uses IP address biasing by default.
-     * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#locationbias
-     * */
     private var locationbias :String? = builder.getLocationBias()
 
 
-    /**
-     * The builder class for [FindPlace] class
-     * @param builder The [Builder] object
-     * */
-    class Builder(val diana : Diana){
+    class Builder() {
 
         /**
          * The required parameter.
@@ -78,7 +33,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * on their perceived relevance.
          * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#input
          * */
-        private lateinit var input :String
+        private lateinit var input: String
 
         /**
          * Getter for [input]
@@ -90,7 +45,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * Getter for [input]
          * @param input The text string on which to search, for example: "restaurant" or "123 Main Street".
          * */
-        fun setInput(input :String) :Builder = apply {
+        fun setInput(input: String): Builder = apply {
             this.input = input
         }
 
@@ -102,7 +57,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * See E.164 ITU recommendation for more information.
          * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#inputtype
          * */
-        private lateinit var inputtype :InputType
+        private lateinit var inputtype: InputType
 
         /**
          * Getter for [inputtype]
@@ -114,7 +69,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * Setter for [inputtype]
          * @param inputType The type of input. This can be one of either [InputType.TEXTQUERY] or [InputType.PHONENUMBER].
          * */
-        fun setInputType(inputType: InputType) :Builder = apply {
+        fun setInputType(inputType: InputType): Builder = apply {
             this.inputtype = inputType
         }
 
@@ -124,7 +79,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * Uses a forward slash when specifying compound values. For example: opening_hours/open_now.
          * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#fields
          * */
-        private var fields :String? = null
+        private var fields: String? = null
 
         /**
          * Getter for [fields]
@@ -136,7 +91,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * Setter for [fields]
          * @param fields List of [FindPlace.Field] enums to specify a list of place data types to return.
          * */
-        fun setFields(fields : List<FindPlace.Field>): Builder = apply {
+        fun setFields(fields: List<FindPlace.Field>): Builder = apply {
             this.fields = fields.joinToString(separator = ",")
         }
 
@@ -145,7 +100,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * @param fields List of [Place.Field] enums to specify a list of place data types to return.
          * */
         @JvmName("googleSetFields")
-        fun setFields(fields : List<Place.Field>) : Builder = apply {
+        fun setFields(fields: List<Place.Field>): Builder = apply {
             this.fields = fields.joinToString(separator = ",", transform = {
                 it.toRequestString()
             })
@@ -156,7 +111,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * The language in which to return results.
          * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#language
          * */
-        private var language :String? = null
+        private var language: String? = null
 
         /**
          * Getter for [language]
@@ -168,7 +123,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * Setter for [language]
          * @param language value to be set
          * */
-        fun setLanguage(language :String) :Builder = apply {
+        fun setLanguage(language: String): Builder = apply {
             this.language = language
         }
 
@@ -176,7 +131,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * Prefer results in a specified area, by specifying either a radius plus lat/lng, or two lat/lng pairs representing the points of a rectangle. If this parameter is not specified, the API uses IP address biasing by default.
          * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place#locationbias
          * */
-        private var locationbias : String? = null
+        private var locationbias: String? = null
 
         /**
          * Getter for [locationbias]
@@ -190,7 +145,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * @param radius A string specifying radius in meters
          * @param center The center of the circle, lat/lng in decimal degrees.
          */
-        fun setLocationBias(radius : Double, center : LatLng) :Builder = apply {
+        fun setLocationBias(radius: Double, center: LatLng): Builder = apply {
             locationbias =
                 "circle:${radius}@${center.latitude},${center.longitude}"
         }
@@ -200,7 +155,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * Uses the following format: point:lat,lng.
          * @param point - A single lat/lng coordinate.
          */
-        fun setLocationBias(point : LatLng) :Builder = apply {
+        fun setLocationBias(point: LatLng): Builder = apply {
             locationbias =
                 "point:${point.latitude},${point.longitude}"
         }
@@ -211,7 +166,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * Uses the following format:rectangle:south,west|north,east.
          * Note that east/west values are wrapped to the range -180, 180, and north/south values are clamped to the range -90, 90.
          */
-        fun setLocationBias(southwest : LatLng, northeast : LatLng) :Builder = apply{
+        fun setLocationBias(southwest: LatLng, northeast: LatLng): Builder = apply {
             locationbias =
                 "rectangle:${southwest.latitude},${southwest.longitude}|${northeast.latitude},${northeast.longitude}"
         }
@@ -222,7 +177,7 @@ class FindPlace private constructor(private val builder :Builder) {
          * Uses the following format:rectangle:south,west|north,east.
          * Note that east/west values are wrapped to the range -180, 180, and north/south values are clamped to the range -90, 90.
          */
-        fun setLocationBias(bounds : RectangularBounds) :Builder = apply{
+        fun setLocationBias(bounds: RectangularBounds): Builder = apply {
             locationbias =
                 "rectangle:${bounds.southwest.latitude},${bounds.southwest.longitude}" +
                         "|${bounds.northeast.latitude},${bounds.northeast.longitude}"
@@ -233,7 +188,18 @@ class FindPlace private constructor(private val builder :Builder) {
          * The build method to create a [FindPlace] object
          * @return [FindPlace] object created according to the builder settings.
          * */
-        fun build() : FindPlace = FindPlace(this)
+        fun build(): FindPlace {
+            validate()
+            return FindPlace(this)
+        }
+
+        /**
+         * Validate parameters before calling the server
+         * @throws IllegalArgumentException if NearbySearch object is not valid
+         * */
+        private fun validate() {
+
+        }
     }
 
     /**
@@ -302,8 +268,7 @@ class FindPlace private constructor(private val builder :Builder) {
     suspend fun call(): FindPlaceContainer?{
 
         val find : Deferred<FindPlaceContainer> =
-            Network.diana.findPlace(
-                key = diana.key,
+            Network.service.findPlace(
                 input = input,
                 inputtype = inputtype,
                 fields = fields,
@@ -318,5 +283,11 @@ class FindPlace private constructor(private val builder :Builder) {
             null
         }
     }
+
+
+    companion object{
+        public const val TAG = "FindPlace"
+    }
+
 
 }

@@ -1,8 +1,8 @@
 package com.github.urmichm.placesearchktx.placesearch
 
-import com.github.urmichm.placesearchktx.Diana
 import com.github.urmichm.placesearchktx.containers.TextSearchContainer
 import com.github.urmichm.placesearchktx.network.Network
+import com.github.urmichm.placesearchktx.priceNotInRange
 import com.github.urmichm.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
@@ -16,29 +16,19 @@ import kotlin.Exception
  * */
 class TextSearch private constructor(private val builder: Builder){
 
-    private val diana : Diana = builder.diana
-
     private val query :String = builder.getQuery()
-
     private val language :String? = builder.getLanguage()
-
     private val location : String? = builder.getLocation()
-
     private var maxPrice :Int? = builder.getMaxPrice()
-
     private var minPrice :Int? = builder.getMinPrice()
-
     private var openNow :Boolean? = builder.getOpenNow()
-
     private var pageToken :String? = builder.getPageToken()
-
     private var radius :Int? = builder.getRadius()
-
     private var region :String? = builder.getRegion()
-
     private var type : Place.Type? = builder.getType()
 
-    class Builder(val diana : Diana){
+
+    class Builder() {
 
         /**
          * The text string on which to search, for example: "restaurant" or "123 Main Street".
@@ -47,7 +37,7 @@ class TextSearch private constructor(private val builder: Builder){
          * The Google Places service will return candidate matches based on this string and order the results based on
          * their perceived relevance.
          */
-        private lateinit var query :String
+        private lateinit var query: String
 
         /**
          * Getter for [query]
@@ -59,14 +49,14 @@ class TextSearch private constructor(private val builder: Builder){
          * Setter for [query]
          * @param query The text string on which to search
          * */
-        fun setQuery(query : String): Builder = apply{
+        fun setQuery(query: String): Builder = apply {
             this.query = query
         }
 
         /**
          * The language in which to return results.
          * */
-        private var language :String? = null
+        private var language: String? = null
 
         /**
          * Getter for [language]
@@ -78,7 +68,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Setter for [language]
          * @param language New value for [language]
          * */
-        fun setLanguage(language :String) : Builder = apply {
+        fun setLanguage(language: String): Builder = apply {
             this.language = language
         }
 
@@ -86,7 +76,7 @@ class TextSearch private constructor(private val builder: Builder){
         /**
          *  The [LatLng] object describing latitude/longitude around which to retrieve place information.
          * */
-        private var location : String? = null
+        private var location: String? = null
 
         /**
          * Getter for [location] in string format.
@@ -98,7 +88,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Setter for [location]
          * @param location Location provided in form of [LatLng] object
          * */
-        fun setLocation(location : LatLng): Builder = apply{
+        fun setLocation(location: LatLng): Builder = apply {
             this.location = location.toRequestString()
         }
 
@@ -107,7 +97,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Restricts results to only those places within the specified range.
          * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
          * */
-        private var maxPrice :Int? = null
+        private var maxPrice: Int? = null
 
         /**
          * Getter for [maxPrice]
@@ -119,7 +109,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Setter for [maxPrice]
          * @param maxPrice The new value for [maxPrice]
          * */
-        fun setMaxPrice(maxPrice :Int) :Builder = apply{
+        fun setMaxPrice(maxPrice: Int): Builder = apply {
             this.maxPrice = maxPrice
         }
 
@@ -128,7 +118,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Restricts results to only those places within the specified range.
          * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
          * */
-        private var minPrice :Int? = null
+        private var minPrice: Int? = null
 
         /**
          * Getter for [minPrice]
@@ -140,7 +130,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Setter for [minPrice]
          * @param minPrice The new value for [minPrice]
          * */
-        fun setMinPrice(minPrice :Int) :Builder = apply{
+        fun setMinPrice(minPrice: Int): Builder = apply {
             this.minPrice = minPrice
         }
 
@@ -149,7 +139,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Returns only those places that are open for business at the time the query is sent.
          * Places that do not specify opening hours in the Google Places database will not be returned if you include this parameter in your query.
          * */
-        private var openNow :Boolean? = null
+        private var openNow: Boolean? = null
 
         /**
          * Getter for [openNow]
@@ -161,7 +151,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Setter for [openNow]
          * @param openNow The new value for [openNow]
          * */
-        fun setOpenNow(openNow :Boolean) :Builder = apply{
+        fun setOpenNow(openNow: Boolean): Builder = apply {
             this.openNow = openNow
         }
 
@@ -170,7 +160,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Returns up to 20 results from a previously run search.
          * Setting a page token parameter will execute a search with the same parameters used previously — all parameters other than pagetoken will be ignored.
          * */
-        private var pageToken :String? = null
+        private var pageToken: String? = null
 
         /**
          * Getter for [pageToken]
@@ -182,17 +172,16 @@ class TextSearch private constructor(private val builder: Builder){
          * Setter for [pageToken]
          * @param pageToken The new value for [pageToken]
          * */
-        fun setPageToken(pageToken :String) :Builder = apply{
+        fun setPageToken(pageToken: String): Builder = apply {
             this.pageToken = pageToken
         }
-
 
 
         /**
          * Defines the distance (in meters) within which to return place results.
          * Note that radius must not be included if [rankBy]=distance (described under Optional parameters below) is specified.
          * */
-        private var radius :Int? = null
+        private var radius: Int? = null
 
         /**
          * Getter for [radius]
@@ -204,7 +193,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Setter for [radius]
          * @param radius The new value for [radius]
          * */
-        fun setRadius(radius :Int) :Builder = apply{
+        fun setRadius(radius: Int): Builder = apply {
             this.radius = radius
         }
 
@@ -212,7 +201,7 @@ class TextSearch private constructor(private val builder: Builder){
         /**
          * The region code, specified as a ccTLD ("top-level domain") two-character value.
          * */
-        private var region :String? = null
+        private var region: String? = null
 
         /**
          * Getter for [region]
@@ -224,7 +213,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Setter for [region]
          * @param region The new value for [region]
          * */
-        fun setRegion(region :String) :Builder = apply {
+        fun setRegion(region: String): Builder = apply {
             this.region = region
         }
 
@@ -233,7 +222,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Restricts the results to places matching the specified type. Only one type may be specified.
          * If more than one type is provided, all types following the first entry are ignored.
          * */
-        private var type : Place.Type? = null
+        private var type: Place.Type? = null
 
         /**
          * Getter for [type]
@@ -245,7 +234,7 @@ class TextSearch private constructor(private val builder: Builder){
          * Setter for [type]
          * @param type The new value for [type]
          * */
-        fun setType(type : Place.Type) :Builder = apply{
+        fun setType(type: Place.Type): Builder = apply {
             this.type = type
         }
 
@@ -254,9 +243,28 @@ class TextSearch private constructor(private val builder: Builder){
          * The build method to create a [TextSearch] object
          * @return [TextSearch] object created according to the builder settings.
          * */
-        fun build() :TextSearch{
-            // validate first!
+        fun build(): TextSearch {
+            validate()
             return TextSearch(this)
+        }
+
+        /**
+         * Validate parameters before calling the server
+         * @throws IllegalArgumentException if NearbySearch object is not valid
+         * */
+        private fun validate(){
+            minPrice?.apply {
+                if( priceNotInRange(this) )
+                    throw IllegalArgumentException("minPrice is out of possible range.")
+            }
+            maxPrice?.apply {
+                if( priceNotInRange(this) )
+                    throw IllegalArgumentException("maxPrice is out of possible range.")
+            }
+            region?.apply {
+                if(this.length > 2)
+                    throw IllegalArgumentException("The region code, must be specified as a ccTLD (\"top-level domain\") TWO-character value.")
+            }
         }
     }
 
@@ -266,8 +274,7 @@ class TextSearch private constructor(private val builder: Builder){
      * */
     suspend fun call() : TextSearchContainer?{
         val textSearch : Deferred<TextSearchContainer> =
-            Network.diana.textSearch(
-                key = diana.key,
+            Network.service.textSearch(
                 query = query,
                 language = language,
                 location = location,
@@ -287,4 +294,9 @@ class TextSearch private constructor(private val builder: Builder){
             null
         }
     }
+
+    companion object{
+        public const val TAG = "TextSearch"
+    }
+
 }

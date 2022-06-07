@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'maven-publish'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -75,4 +76,12 @@ afterEvaluate {
             }
         }
     }
+}
+
+secrets {
+    // To add your Places API key to this project:
+    // 1. Update a file in your root project called `local.properties` and add this line,
+    // where YOUR_API_KEY is your API key:
+    //     PLACES_API_KEY=YOUR_API_KEY
+    defaultPropertiesFileName 'local.defaults.properties'
 }

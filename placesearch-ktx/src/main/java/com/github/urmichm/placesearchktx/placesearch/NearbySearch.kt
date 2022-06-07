@@ -17,75 +17,19 @@ import kotlin.Exception
  * */
 class NearbySearch private constructor(private val builder : Builder){
 
-    /**
-     * [Diana] object with general settings
-     * */
-    private val diana : Diana = builder.diana
-
-    /**
-     *  The required parameter.
-     *  The [LatLng] object describing latitude/longitude around which to retrieve place information.
-     * */
     private val location :String = builder.getLocation()
-
-    /**
-     * The text string on which to search, for example: "restaurant" or "123 Main Street".
-     * This must be a place name, address, or category of establishments.
-     * If this parameter is omitted, places with a business_status of CLOSED_TEMPORARILY or CLOSED_PERMANENTLY will not be returned.
-     * */
     private val keyword :String? = builder.getKeyword()
-
-    /**
-     * The language in which to return results.
-     * */
     private val language :String? = builder.getLanguage()
-
-    /**
-     * Restricts results to only those places within the specified range.
-     * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
-     * */
     private val maxPrice :Int? = builder.getMaxPrice()
-
-    /**
-     * Restricts results to only those places within the specified range.
-     * Valid values range between 0 (most affordable) to 4 (most expensive), inclusive.
-     * */
     private val minPrice :Int? = builder.getMinPrice()
-
-    /**
-     * Returns only those places that are open for business at the time the query is sent.
-     * Places that do not specify opening hours in the Google Places database will not be returned if you include this parameter in your query.
-     * */
     private val openNow :Boolean? = builder.getOpenNow()
-
-    /**
-     * Returns up to 20 results from a previously run search.
-     * Setting a pagetoken parameter will execute a search with the same parameters used previously — all parameters other than pagetoken will be ignored.
-     * */
     private val pageToken :String? = builder.getPageToken()
-
-    /**
-     * Defines the distance (in meters) within which to return place results.
-     * Note that radius must not be included if [rankBy]=distance (described under Optional parameters below) is specified.
-     * */
     private val radius :Int? = builder.getRadius()
-
-    /**
-     * Specifies the order in which results are listed
-     * */
     private val rankBy : Rankby? = builder.getRankBy()
-
-    /**
-     * Restricts the results to places matching the specified type. Only one type may be specified.
-     * If more than one type is provided, all types following the first entry are ignored.
-     * */
     private val type : Place.Type? = builder.getType()
 
-    /**
-     * The builder class for [NearbySearch] class
-     * @param diana [Diana] object with general settings
-     * */
-    class Builder(val diana : Diana){
+
+    class Builder(){
 
         /**
          *  The required parameter.
@@ -292,7 +236,38 @@ class NearbySearch private constructor(private val builder : Builder){
          * @return [NearbySearch] object created according to the builder settings.
          * */
         fun build() : NearbySearch {
+            validate()
             return NearbySearch(this)
+        }
+
+        /**
+         * Validate parameters before calling the server
+         * @throws IllegalArgumentException if NearbySearch object is not valid
+         * */
+        private fun validate(){
+            minPrice?.apply {
+                if( priceNotInRange(this) )
+                    throw IllegalArgumentException("minPrice is out of possible range.")
+            }
+            maxPrice?.apply {
+                if( priceNotInRange(this) )
+                    throw IllegalArgumentException("maxPrice is out of possible range.")
+            }
+
+            when(rankBy){
+                Rankby.PROMINENCE -> {
+                    if(radius == null)
+                        throw IllegalArgumentException(
+                            "When prominence is specified, the radius parameter is required.")
+
+                }
+                Rankby.DISTANCE -> {
+                    if(radius != null)
+                        throw IllegalArgumentException(
+                            "When using rankBy=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.")
+                }
+            }
+
         }
     }
 
@@ -302,13 +277,8 @@ class NearbySearch private constructor(private val builder : Builder){
      * */
     suspend fun call() : NearbySearchContainer? {
 
-        // TODO: validate on build, not on call!
-        val message = validate()
-        if(!message.isValid)  throw Exception(message.message)
-
         val nearby: Deferred<NearbySearchContainer> =
-            Network.diana.nearbySearch(
-                key = diana.key,
+            Network.service.nearbySearch(
                 location = location,
                 keyword = keyword,
                 language = language,
@@ -331,39 +301,6 @@ class NearbySearch private constructor(private val builder : Builder){
     }
 
     /**
-     * Validate parameters before calling the server
-     * @return The [Message] object based onn the validation.
-     * */
-    fun validate() :Message{
-        minPrice?.apply {
-            if( priceNotInRange(this) )
-                return Message("minPrice is out of possible range.", false)
-        }
-        maxPrice?.apply {
-            if( priceNotInRange(this) )
-                return Message("maxPrice is out of possible range.", false)
-        }
-
-        when(rankBy){
-            Rankby.PROMINENCE -> {
-                if(radius == null)
-                    return Message(
-                        "When prominence is specified, the radius parameter is required.",
-                        false)
-
-            }
-            Rankby.DISTANCE -> {
-                if(radius != null)
-                    return Message(
-                        "When using rankBy=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.",
-                        false)
-            }
-        }
-
-        return Message("OK", true)
-    }
-
-    /**
      * Rankby enumeration for [rankBy] parameter
      * */
     enum class Rankby {
@@ -373,6 +310,10 @@ class NearbySearch private constructor(private val builder : Builder){
         override fun toString(): String {
             return this.name.lowercase()
         }
+    }
+
+    companion object{
+        public const val TAG = "NearbySearch"
     }
 
 
