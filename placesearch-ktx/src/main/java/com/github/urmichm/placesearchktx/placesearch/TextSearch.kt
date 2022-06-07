@@ -17,23 +17,14 @@ import kotlin.Exception
 class TextSearch private constructor(private val builder: Builder){
 
     private val query :String = builder.getQuery()
-
     private val language :String? = builder.getLanguage()
-
     private val location : String? = builder.getLocation()
-
     private var maxPrice :Int? = builder.getMaxPrice()
-
     private var minPrice :Int? = builder.getMinPrice()
-
     private var openNow :Boolean? = builder.getOpenNow()
-
     private var pageToken :String? = builder.getPageToken()
-
     private var radius :Int? = builder.getRadius()
-
     private var region :String? = builder.getRegion()
-
     private var type : Place.Type? = builder.getType()
 
 

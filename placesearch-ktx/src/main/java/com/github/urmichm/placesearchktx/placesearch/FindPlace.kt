@@ -16,13 +16,9 @@ import kotlinx.coroutines.Deferred
 class FindPlace private constructor(private val builder :Builder) {
 
     private val input :String = builder.getInput()
-
     private val inputtype :String = builder.getInputType().toString()
-
     private var fields :String? = builder.getFields()
-
     private var language :String? = builder.getLanguage()
-
     private var locationbias :String? = builder.getLocationBias()
 
 

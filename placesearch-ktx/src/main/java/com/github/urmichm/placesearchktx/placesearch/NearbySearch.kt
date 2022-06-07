@@ -18,23 +18,14 @@ import kotlin.Exception
 class NearbySearch private constructor(private val builder : Builder){
 
     private val location :String = builder.getLocation()
-
     private val keyword :String? = builder.getKeyword()
-
     private val language :String? = builder.getLanguage()
-
     private val maxPrice :Int? = builder.getMaxPrice()
-
     private val minPrice :Int? = builder.getMinPrice()
-
     private val openNow :Boolean? = builder.getOpenNow()
-
     private val pageToken :String? = builder.getPageToken()
-
     private val radius :Int? = builder.getRadius()
-
     private val rankBy : Rankby? = builder.getRankBy()
-
     private val type : Place.Type? = builder.getType()
 
 
