@@ -1,5 +1,6 @@
 package com.github.urmichm.placesearchktx.containers.common
 
+import com.google.android.libraries.places.api.model.PhotoMetadata
 import com.google.android.libraries.places.api.model.Place
 import com.squareup.moshi.Json
 
@@ -62,18 +63,25 @@ data class PlaceDetailsContainer(
             .setLatLng(this.geometry?.location?.toLatLng())
             .setIconBackgroundColor(this.iconBackgroundColor?.substring(1)?.toInt(16))
             .setIconUrl(this.iconUrl)
-//          .setPhotoMetadatas(this.photos?.stream()?.map { it.toPhotoMetadata() }?.toList())
             .setPlusCode(this.plusCode?.toPlusCode())
             .setAddress(this.formattedAddress)
 
 /*  The Following fields are not returned by Place Search, Nearby Search, and Text Search */
-//            .setAddress("")
-//            .setAddressComponents()
-//            .setAttributions()
-//            .setOpeningHours(@Nullable OpeningHours var1);
-//            .setPhoneNumber(@Nullable String var1);
-//            .setUtcOffsetMinutes(@Nullable Integer var1);
-//            .setWebsiteUri(@Nullable Uri var1);
+//            .setAddress(..)
+//            .setAddressComponents(..)
+//            .setAttributions(..)
+//            .setOpeningHours(..);
+//            .setPhoneNumber(..);
+//            .setUtcOffsetMinutes(..);
+//            .setWebsiteUri(..);
+
+        val photoList = mutableListOf<PhotoMetadata>()
+        this.photos?.apply {
+            this.forEach {
+                photoList.add(it.toPhotoMetadata())
+            }
+        }
+        placeBuilder.setPhotoMetadatas(photoList)
 
         if(null == placeBuilder.address && null != this.vicinity) {
             println("WARN: Vicinity is used as address")
