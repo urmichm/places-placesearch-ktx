@@ -1,5 +1,6 @@
 package com.github.urmichm.placesearchktx.placesearch
 
+import com.github.urmichm.placesearchktx.placesearch.search.NearbySearch
 import com.google.android.gms.maps.model.LatLng
 import org.junit.Assert.*
 import org.junit.Test

@@ -1,14 +1,14 @@
-package com.github.urmichm.placesearchktx.placesearch
+package com.github.urmichm.placesearchktx.placesearch.search
 
 import com.github.urmichm.placesearchktx.*
-import com.github.urmichm.placesearchktx.containers.NearbySearchContainer
+import com.github.urmichm.placesearchktx.containers.search.NearbySearchContainer
 import com.github.urmichm.placesearchktx.containers.PlaceSearchContainer
 import com.github.urmichm.placesearchktx.network.Network
+import com.github.urmichm.placesearchktx.placesearch.PlaceSearch
 import com.github.urmichm.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import kotlinx.coroutines.Deferred
-import kotlin.Exception
 
 
 /**
@@ -17,7 +17,7 @@ import kotlin.Exception
  * @param builder The [Builder] object
  * */
 class NearbySearch private constructor(private val builder : Builder)
-    :PlaceSearch(){
+    : PlaceSearch(){
 
     private val location :String = builder.getLocation()
     private val keyword :String? = builder.getKeyword()
@@ -49,7 +49,7 @@ class NearbySearch private constructor(private val builder : Builder)
          * Setter for [location]
          * @param location Location provided in form of [LatLng] object
          * */
-        fun setLocation(location : LatLng):Builder = apply{
+        fun setLocation(location : LatLng): Builder = apply{
             this.location = location.toRequestString()
         }
 
@@ -89,7 +89,7 @@ class NearbySearch private constructor(private val builder : Builder)
          * Setter for [language]
          * @param language New value for [language]
          * */
-        fun setLanguage(language :String) :Builder = apply {
+        fun setLanguage(language :String) : Builder = apply {
             this.language = language
         }
 
@@ -109,7 +109,7 @@ class NearbySearch private constructor(private val builder : Builder)
          * Setter for [maxPrice]
          * @param maxPrice The new value for [maxPrice]
          * */
-        fun setMaxPrice(maxPrice :Int) :Builder = apply{
+        fun setMaxPrice(maxPrice :Int) : Builder = apply{
             this.maxPrice = maxPrice
         }
 
@@ -129,7 +129,7 @@ class NearbySearch private constructor(private val builder : Builder)
          * Setter for [minPrice]
          * @param minPrice The new value for [minPrice]
          * */
-        fun setMinPrice(minPrice :Int) :Builder = apply{
+        fun setMinPrice(minPrice :Int) : Builder = apply{
             this.minPrice = minPrice
         }
 
@@ -149,7 +149,7 @@ class NearbySearch private constructor(private val builder : Builder)
          * Setter for [openNow]
          * @param openNow The new value for [openNow]
          * */
-        fun setOpenNow(openNow :Boolean) :Builder = apply{
+        fun setOpenNow(openNow :Boolean) : Builder = apply{
             this.openNow = openNow
         }
 
@@ -169,7 +169,7 @@ class NearbySearch private constructor(private val builder : Builder)
          * Setter for [pageToken]
          * @param pageToken The new value for [pageToken]
          * */
-        fun setPageToken(pageToken :String) :Builder = apply{
+        fun setPageToken(pageToken :String) : Builder = apply{
             this.pageToken = pageToken
         }
 
@@ -190,7 +190,7 @@ class NearbySearch private constructor(private val builder : Builder)
          * Setter for [radius]
          * @param radius The new value for [radius]
          * */
-        fun setRadius(radius :Int) :Builder = apply{
+        fun setRadius(radius :Int) : Builder = apply{
             this.radius = radius
         }
 
@@ -209,7 +209,7 @@ class NearbySearch private constructor(private val builder : Builder)
          * Setter for [rankBy]
          * @param rankBy The new value for [rankBy]
          * */
-        fun setRankBy(rankBy : Rankby) :Builder = apply{
+        fun setRankBy(rankBy : Rankby) : Builder = apply{
             this.rankBy = rankBy
         }
 
@@ -229,7 +229,7 @@ class NearbySearch private constructor(private val builder : Builder)
          * Setter for [type]
          * @param type The new value for [type]
          * */
-        fun setType(type :Place.Type) :Builder = apply{
+        fun setType(type :Place.Type) : Builder = apply{
             this.type = type
         }
 

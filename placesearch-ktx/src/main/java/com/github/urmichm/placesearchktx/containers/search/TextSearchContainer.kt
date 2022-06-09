@@ -1,5 +1,6 @@
-package com.github.urmichm.placesearchktx.containers
+package com.github.urmichm.placesearchktx.containers.search
 
+import com.github.urmichm.placesearchktx.containers.PlaceSearchContainer
 import com.github.urmichm.placesearchktx.containers.common.PlaceDetailsContainer
 import com.squareup.moshi.Json
 

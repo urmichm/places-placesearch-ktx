@@ -1,14 +1,14 @@
-package com.github.urmichm.placesearchktx.placesearch
+package com.github.urmichm.placesearchktx.placesearch.search
 
 import com.github.urmichm.placesearchktx.containers.PlaceSearchContainer
-import com.github.urmichm.placesearchktx.containers.TextSearchContainer
+import com.github.urmichm.placesearchktx.containers.search.TextSearchContainer
 import com.github.urmichm.placesearchktx.network.Network
+import com.github.urmichm.placesearchktx.placesearch.PlaceSearch
 import com.github.urmichm.placesearchktx.priceNotInRange
 import com.github.urmichm.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import kotlinx.coroutines.Deferred
-import kotlin.Exception
 
 /**
  * Text Search Google API
@@ -16,7 +16,7 @@ import kotlin.Exception
  * @param builder The [Builder] object
  * */
 class TextSearch private constructor(private val builder: Builder)
-    :PlaceSearch(){
+    : PlaceSearch(){
 
     private val query :String = builder.getQuery()
     private val language :String? = builder.getLanguage()

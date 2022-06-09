@@ -1,8 +1,9 @@
-package com.github.urmichm.placesearchktx.placesearch
+package com.github.urmichm.placesearchktx.placesearch.search
 
-import com.github.urmichm.placesearchktx.containers.FindPlaceContainer
+import com.github.urmichm.placesearchktx.containers.search.FindPlaceContainer
 import com.github.urmichm.placesearchktx.containers.PlaceSearchContainer
 import com.github.urmichm.placesearchktx.network.Network
+import com.github.urmichm.placesearchktx.placesearch.PlaceSearch
 import com.github.urmichm.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
@@ -14,8 +15,8 @@ import kotlinx.coroutines.Deferred
  * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place
  * @param builder The [Builder] object
  * */
-class FindPlace private constructor(private val builder :Builder)
-    :PlaceSearch(){
+class FindPlace private constructor(private val builder : Builder)
+    : PlaceSearch(){
 
     private val input :String = builder.getInput()
     private val inputtype :String = builder.getInputType().toString()
@@ -93,7 +94,7 @@ class FindPlace private constructor(private val builder :Builder)
          * Setter for [fields]
          * @param fields List of [FindPlace.Field] enums to specify a list of place data types to return.
          * */
-        fun setFields(fields: List<FindPlace.Field>): Builder = apply {
+        fun setFields(fields: List<Field>): Builder = apply {
             this.fields = fields.joinToString(separator = ",")
         }
 
