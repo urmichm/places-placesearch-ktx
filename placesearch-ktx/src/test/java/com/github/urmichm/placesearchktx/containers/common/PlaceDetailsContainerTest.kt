@@ -1,6 +1,5 @@
-package com.github.urmichm.placesearchktx.containers
+package com.github.urmichm.placesearchktx.containers.common
 
-import com.github.urmichm.placesearchktx.containers.common.*
 import com.google.android.libraries.places.api.model.Place
 import org.junit.Assert.*
 import org.junit.Before

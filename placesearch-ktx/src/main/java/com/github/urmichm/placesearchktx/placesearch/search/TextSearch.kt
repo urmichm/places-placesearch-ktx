@@ -1,20 +1,22 @@
-package com.github.urmichm.placesearchktx.placesearch
+package com.github.urmichm.placesearchktx.placesearch.search
 
-import com.github.urmichm.placesearchktx.containers.TextSearchContainer
+import com.github.urmichm.placesearchktx.containers.PlaceSearchContainer
+import com.github.urmichm.placesearchktx.containers.search.TextSearchContainer
 import com.github.urmichm.placesearchktx.network.Network
+import com.github.urmichm.placesearchktx.placesearch.PlaceSearch
 import com.github.urmichm.placesearchktx.priceNotInRange
 import com.github.urmichm.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import kotlinx.coroutines.Deferred
-import kotlin.Exception
 
 /**
  * Text Search Google API
  * @details https://developers.google.com/maps/documentation/places/web-service/search-text
  * @param builder The [Builder] object
  * */
-class TextSearch private constructor(private val builder: Builder){
+class TextSearch private constructor(private val builder: Builder)
+    : PlaceSearch(){
 
     private val query :String = builder.getQuery()
     private val language :String? = builder.getLanguage()
@@ -272,7 +274,7 @@ class TextSearch private constructor(private val builder: Builder){
      * Make a call to Text Search.
      * @return [TextSearchContainer] container object on success, null otherwise
      * */
-    suspend fun call() : TextSearchContainer?{
+    override suspend fun call() : PlaceSearchContainer?{
         val textSearch : Deferred<TextSearchContainer> =
             Network.service.textSearch(
                 query = query,
@@ -287,12 +289,7 @@ class TextSearch private constructor(private val builder: Builder){
                 type = type
             )
 
-        return try{
-            textSearch.await()
-        } catch (e :Exception){
-            println("Exception: $e");
-            null
-        }
+        return textSearch.await()
     }
 
     companion object{

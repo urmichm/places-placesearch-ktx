@@ -1,9 +1,9 @@
 package com.github.urmichm.placesearchktx.network
 
 import com.github.urmichm.placesearchktx.BuildConfig
-import com.github.urmichm.placesearchktx.containers.FindPlaceContainer
-import com.github.urmichm.placesearchktx.containers.NearbySearchContainer
-import com.github.urmichm.placesearchktx.containers.TextSearchContainer
+import com.github.urmichm.placesearchktx.containers.search.FindPlaceContainer
+import com.github.urmichm.placesearchktx.containers.search.NearbySearchContainer
+import com.github.urmichm.placesearchktx.containers.search.TextSearchContainer
 import com.google.android.libraries.places.api.model.Place
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
