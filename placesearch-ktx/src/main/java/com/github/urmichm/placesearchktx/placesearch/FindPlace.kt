@@ -278,12 +278,7 @@ class FindPlace private constructor(private val builder :Builder)
                 locationbias = locationbias
             )
 
-        return try {
-            find.await()
-        } catch (e: Exception) {
-            println("Exception: $e");
-            null
-        }
+        return find.await()
     }
 
 

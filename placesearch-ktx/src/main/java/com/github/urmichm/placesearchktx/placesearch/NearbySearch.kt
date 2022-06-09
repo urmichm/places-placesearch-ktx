@@ -293,13 +293,7 @@ class NearbySearch private constructor(private val builder : Builder)
                 type = type
             )
 
-        return try {
-            val response = nearby.await()
-            response
-        } catch (e: Exception) {
-            println("Exception: $e");
-            null
-        }
+        return nearby.await()
     }
 
     /**

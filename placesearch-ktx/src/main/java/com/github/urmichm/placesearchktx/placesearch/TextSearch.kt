@@ -289,12 +289,7 @@ class TextSearch private constructor(private val builder: Builder)
                 type = type
             )
 
-        return try{
-            textSearch.await()
-        } catch (e :Exception){
-            println("Exception: $e");
-            null
-        }
+        return textSearch.await()
     }
 
     companion object{
