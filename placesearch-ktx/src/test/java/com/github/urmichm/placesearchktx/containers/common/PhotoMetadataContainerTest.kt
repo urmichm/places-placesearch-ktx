@@ -1,6 +1,5 @@
-package com.github.urmichm.placesearchktx.containers
+package com.github.urmichm.placesearchktx.containers.common
 
-import com.github.urmichm.placesearchktx.containers.common.PhotoMetadataContainer
 import org.junit.Test
 import org.junit.Assert.*
 

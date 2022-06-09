@@ -1,6 +1,5 @@
-package com.github.urmichm.placesearchktx.containers
+package com.github.urmichm.placesearchktx.containers.common
 
-import com.github.urmichm.placesearchktx.containers.common.PlusCodeContainer
 import org.junit.Assert.*
 import org.junit.Test
 

@@ -1,6 +1,5 @@
-package com.github.urmichm.placesearchktx.placesearch
+package com.github.urmichm.placesearchktx.placesearch.search
 
-import com.github.urmichm.placesearchktx.placesearch.search.TextSearch
 import org.junit.Assert.*
 import org.junit.Test
 
