@@ -7,27 +7,22 @@ import com.squareup.moshi.Json
  * Container fro nearBySearch request.
  * @details https://developers.google.com/maps/documentation/places/web-service/search-text#PlacesTextSearchResponse
  * */
-data class TextSearchContainer(
+data class TextSearchContainer (
     @Json(name="html_attributions")
-    val htmlAttributions : List<String>,
+    override val htmlAttributions : List<String>,
     @Json(name="results")
-    val results :List<PlaceDetailsContainer>,
+    override val places :List<PlaceDetailsContainer>,
     @Json(name="status")
-    val status : String,
+    override val status : String,
     @Json(name="error_message")
-    val errorMessage : String?,
+    override val errorMessage : String?,
     @Json(name="info_messages")
-    val infoMessages : List<String>?,
+    override val infoMessages : List<String>?,
     @Json(name="next_page_token")
-    val nextPageToken : String?
-) {
+    override val nextPageToken : String?
+) : PlaceSearchContainer() {
 
-    override fun toString(): String {
-        var str = "status: $status"
-        if(errorMessage != null) {
-            str += " $errorMessage"
-        }
-        return str
-    }
+    override fun toString(): String =  super.toString()
+
 }
 
