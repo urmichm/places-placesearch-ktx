@@ -16,13 +16,13 @@ class FindPlaceContainer (
      * Contains an array of Place candidates.
      */
     @Json(name="candidates")
-    val candidates :List<PlaceDetailsContainer>,
+    override val places :List<PlaceDetailsContainer>,
 
     /**
      * Contains the status of the request, and may contain debugging information to help you track down why the request failed.
      */
     @Json(name="status")
-    val status : String,
+    override val status : String,
 
     /**
      * When the service returns a status code other than OK<, there may be an additional error_message field within the response object.
@@ -30,7 +30,7 @@ class FindPlaceContainer (
      * This field is not always returned, and its content is subject to change.
      */
     @Json(name="error_message")
-    val errorMessage : String?,
+    override val errorMessage : String?,
 
     /**
      * When the service returns additional information about the request specification,
@@ -39,18 +39,14 @@ class FindPlaceContainer (
      * and its content is subject to change.
      */
     @Json(name="info_messages")
-    val infoMessages : List<String>?
-){
+    override val infoMessages : List<String>?,
 
-    // TODO: beautify
-    override fun toString(): String {
-        var string = "status: $status "
-        errorMessage?.apply {
-            string += "error_message: $this"
-        }
-        infoMessages?.apply {
-            string += "info_messages: $this"
-        }
-        return string
-    }
+    @Json(name="html_attributions")
+    override val htmlAttributions: List<String>?,
+    @Json(name="next_page_token")
+    override val nextPageToken: String?
+): PlaceSearchContainer() {
+
+    override fun toString(): String =  super.toString()
+
 }

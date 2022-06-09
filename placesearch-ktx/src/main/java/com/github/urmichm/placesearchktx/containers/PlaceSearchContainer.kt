@@ -5,7 +5,7 @@ import com.github.urmichm.placesearchktx.containers.common.PlaceDetailsContainer
 
 abstract class PlaceSearchContainer {
 
-    abstract val htmlAttributions : List<String>
+    abstract val htmlAttributions : List<String>?
     abstract val places :List<PlaceDetailsContainer>
     abstract val status : String
     abstract val errorMessage : String?
