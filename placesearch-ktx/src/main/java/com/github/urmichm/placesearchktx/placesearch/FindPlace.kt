@@ -1,6 +1,7 @@
 package com.github.urmichm.placesearchktx.placesearch
 
 import com.github.urmichm.placesearchktx.containers.FindPlaceContainer
+import com.github.urmichm.placesearchktx.containers.PlaceSearchContainer
 import com.github.urmichm.placesearchktx.network.Network
 import com.github.urmichm.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
@@ -13,7 +14,8 @@ import kotlinx.coroutines.Deferred
  * @details https://developers.google.com/maps/documentation/places/web-service/search-find-place
  * @param builder The [Builder] object
  * */
-class FindPlace private constructor(private val builder :Builder) {
+class FindPlace private constructor(private val builder :Builder)
+    :PlaceSearch(){
 
     private val input :String = builder.getInput()
     private val inputtype :String = builder.getInputType().toString()
@@ -265,7 +267,7 @@ class FindPlace private constructor(private val builder :Builder) {
      * Make a call to Find Place
      * @return [FindPlaceContainer] container object on success, null otherwise
      * */
-    suspend fun call(): FindPlaceContainer?{
+    override suspend fun call(): PlaceSearchContainer?{
 
         val find : Deferred<FindPlaceContainer> =
             Network.service.findPlace(

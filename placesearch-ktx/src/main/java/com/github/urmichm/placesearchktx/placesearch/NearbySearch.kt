@@ -2,6 +2,7 @@ package com.github.urmichm.placesearchktx.placesearch
 
 import com.github.urmichm.placesearchktx.*
 import com.github.urmichm.placesearchktx.containers.NearbySearchContainer
+import com.github.urmichm.placesearchktx.containers.PlaceSearchContainer
 import com.github.urmichm.placesearchktx.network.Network
 import com.github.urmichm.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
@@ -15,7 +16,8 @@ import kotlin.Exception
  * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby
  * @param builder The [Builder] object
  * */
-class NearbySearch private constructor(private val builder : Builder){
+class NearbySearch private constructor(private val builder : Builder)
+    :PlaceSearch(){
 
     private val location :String = builder.getLocation()
     private val keyword :String? = builder.getKeyword()
@@ -275,7 +277,7 @@ class NearbySearch private constructor(private val builder : Builder){
      * Make a call to Nearby Search.
      * @return [NearbySearchContainer] container object on success, null otherwise
      * */
-    suspend fun call() : NearbySearchContainer? {
+    override suspend fun call() : PlaceSearchContainer? {
 
         val nearby: Deferred<NearbySearchContainer> =
             Network.service.nearbySearch(
