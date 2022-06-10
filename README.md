@@ -1,13 +1,15 @@
 [![](https://jitpack.io/v/urmichm/diana-android.svg)](https://jitpack.io/#urmichm/diana-android)
 
-# Diana Library
+# Place Search extension lirbrary for Places SDK
+## Place Search | Places API Library
 
 _**Usage.**_
 
 In order to use the library please include the following dependency
 ```gradle
 dependencies {
-  implementation 'com.github.urmichm:diana-android:RELEASE_TAG'
+  implementation 'com.github.urmichm:
+places-placesearch-ktx:RELEASE_TAG'
  }
 ```
 
