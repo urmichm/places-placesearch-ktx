@@ -15,7 +15,7 @@ It enables you to use [Place Search][place-search] API.
 
 ## Installation
 
-In order to use the library, include the following dependency
+In order to use the library, include the following dependency:
 ```gradle
 dependencies {
   implementation 'com.github.urmichm:
@@ -35,7 +35,7 @@ allprojects {
 
 The result of the API call can be converted into a set of [Place][place] objects.
 
-Such conversion accelerates the usage of Place Search and integrate the package into Place Details SDK
+Such conversion accelerates the usage of Place Search and integrates the package into Place Details SDK
 
 ## Example Usage
 TODO:
@@ -60,12 +60,16 @@ TODO:
 
 Encounter an issue while using this library?
 
-If you find a bug or have a feature request, please file an issue.
-Or, if you'd like to contribute, send us a Pull request.
+If you find a bug or have a feature request, please [file an issue][file-an-issue].
+Or, if you'd like to contribute, send us a [Pull Request][pull-request].
 
 For more information, check out the detailed guide on the
 [Google Developers site][places-sdk].
 
+
+
+[file-an-issue]: https://github.com/urmichm/places-placesearch-ktx/issues/new
+[pull-request]: https://github.com/urmichm/places-placesearch-ktx/compare
 
 [api-key]: https://developers.google.com/places/android-sdk/get-api-key
 [place]: https://developers.google.com/maps/documentation/places/android-sdk/reference/com/google/android/libraries/places/api/model/Place
