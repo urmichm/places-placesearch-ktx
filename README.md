@@ -1,4 +1,5 @@
-[![](https://jitpack.io/v/urmichm/diana-android.svg)](https://jitpack.io/#urmichm/diana-android)
+[![](https://jitpack.io/v/urmichm/places-placesearch-ktx.svg)](https://jitpack.io/#urmichm/places-placesearch-ktx)
+
 
 Places | Place Search KTX
 ==================
