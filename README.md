@@ -10,7 +10,7 @@ This repository contains Kotlin extensions (KTX) for:
 It enables you to use [Place Search][place-search] API.
 
 ## Requirements
-* API level 16+
+* API level 18+
 * Places SDK through Google Play Services
 
 ## Installation
