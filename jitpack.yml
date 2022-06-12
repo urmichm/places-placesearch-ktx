@@ -1,4 +1,4 @@
 jdk:
   - openjdk11
 install:
-  - ./gradlew build :diana:publishToMavenLocal
+  - ./gradlew build :placesearch-ktx:publishToMavenLocal
