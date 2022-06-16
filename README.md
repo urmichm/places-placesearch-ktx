@@ -38,9 +38,6 @@ The result of the API call can be converted into a set of [Place][place] objects
 
 Such conversion accelerates the usage of Place Search and integrates the package into Place Details SDK
 
-## Example Usage
-TODO:
-
 ### Demo App
 A [demo](app) application is contained within this repository that illustrates the use of this KTX library.
 
@@ -53,9 +50,6 @@ looks like `PLACES_API_KEY="YOUR_API_KEY"`, where `YOUR_API_KEY` is the API key 
 the first step. You can also take a look at the [local.defaults.properties](local.defaults.properties)
 as an example.
 3. Build and run
-
-## Documentation
-TODO:
 
 ## Support
 
