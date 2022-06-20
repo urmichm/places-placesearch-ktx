@@ -33,12 +33,6 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
-//    publishing {
-//        singleVariant('release') {
-//            withSourcesJar()
-//            withJavadocJar()
-//        }
-//    }
 }
 
 dependencies {
