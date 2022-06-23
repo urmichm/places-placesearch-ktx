@@ -19,19 +19,8 @@ It enables you to use [Place Search][place-search] API.
 In order to use the library, include the following dependency:
 ```gradle
 dependencies {
-  implementation 'com.github.urmichm:
-places-placesearch-ktx:RELEASE_TAG'
+      implementation 'com.urmich.android:placesearch-ktx:1.0.0'
  }
-```
-
-If you have not included the jitpack repository in your project, add the following to your root build.gradle
-
-```gradle
-allprojects {
-  repositories {
-    maven { url 'https://jitpack.io' }
-  }
-}
 ```
 
 The result of the API call can be converted into a set of [Place][place] objects.
