@@ -1,4 +1,5 @@
 [![](https://jitpack.io/v/urmichm/places-placesearch-ktx.svg)](https://jitpack.io/#urmichm/places-placesearch-ktx)
+![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 
 
 Places | Place Search KTX
