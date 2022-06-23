@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/urmichm/places-placesearch-ktx.svg)](https://jitpack.io/#urmichm/places-placesearch-ktx)
+[![](https://jitpack.io/v/android/places-placesearch-ktx.svg)](https://jitpack.io/#android/places-placesearch-ktx)
 
 
 Places | Place Search KTX
@@ -19,7 +19,7 @@ It enables you to use [Place Search][place-search] API.
 In order to use the library, include the following dependency:
 ```gradle
 dependencies {
-  implementation 'com.github.urmichm:
+  implementation 'com.urmich.android:
 places-placesearch-ktx:RELEASE_TAG'
  }
 ```
@@ -63,8 +63,8 @@ For more information, check out the detailed guide on the
 
 
 
-[file-an-issue]: https://github.com/urmichm/places-placesearch-ktx/issues/new
-[pull-request]: https://github.com/urmichm/places-placesearch-ktx/compare
+[file-an-issue]: https://urmich.com/android/places-placesearch-ktx/issues/new
+[pull-request]: https://urmich.com/android/places-placesearch-ktx/compare
 
 [api-key]: https://developers.google.com/places/android-sdk/get-api-key
 [place]: https://developers.google.com/maps/documentation/places/android-sdk/reference/com/google/android/libraries/places/api/model/Place

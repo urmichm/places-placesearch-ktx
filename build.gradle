@@ -79,11 +79,11 @@ subprojects { project ->
                 pom {
                     name = project.name
                     description = "Place Search Kotlin extensions (KTX) for Places SDK for Android"
-                    url = "https://github.com/urmichm/places-placesearch-ktx"
+                    url = "https://urmich.com/android/places-placesearch-ktx"
                     scm {
-                        connection = 'scm:git@github.com:urmichm/places-placesearch-ktx.git'
-                        developerConnection = 'scm:git@github.com:urmichm/places-placesearch-ktx.git'
-                        url = 'https://github.com/urmichm/places-placesearch-ktx'
+                        connection = 'scm:git@urmich.com:android/places-placesearch-ktx.git'
+                        developerConnection = 'scm:git@urmich.com:android/places-placesearch-ktx.git'
+                        url = 'https://urmich.com/android/places-placesearch-ktx'
                     }
 
                     licenses {

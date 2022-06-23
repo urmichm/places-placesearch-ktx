@@ -72,7 +72,7 @@ afterEvaluate {
         publications {
             release(MavenPublication){
                 from components.release
-                groupId = 'com.github.urmichm'
+                groupId = 'com.urmich.android'
                 artifactId = 'placesearch-ktx'
                 version = '0.1'
             }
