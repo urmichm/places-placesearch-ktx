@@ -45,8 +45,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
@@ -62,7 +60,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     /**
-     * Example of Find Place usage
+     * Simple example of Find Place usage
      * */
     private fun runFindPlace(){
         val findPlace = FindPlace
@@ -90,7 +88,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     /**
-     * Simple Example of Nearby Search usage
+     * Simple example of Nearby Search usage
      * */
     private fun runNearbySearch(){
         val nearbySearch = NearbySearch
@@ -116,7 +114,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     /**
-     * Simple Example of Text Search usage
+     * Simple example of Text Search usage
      * */
     private fun runTextSearch(){
         val textSearch = TextSearch.Builder()
@@ -147,7 +145,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         mMap.clear()
-        // Handle item selection
         return when (item.itemId) {
             R.id.find_place -> {
                 runFindPlace()
