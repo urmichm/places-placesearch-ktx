@@ -1,4 +1,5 @@
-[![](https://jitpack.io/v/urmichm/places-placesearch-ktx.svg)](https://jitpack.io/#urmichm/places-placesearch-ktx)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.urmich.android/placesearch-ktx/badge.svg)](https://search.maven.org/artifact/com.urmich.android/placesearch-ktx)
+[![Jit Pack](https://jitpack.io/v/urmichm/places-placesearch-ktx.svg)](https://jitpack.io/#urmichm/places-placesearch-ktx)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 
 
