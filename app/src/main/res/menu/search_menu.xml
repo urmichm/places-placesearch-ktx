@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/find_place"
+        android:title="@string/find_place"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/nearby_search"
+        android:title="@string/nearby_search"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/text_search"
+        android:title="@string/text_search"
+        app:showAsAction="never"/>
+
+</menu>
