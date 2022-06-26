@@ -14,6 +14,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.model.Place
 import com.urmich.android.demo.databinding.ActivityMapsBinding
 import com.urmich.android.placesearchktx.placesearch.search.FindPlace
 import com.urmich.android.placesearchktx.placesearch.search.NearbySearch
@@ -64,15 +65,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * Example of Find Place usage
      * */
     private fun runFindPlace(){
-
-        val findPlace = FindPlace.Builder()
-            .setInput("museums")
-            .setInputType(FindPlace.InputType.TEXTQUERY)
-            .setLocationBias(homeLatLng)
-            .setFields(listOf(FindPlace.Field.NAME, FindPlace.Field.LOCATION))
-            .setLanguage("en")
+        val findPlace = FindPlace
+            .Builder()
+                .setInput("royal castle")
+                .setInputType(FindPlace.InputType.TEXTQUERY)
+                .setLocationBias(homeLatLng)
+                .setFields(listOf(FindPlace.Field.NAME, FindPlace.Field.LOCATION))
+                .setLanguage("en")
             .build()
-        
+
         lifecycleScope.launch { 
             val response = findPlace.call()
             Log.i(TAG, response.toString())
@@ -86,9 +87,57 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
-
     }
 
+    /**
+     * Simple Example of Nearby Search usage
+     * */
+    private fun runNearbySearch(){
+        val nearbySearch = NearbySearch
+            .Builder()
+                .setType(Place.Type.TOURIST_ATTRACTION)
+                .setRadius(5000)
+                .setLocation(homeLatLng)
+            .build()
+
+        lifecycleScope.launch {
+            val response = nearbySearch.call()
+            Log.i(TAG, response.toString())
+            if(response?.status == "OK"){
+                response.places.forEach { it ->
+                    mMap.addMarker(
+                        MarkerOptions()
+                            .position(it.asPlace().latLng!!)
+                            .title(it.asPlace().name)
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     * Simple Example of Text Search usage
+     * */
+    private fun runTextSearch(){
+        val textSearch = TextSearch.Builder()
+            .setQuery("restaurants in Warsaw")
+            .setLanguage("en")
+            .build()
+
+        lifecycleScope.launch {
+            val response = textSearch.call()
+            Log.i(TAG, response.toString())
+            if(response?.status == "OK"){
+                response.places.forEach { it ->
+                    mMap.addMarker(
+                        MarkerOptions()
+                            .position(it.asPlace().latLng!!)
+                            .title(it.asPlace().name)
+                    )
+                }
+            }
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -106,10 +155,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 true
             }
             R.id.nearby_search -> {
+                runNearbySearch()
                 Log.i(TAG, NearbySearch.TAG)
                 true
             }
             R.id.text_search -> {
+                runTextSearch()
                 Log.i(TAG, TextSearch.TAG)
                 true
             }
