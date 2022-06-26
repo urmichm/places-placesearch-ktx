@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.urmichm.demo">
+    package="com.urmich.android.demo">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Demo">
         <activity
-            android:name="com.github.urmichm.demo.MainActivity"
+            android:name="com.urmich.android.demo.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
