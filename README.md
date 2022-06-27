@@ -26,8 +26,19 @@ dependencies {
 ```
 
 The result of the API call can be converted into a set of [Place][place] objects.
+Such conversion accelerates the usage of Place Search and integrates the package into Place Details SDK.
+Do not forget to have Google Places library included. 
 
-Such conversion accelerates the usage of Place Search and integrates the package into Place Details SDK
+```gradle
+dependencies {
+    implementation 'com.google.android.libraries.places:places:2.6.0'
+}
+```
+Update the `local.properties` file in your root directory (Note: this file should *NOT* be
+under version control to protect your API key) and add a single line to `local.properties` that
+looks like `PLACES_API_KEY="YOUR_API_KEY"`, where `YOUR_API_KEY` is the API key you obtained in
+the first step. You can also take a look at the [local.defaults.properties](local.defaults.properties)
+as an example. This is the same key you created to use [Places SDK][places-sdk].
 
 ### Demo App
 A [demo](app) application is contained within this repository that illustrates the use of this KTX library.
@@ -35,11 +46,11 @@ A [demo](app) application is contained within this repository that illustrates t
 To run the demo app, you'll have to:
 
 1. [Get a Places API key][api-key]
-2. Update the `local.properties` file in your root directory called (Note: this file should *NOT* be
-under version control to protect your API key) and add a single line to `local.properties` that
-looks like `PLACES_API_KEY="YOUR_API_KEY"`, where `YOUR_API_KEY` is the API key you obtained in
-the first step. You can also take a look at the [local.defaults.properties](local.defaults.properties)
-as an example.
+2. Update the `local.properties` file in your root directory and add lines to `local.properties` that
+looks like `PLACES_API_KEY="YOUR_API_KEY"` and `MAPS_API_KEY="YOUR_MAPS_API_KEY"`.
+ * `YOUR_API_KEY` is the API key you obtained in the first step. It is the same key you use to access Places SDK.
+ * `YOUR_MAPS_API_KEY` is the key to the use google map. 
+You can also take a look at the [local.defaults.properties](local.defaults.properties) as an example.
 3. Build and run
 
 ## Support
