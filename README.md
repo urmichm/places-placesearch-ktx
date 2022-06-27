@@ -1,4 +1,6 @@
-[![](https://jitpack.io/v/urmichm/places-placesearch-ktx.svg)](https://jitpack.io/#urmichm/places-placesearch-ktx)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.urmich.android/placesearch-ktx/badge.svg)](https://search.maven.org/artifact/com.urmich.android/placesearch-ktx)
+[![Jit Pack](https://jitpack.io/v/urmichm/places-placesearch-ktx.svg)](https://jitpack.io/#urmichm/places-placesearch-ktx)
+![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 
 
 Places | Place Search KTX
@@ -19,19 +21,8 @@ It enables you to use [Place Search][place-search] API.
 In order to use the library, include the following dependency:
 ```gradle
 dependencies {
-  implementation 'com.github.urmichm:
-places-placesearch-ktx:RELEASE_TAG'
+      implementation 'com.urmich.android:placesearch-ktx:1.0.0'
  }
-```
-
-If you have not included the jitpack repository in your project, add the following to your root build.gradle
-
-```gradle
-allprojects {
-  repositories {
-    maven { url 'https://jitpack.io' }
-  }
-}
 ```
 
 The result of the API call can be converted into a set of [Place][place] objects.
