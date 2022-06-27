@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.urmich.android.demo.databinding.ActivityMapsBinding
+import com.urmich.android.placesearchktx.placesearch.PlaceSearch
 import com.urmich.android.placesearchktx.placesearch.search.FindPlace
 import com.urmich.android.placesearchktx.placesearch.search.NearbySearch
 import com.urmich.android.placesearchktx.placesearch.search.TextSearch
@@ -71,20 +72,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .setFields(listOf(FindPlace.Field.NAME, FindPlace.Field.LOCATION))
                 .setLanguage("en")
             .build()
-
-        lifecycleScope.launch { 
-            val response = findPlace.call()
-            Log.i(TAG, response.toString())
-            if(response?.status == "OK"){
-                response.places.forEach { it ->
-                    mMap.addMarker(
-                        MarkerOptions()
-                            .position(it.asPlace().latLng!!)
-                            .title(it.asPlace().name)
-                    )
-                }
-            }
-        }
+        makeAsyncCall(findPlace)
     }
 
     /**
@@ -97,10 +85,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .setRadius(5000)
                 .setLocation(homeLatLng)
             .build()
+        makeAsyncCall(nearbySearch)
+    }
 
+    /**
+     * Simple example of Text Search usage
+     * */
+    private fun runTextSearch(){
+        val textSearch = TextSearch
+            .Builder()
+                .setQuery("restaurants in Warsaw")
+                .setLanguage("en")
+            .build()
+        makeAsyncCall(textSearch)
+    }
+
+    private fun makeAsyncCall(placeSearch: PlaceSearch) {
         lifecycleScope.launch {
-            val response = nearbySearch.call()
-            Log.i(TAG, response.toString())
+            val response = placeSearch.call()
             if(response?.status == "OK"){
                 response.places.forEach { it ->
                     mMap.addMarker(
@@ -110,29 +112,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     )
                 }
             }
-        }
-    }
-
-    /**
-     * Simple example of Text Search usage
-     * */
-    private fun runTextSearch(){
-        val textSearch = TextSearch.Builder()
-            .setQuery("restaurants in Warsaw")
-            .setLanguage("en")
-            .build()
-
-        lifecycleScope.launch {
-            val response = textSearch.call()
-            Log.i(TAG, response.toString())
-            if(response?.status == "OK"){
-                response.places.forEach { it ->
-                    mMap.addMarker(
-                        MarkerOptions()
-                            .position(it.asPlace().latLng!!)
-                            .title(it.asPlace().name)
-                    )
-                }
+            else{
+                Log.i(TAG, response.toString())
             }
         }
     }
