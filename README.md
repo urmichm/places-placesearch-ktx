@@ -40,7 +40,7 @@ looks like `PLACES_API_KEY="YOUR_API_KEY"`, where `YOUR_API_KEY` is the API key 
 the first step. You can also take a look at the [local.defaults.properties](local.defaults.properties)
 as an example. This is the same key you created to use [Places SDK][places-sdk].
 
-<img align="right" src="./screenshots/screenshot3.png">
+<img align="right" src="./screenshots/screenshot.png">
 
 ### Demo App
 A [demo](app) application is contained within this repository that illustrates the use of this KTX library.
