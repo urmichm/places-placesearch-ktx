@@ -280,7 +280,7 @@ class NearbySearch private constructor(private val builder : Builder)
     override suspend fun call() : PlaceSearchContainer? {
 
         val nearby: Deferred<NearbySearchContainer> =
-            Network.service.nearbySearch(
+            Network.service.nearbySearchAsync(
                 location = location,
                 keyword = keyword,
                 language = language,

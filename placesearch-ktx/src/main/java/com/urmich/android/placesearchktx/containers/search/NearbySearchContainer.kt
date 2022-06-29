@@ -4,7 +4,6 @@ import com.urmich.android.placesearchktx.containers.PlaceSearchContainer
 import com.urmich.android.placesearchktx.containers.common.PlaceDetailsContainer
 import com.squareup.moshi.Json
 
-
 /**
  * Container fro nearBySearch request.
  * @details https://developers.google.com/maps/documentation/places/web-service/search-nearby#PlacesNearbySearchResponse

@@ -271,7 +271,7 @@ class FindPlace private constructor(private val builder : Builder)
     override suspend fun call(): PlaceSearchContainer?{
 
         val find : Deferred<FindPlaceContainer> =
-            Network.service.findPlace(
+            Network.service.findPlaceAsync(
                 input = input,
                 inputtype = inputtype,
                 fields = fields,

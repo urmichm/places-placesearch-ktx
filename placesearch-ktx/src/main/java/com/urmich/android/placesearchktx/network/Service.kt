@@ -17,7 +17,7 @@ import retrofit2.http.Query
 /**
  * API key
  * */
-private val PLACES_API_KEY : String = BuildConfig.PLACES_API_KEY
+private const val PLACES_API_KEY : String = BuildConfig.PLACES_API_KEY
 
 /**
  * Nearby search requests
@@ -62,7 +62,7 @@ internal interface DianaService{
      *
      * */
     @GET("textsearch/${OUTPUT_FORMAT}")
-    fun textSearch(
+    fun textSearchAsync(
         @Query("key") key : String = PLACES_API_KEY,
         @Query("query") query : String,
 
@@ -102,7 +102,7 @@ internal interface DianaService{
      * @return [NearbySearchContainer] object is returned wrapped into [Deferred] class
      * */
     @GET("nearbysearch/${OUTPUT_FORMAT}")
-    fun nearbySearch(
+    fun nearbySearchAsync(
         @Query("key") key : String = PLACES_API_KEY,
         @Query("location") location : String,
         @Query("keyword") keyword :String?,
@@ -140,7 +140,7 @@ internal interface DianaService{
      * [FindPlaceContainer] object is returned wrapped into [Deferred] class
      * */
     @GET("findplacefromtext/${OUTPUT_FORMAT}")
-    fun findPlace(
+    fun findPlaceAsync(
         @Query("key") key : String = PLACES_API_KEY,
 
         @Query("input") input : String,

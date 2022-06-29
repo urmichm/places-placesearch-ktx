@@ -276,7 +276,7 @@ class TextSearch private constructor(private val builder: Builder)
      * */
     override suspend fun call() : PlaceSearchContainer?{
         val textSearch : Deferred<TextSearchContainer> =
-            Network.service.textSearch(
+            Network.service.textSearchAsync(
                 query = query,
                 language = language,
                 location = location,
