@@ -72,7 +72,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .setFields(listOf(FindPlace.Field.NAME, FindPlace.Field.LOCATION))
                 .setLanguage("en")
             .build()
-        makeAsyncCall(findPlace)
+        makeCallAsync(findPlace)
     }
 
     /**
@@ -85,7 +85,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .setRadius(5000)
                 .setLocation(homeLatLng)
             .build()
-        makeAsyncCall(nearbySearch)
+        makeCallAsync(nearbySearch)
     }
 
     /**
@@ -97,10 +97,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .setQuery("restaurants in Warsaw")
                 .setLanguage("en")
             .build()
-        makeAsyncCall(textSearch)
+        makeCallAsync(textSearch)
     }
 
-    private fun makeAsyncCall(placeSearch: PlaceSearch) {
+    private fun makeCallAsync(placeSearch: PlaceSearch) {
         lifecycleScope.launch {
             val response = placeSearch.call()
             if(response?.status == "OK"){
