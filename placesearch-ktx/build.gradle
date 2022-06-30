@@ -61,19 +61,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication){
-                from components.release
-                groupId = 'com.urmich.android'
-                artifactId = 'placesearch-ktx'
-                version = '1.0.0'
-            }
-        }
-    }
-}
-
 secrets {
     // To add your Places API key to this project:
     // 1. Update a file in your root project called `local.properties` and add this line,
