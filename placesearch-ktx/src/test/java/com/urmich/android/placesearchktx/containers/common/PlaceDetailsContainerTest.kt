@@ -60,15 +60,17 @@ class PlaceDetailsContainerTest {
     fun asPlace() {
         val place = container.asPlace()
 
-        assertEquals(container.businessStatus, place.businessStatus.name)
+        assertNotNull(place.businessStatus)
+        assertEquals(container.businessStatus, place.businessStatus!!.name)
         assertEquals(container.rating, place.rating)
         assertEquals( container.vicinity, place.address)
         assertEquals(container.placeId, place.id)
         assertEquals(container.userRatingsTotal, place.userRatingsTotal)
 
-        assertEquals(2, place.types.size)
-        assertTrue(place.types.contains(Place.Type.BAR))
-        assertTrue(place.types.contains(Place.Type.PARK))
-        assertFalse(place.types.contains(Place.Type.PARKING))
+        assertNotNull(place.types)
+        assertEquals(2, place.types!!.size)
+        assertTrue(place.types!!.contains(Place.Type.BAR))
+        assertTrue(place.types!!.contains(Place.Type.PARK))
+        assertFalse(place.types!!.contains(Place.Type.PARKING))
     }
 }
