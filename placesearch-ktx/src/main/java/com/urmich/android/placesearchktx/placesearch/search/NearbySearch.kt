@@ -1,6 +1,5 @@
 package com.urmich.android.placesearchktx.placesearch.search
 
-import com.urmich.android.placesearchktx.*
 import com.urmich.android.placesearchktx.containers.search.NearbySearchContainer
 import com.urmich.android.placesearchktx.containers.PlaceSearchContainer
 import com.urmich.android.placesearchktx.network.Network
@@ -8,6 +7,7 @@ import com.urmich.android.placesearchktx.placesearch.PlaceSearch
 import com.urmich.android.placesearchktx.toRequestString
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
+import com.urmich.android.placesearchktx.priceNotInRange
 import kotlinx.coroutines.Deferred
 
 
