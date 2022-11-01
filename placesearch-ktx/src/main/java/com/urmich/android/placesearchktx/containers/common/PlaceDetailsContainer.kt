@@ -1,5 +1,6 @@
 package com.urmich.android.placesearchktx.containers.common
 
+import android.util.Log
 import com.google.android.libraries.places.api.model.PhotoMetadata
 import com.google.android.libraries.places.api.model.Place
 import com.squareup.moshi.Json
@@ -84,11 +85,15 @@ data class PlaceDetailsContainer(
         placeBuilder.setPhotoMetadatas(photoList)
 
         if(null == placeBuilder.address && null != this.vicinity) {
-            println("WARN: Vicinity is used as address")
+            Log.w(TAG, "Vicinity is used as an address")
             placeBuilder.setAddress(this.vicinity)
         }
 
         return placeBuilder.build()
+    }
+
+    companion object {
+        private const val TAG :String = "PlaceDetailsContainer"
     }
 
 }
