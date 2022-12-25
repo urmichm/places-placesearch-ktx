@@ -20,7 +20,7 @@ It enables you to use [Place Search][place-search] API.
 In order to use the library, include the following dependency:
 ```gradle
 dependencies {
-      implementation 'com.urmich.android:placesearch-ktx:1.0.0'
+      implementation 'com.urmich.android:placesearch-ktx:1.1.0'
  }
 ```
 

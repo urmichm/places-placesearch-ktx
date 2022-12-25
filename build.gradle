@@ -46,7 +46,7 @@ ext.projectArtifactId = { project ->
  */
 allprojects {
     group = 'com.urmich.android'
-    version = '1.0.0'
+    version = '1.1.0'
     project.ext.artifactId = rootProject.ext.projectArtifactId(project)
 }
 
