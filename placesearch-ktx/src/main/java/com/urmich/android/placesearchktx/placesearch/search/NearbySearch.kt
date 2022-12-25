@@ -282,6 +282,7 @@ class NearbySearch private constructor(private val builder : Builder)
                         throw IllegalArgumentException(
                             "When using rankBy=distance, the radius parameter will not be accepted, and will result in an INVALID_REQUEST.")
                 }
+                else -> throw IllegalArgumentException("Rankby is not valid.")
             }
 
         }
